@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>技术 on Nanase Blog</title>
-    <link>/categories/%E6%8A%80%E6%9C%AF/</link>
+    <link>http://nishinonanase.xyz/categories/%E6%8A%80%E6%9C%AF/</link>
     <description>Recent content in 技术 on Nanase Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 25 Apr 2020 12:22:45 +0800</lastBuildDate>
     
-	<atom:link href="/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://nishinonanase.xyz/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hexo优化之使用GooglePrettify高亮代码</title>
-      <link>/posts/Hexo%E4%BC%98%E5%8C%96%E4%B9%8B%E4%BD%BF%E7%94%A8GooglePrettify%E9%AB%98%E4%BA%AE%E4%BB%A3%E7%A0%81/</link>
+      <link>http://nishinonanase.xyz/posts/Hexo%E4%BC%98%E5%8C%96%E4%B9%8B%E4%BD%BF%E7%94%A8GooglePrettify%E9%AB%98%E4%BA%AE%E4%BB%A3%E7%A0%81/</link>
       <pubDate>Sat, 25 Apr 2020 12:22:45 +0800</pubDate>
       
-      <guid>/posts/Hexo%E4%BC%98%E5%8C%96%E4%B9%8B%E4%BD%BF%E7%94%A8GooglePrettify%E9%AB%98%E4%BA%AE%E4%BB%A3%E7%A0%81/</guid>
+      <guid>http://nishinonanase.xyz/posts/Hexo%E4%BC%98%E5%8C%96%E4%B9%8B%E4%BD%BF%E7%94%A8GooglePrettify%E9%AB%98%E4%BA%AE%E4%BB%A3%E7%A0%81/</guid>
       <description>虽然Hexo自带了代码高亮的功能，但是渲染生成后的代码是使用table，然后一大堆的tr、td标签。</description>
     </item>
     
     <item>
       <title>Golang之命令行教程</title>
-      <link>/posts/Golang-Go%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%95%99%E7%A8%8B/</link>
+      <link>http://nishinonanase.xyz/posts/Golang-Go%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%95%99%E7%A8%8B/</link>
       <pubDate>Thu, 19 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/Golang-Go%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%95%99%E7%A8%8B/</guid>
+      <guid>http://nishinonanase.xyz/posts/Golang-Go%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%95%99%E7%A8%8B/</guid>
       <description>一. 命令行预览 Go命令行使用二级命令，格式go &amp;lt;command&amp;gt; [arguments] $ go help Go is a tool for managing Go source code. Usage: go &amp;lt;command&amp;gt; [arguments] The commands are: bug start a bug report build</description>
     </item>
     

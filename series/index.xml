@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Series on Nanase Blog</title>
-    <link>/series/</link>
+    <link>http://nishinonanase.xyz/series/</link>
     <description>Recent content in Series on Nanase Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 13 Mar 2019 23:23:34 +0800</lastBuildDate>
     
-	<atom:link href="/series/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://nishinonanase.xyz/series/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>golang</title>
-      <link>/series/golang/</link>
+      <link>http://nishinonanase.xyz/series/golang/</link>
       <pubDate>Wed, 13 Mar 2019 23:23:34 +0800</pubDate>
       
-      <guid>/series/golang/</guid>
+      <guid>http://nishinonanase.xyz/series/golang/</guid>
       <description></description>
     </item>
     

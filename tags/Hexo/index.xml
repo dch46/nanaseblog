@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hexo on Nanase Blog</title>
-    <link>/tags/Hexo/</link>
+    <link>http://nishinonanase.xyz/tags/Hexo/</link>
     <description>Recent content in Hexo on Nanase Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 25 Apr 2020 12:22:45 +0800</lastBuildDate>
     
-	<atom:link href="/tags/Hexo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://nishinonanase.xyz/tags/Hexo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hexo优化之使用GooglePrettify高亮代码</title>
-      <link>/posts/Hexo%E4%BC%98%E5%8C%96%E4%B9%8B%E4%BD%BF%E7%94%A8GooglePrettify%E9%AB%98%E4%BA%AE%E4%BB%A3%E7%A0%81/</link>
+      <link>http://nishinonanase.xyz/posts/Hexo%E4%BC%98%E5%8C%96%E4%B9%8B%E4%BD%BF%E7%94%A8GooglePrettify%E9%AB%98%E4%BA%AE%E4%BB%A3%E7%A0%81/</link>
       <pubDate>Sat, 25 Apr 2020 12:22:45 +0800</pubDate>
       
-      <guid>/posts/Hexo%E4%BC%98%E5%8C%96%E4%B9%8B%E4%BD%BF%E7%94%A8GooglePrettify%E9%AB%98%E4%BA%AE%E4%BB%A3%E7%A0%81/</guid>
+      <guid>http://nishinonanase.xyz/posts/Hexo%E4%BC%98%E5%8C%96%E4%B9%8B%E4%BD%BF%E7%94%A8GooglePrettify%E9%AB%98%E4%BA%AE%E4%BB%A3%E7%A0%81/</guid>
       <description>虽然Hexo自带了代码高亮的功能，但是渲染生成后的代码是使用table，然后一大堆的tr、td标签。</description>
     </item>
     
