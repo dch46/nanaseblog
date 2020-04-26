@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>golang on Nanase Blog</title>
-    <link>http://nishinonanase.xyz/tags/golang/</link>
+    <link>http://www.nishinonanase.xyz/tags/golang/</link>
     <description>Recent content in golang on Nanase Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 19 Mar 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://nishinonanase.xyz/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.nishinonanase.xyz/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Golang之命令行教程</title>
-      <link>http://nishinonanase.xyz/posts/Golang-Go%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%95%99%E7%A8%8B/</link>
+      <link>http://www.nishinonanase.xyz/posts/Golang-Go%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%95%99%E7%A8%8B/</link>
       <pubDate>Thu, 19 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://nishinonanase.xyz/posts/Golang-Go%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%95%99%E7%A8%8B/</guid>
+      <guid>http://www.nishinonanase.xyz/posts/Golang-Go%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%95%99%E7%A8%8B/</guid>
       <description>一. 命令行预览 Go命令行使用二级命令，格式go &amp;lt;command&amp;gt; [arguments] $ go help Go is a tool for managing Go source code. Usage: go &amp;lt;command&amp;gt; [arguments] The commands are: bug start a bug report build</description>
     </item>
     

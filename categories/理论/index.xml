@@ -2,75 +2,75 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>理论 on Nanase Blog</title>
-    <link>http://nishinonanase.xyz/categories/%E7%90%86%E8%AE%BA/</link>
+    <link>http://www.nishinonanase.xyz/categories/%E7%90%86%E8%AE%BA/</link>
     <description>Recent content in 理论 on Nanase Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 25 Apr 2020 18:25:35 +0800</lastBuildDate>
     
-	<atom:link href="http://nishinonanase.xyz/categories/%E7%90%86%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.nishinonanase.xyz/categories/%E7%90%86%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>适配器模式</title>
-      <link>http://nishinonanase.xyz/posts/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+      <link>http://www.nishinonanase.xyz/posts/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Sat, 25 Apr 2020 18:25:35 +0800</pubDate>
       
-      <guid>http://nishinonanase.xyz/posts/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>http://www.nishinonanase.xyz/posts/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
       <description>意图Intent Adapter Pattern:Convert the inface of a class into another interface clients expect.Adapter lets classes work together that couldn’t otherwise because of incompatible interface. 适配器模式:将一个类的接</description>
     </item>
     
     <item>
       <title>建造者模式</title>
-      <link>http://nishinonanase.xyz/posts/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+      <link>http://www.nishinonanase.xyz/posts/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Sun, 24 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://nishinonanase.xyz/posts/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>http://www.nishinonanase.xyz/posts/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
       <description>意图Intent Builder Pattern: Separate the construction of a complex object form its representation so that the same construction process can create different representations 造者模式:将一个复杂对象的构建与它的表示</description>
     </item>
     
     <item>
       <title>原型模式</title>
-      <link>http://nishinonanase.xyz/posts/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
+      <link>http://www.nishinonanase.xyz/posts/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Sat, 23 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://nishinonanase.xyz/posts/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>http://www.nishinonanase.xyz/posts/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</guid>
       <description>意图Intent Prototype Pattern：Specify the kinds of objects to create using a prototypical instance,and create new objects by copying this prototype. 原型模式:用原型实</description>
     </item>
     
     <item>
       <title>抽象工厂</title>
-      <link>http://nishinonanase.xyz/posts/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</link>
+      <link>http://www.nishinonanase.xyz/posts/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</link>
       <pubDate>Wed, 20 Jul 2016 13:30:25 +0800</pubDate>
       
-      <guid>http://nishinonanase.xyz/posts/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</guid>
+      <guid>http://www.nishinonanase.xyz/posts/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</guid>
       <description>意图Intent Abstract Factory Pattern:Provide an interface for creating families of related or dependent objects without specifying their concrete classes. 抽象工厂模式：提供一个创建一系列相关或相互依赖对</description>
     </item>
     
     <item>
       <title>工厂方法模式</title>
-      <link>http://nishinonanase.xyz/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</link>
+      <link>http://www.nishinonanase.xyz/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Wed, 13 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://nishinonanase.xyz/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>http://www.nishinonanase.xyz/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</guid>
       <description>意图Intent Factory Pattern:Define an interface for creating an object,but let subclass decide which class to instantiate.Factory Method lets a class defer instantiation to subclass. 工厂方法模式：定义一个用于创建对象的接</description>
     </item>
     
     <item>
       <title>简单工厂</title>
-      <link>http://nishinonanase.xyz/posts/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82/</link>
+      <link>http://www.nishinonanase.xyz/posts/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82/</link>
       <pubDate>Wed, 13 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://nishinonanase.xyz/posts/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82/</guid>
+      <guid>http://www.nishinonanase.xyz/posts/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82/</guid>
       <description>意图Intent Simple Factory Pattern：Creates objects without exposing the instantiation logic to the client. Refers to the newly created object through a common interfa</description>
     </item>
     
     <item>
       <title>单例模式</title>
-      <link>http://nishinonanase.xyz/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+      <link>http://www.nishinonanase.xyz/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Tue, 12 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://nishinonanase.xyz/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>http://www.nishinonanase.xyz/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
       <description>意图Intent Singleton Pattern：Ensure a class has only one instance, and provide a global point of access to it. 单例模式：确保某一个类只</description>
     </item>
     
