@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>简单工厂 &middot; Nanase Blog</title>
+  <meta name="keywords" content="书兰, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="今日も頑張っていきましょ～">
+  <meta name="author" content="Nanase">
+  <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        简单工厂</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                简单工厂</h1>
+                <div class="stuff">
+                    
+                    <span>July 13, 2016</span>
+                    <span>字数 1414</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <h2 id="意图intent">意图Intent</h2>
+<p>Simple Factory Pattern：Creates objects without exposing the instantiation logic to the client. Refers to the newly created object through a common interface。 简单工厂模式: 专门定义一个类来负责创建其他类的实例,被创建的实例通常都具有共同的父类. 简单工厂模式又称为静态工厂方法(Static Factory Method)模式，它属于类创建型模式。在简单工厂模式中，可以根据参数的不同返回不同类的实例。</p>
+<hr>
+<h2 id="模式结构">模式结构</h2>
+<p>简单工厂模式包含如下角色：</p>
+<ul>
+<li>Factory：工厂角色 工厂角色负责实现创建所有实例的内部逻辑</li>
+<li>Product：抽象产品角色 抽象产品角色是所创建的所有对象的父类，负责描述所有实例所共有的公共接口</li>
+<li>ConcreteProduct：具体产品角色 具体产品角色是创建目标，所有创建的对象都充当这个角色的某个具体类的实例。</li>
+</ul>
+<hr>
+<h2 id="适用场景">适用场景</h2>
+<p>在以下情况下可以使用简单工厂模式：</p>
+<ul>
+<li>工厂类负责创建的对象比较少：由于创建的对象较少，不会造成工厂方法中的业务逻辑太过复杂。</li>
+<li>客户端只知道传入工厂类的参数，对于如何创建对象不关心：客户端既不需要关心创建细节，甚至连类名都不需要记住，只需要知道类型所对应的参数。</li>
+</ul>
+<hr>
+<h2 id="show-me-the-code">Show me the code</h2>
+<pre><code>Simple Factory
+class car:
+    '''interface as Product'''
+    def drive(self):
+        pass
+
+class BMW(car):
+    '''Concrete Product'''
+    def __init__(self,carname):
+        self.__name=carname
+    def drive(self):
+        print &quot;Drive the BMW as &quot;+self.__name
+
+class Benz(car):
+    '''Concrete Product'''
+    def __init__(self,carname):
+        self.__name=carname
+    def drive(self):
+        print &quot;Drive the Benz as &quot;+self.__name
+
+class driver:
+    '''Factory also called Creator'''
+    def driverCar(self,name):
+        if name==&quot;BMW&quot;:
+            return BMW(&quot;BMW&quot;)
+        elif name==&quot;Benz&quot;:
+            return Benz(&quot;Benz&quot;)
+        else:
+            raise MyInputException(name)
+
+class MyInputException(Exception):  
+    def __init__(self, name):  
+        Exception.__init__(self)  
+        self.name = name
+ 
+
+if __name__ == &quot;__main__&quot;:
+    print &quot;please input \&quot;BMW\&quot; or \&quot;Benz\&quot; :&quot;
+    carname=raw_input()
+    dier=driver()
+    try:
+        d=dier.driverCar(carname)
+    except MyInputException,e:
+        print &quot;input worry name &quot;+e.name
+    else:
+        d.drive()
+
+</code></pre><hr>
+<h2 id="优点">优点</h2>
+<ul>
+<li>工厂类含有必要的判断逻辑，可以决定在什么时候创建哪一个产品类的实例，客户端可以免除直接创建产品对象的责任，而仅仅“消费”产品；简单工厂模式通过这种做法实现了对责任的分割，它提供了专门的工厂类用于创建对象。</li>
+<li>客户端无须知道所创建的具体产品类的类名，只需要知道具体产品类所对应的参数即可，对于一些复杂的类名，通过简单工厂模式可以减少使用者的记忆量。</li>
+<li>通过引入配置文件，可以在不修改任何客户端代码的情况下更换和增加新的具体产品类，在一定程度上提高了系统的灵活性。</li>
+</ul>
+<h2 id="缺点">缺点</h2>
+<ul>
+<li>由于工厂类集中了所有产品创建逻辑，一旦不能正常工作，整个系统都要受到影响。</li>
+<li>使用简单工厂模式将会增加系统中类的个数，在一定程序上增加了系统的复杂度和理解难度。</li>
+<li>系统扩展困难，一旦添加新产品就不得不修改工厂逻辑，在产品类型较多时，有可能造成工厂逻辑过于复杂，不利于系统的扩展和维护。</li>
+<li>简单工厂模式由于使用了静态工厂方法，造成工厂角色无法形成基于继承的等级结构。</li>
+</ul>
+<h2 id="总结">总结</h2>
+<ul>
+<li>创建型模式对类的实例化过程进行了抽象，能够将对象的创建与对象的使用过程分离。
+简单工厂模式又称为静态工厂方法模式，它属于类创建型模式。在简单工厂模式中，可以根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有共同的父类。</li>
+<li>简单工厂模式包含三个角色：工厂角色负责实现创建所有实例的内部逻辑；抽象产品角色是所创建的所有对象的父类，负责描述所有实例所共有的公共接口；具体产品角色是创建目标，所有创建的对象都充当这个角色的某个具体类的实例。
+简单工厂模式的要点在于：当你需要什么，只需要传入一个正确的参数，就可以获取你所需要的对象，而无须知道其创建细节。</li>
+<li>简单工厂模式最大的优点在于实现对象的创建和对象的使用分离，将对象的创建交给专门的工厂类负责，但是其最大的缺点在于工厂类不够灵活，增加新的具体产品需要修改工厂类的判断逻辑代码，而且产品较多时，工厂方法代码将会非常复杂。
+简单工厂模式适用情况包括：工厂类负责创建的对象比较少；客户端只知道传入工厂类的参数，对于如何创建对象不关心。</li>
+</ul>
+
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls" autoplay>
+                        <source type="audio/mpeg" src="/mp3/%e3%82%b5%e3%83%a8%e3%83%8a%e3%83%a9%e3%81%ae%e6%84%8f%e5%91%b3.mp3">
+                        <a href="/mp3/%e3%82%b5%e3%83%a8%e3%83%8a%e3%83%a9%e3%81%ae%e6%84%8f%e5%91%b3.mp3">/mp3/サヨナラの意味.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" rel="prev">上一篇</a>
+                    
+                    
+                        <a href="/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/" rel="next">下一篇</a>
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var audio = document.getElementById('audio');
+        audio.play();
+    }
+    </script>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "Nanase Blog";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+
