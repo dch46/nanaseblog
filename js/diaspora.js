@@ -365,7 +365,7 @@ $(function () {
           $('#qr').toggle()
         } else {
           $('.icon-wechat').addClass('tg')
-          $('#qr').qrcode({ width: 128, height: 128, text: location.href}).toggle()
+          $('#qr').qrcode({ width: 128, height: 128, text:"http://www.nishinonanase.xyz/"}).toggle()
         }
         return false
         break
@@ -494,6 +494,6 @@ $(function () {
   if (comment.data('ae') == true) {
     comment.click()
   }
-  console.log('%c Github %c', 'background:#24272A; color:#ffffff', '', 'https://github.com/honjun/hugo-theme-diaspora')
+  console.log('%c Github %c', 'background:#24272A; color:#ffffff', '', 'https://github.com/TheAceNanase')
 })
 
