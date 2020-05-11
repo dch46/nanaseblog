@@ -5,3 +5,4 @@
 预览：[demo](https://diaspora.hojun.cn/)
 ![](https://cdn.jsdelivr.net/gh/hojun2/hojun2.github.io/img/diaspora.jpg)
 
+[书兰的小博客](http://www.nishinonanase.xyz/)
