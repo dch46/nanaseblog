@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>常见反爬策略及应对方案 &middot; Nanase Blog</title>
+  <meta name="keywords" content="书兰, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="今日も頑張っていきましょ～">
+  <meta name="author" content="Nanase">
+  <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        常见反爬策略及应对方案</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                常见反爬策略及应对方案</h1>
+                <div class="stuff">
+                    
+                    <span>August 26, 2017</span>
+                    <span>字数 671</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <h2 id="常见反爬策略及应对方案">常见反爬策略及应对方案</h2>
+<ol>
+<li>
+<p>构造合理的HTTP请求头。</p>
+<ul>
+<li>
+<p>Accept</p>
+</li>
+<li>
+<p>User-Agent - 三方库fake-useragent</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> fake_useragent <span style="color:#f92672">import</span> UserAgent
+ua <span style="color:#f92672">=</span> UserAgent()
+     
+ua<span style="color:#f92672">.</span>ie
+<span style="color:#75715e"># Mozilla/5.0 (Windows; U; MSIE 9.0; Windows NT 9.0; en-US);</span>
+ua<span style="color:#f92672">.</span>msie
+<span style="color:#75715e"># Mozilla/5.0 (compatible; MSIE 10.0; Macintosh; Intel Mac OS X 10_7_3; Trident/6.0)&#39;</span>
+ua[<span style="color:#e6db74">&#39;Internet Explorer&#39;</span>]
+<span style="color:#75715e"># Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; GTB7.4; InfoPath.2; SV1; .NET CLR 3.3.69573; WOW64; en-US)</span>
+ua<span style="color:#f92672">.</span>opera
+<span style="color:#75715e"># Opera/9.80 (X11; Linux i686; U; ru) Presto/2.8.131 Version/11.11</span>
+ua<span style="color:#f92672">.</span>chrome
+<span style="color:#75715e"># Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2&#39;</span>
+ua<span style="color:#f92672">.</span>google
+<span style="color:#75715e"># Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/537.13 (KHTML, like Gecko) Chrome/24.0.1290.1 Safari/537.13</span>
+ua[<span style="color:#e6db74">&#39;google chrome&#39;</span>]
+<span style="color:#75715e"># Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11</span>
+ua<span style="color:#f92672">.</span>firefox
+<span style="color:#75715e"># Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:16.0.1) Gecko/20121011 Firefox/16.0.1</span>
+ua<span style="color:#f92672">.</span>ff
+<span style="color:#75715e"># Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:15.0) Gecko/20100101 Firefox/15.0.1</span>
+ua<span style="color:#f92672">.</span>safari
+<span style="color:#75715e"># Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25</span>
+     
+<span style="color:#75715e"># and the best one, random via real world browser usage statistic</span>
+ua<span style="color:#f92672">.</span>random
+</code></pre></div></li>
+<li>
+<p>Referer</p>
+</li>
+<li>
+<p>Accept-Encoding</p>
+</li>
+<li>
+<p>Accept-Language</p>
+</li>
+</ul>
+</li>
+<li>
+<p>检查网站生成的Cookie。</p>
+<ul>
+<li>有用的插件：<a href="http://www.editthiscookie.com/">EditThisCookie</a></li>
+<li>如何处理脚本动态生成的Cookie</li>
+</ul>
+</li>
+<li>
+<p>抓取动态内容。</p>
+<ul>
+<li>Selenium + WebDriver</li>
+<li>Chrome / Firefox - Driver</li>
+</ul>
+</li>
+<li>
+<p>限制爬取的速度。</p>
+</li>
+<li>
+<p>处理表单中的隐藏域。</p>
+<ul>
+<li>在读取到隐藏域之前不要提交表单</li>
+<li>用RoboBrowser这样的工具辅助提交表单</li>
+</ul>
+</li>
+<li>
+<p>处理表单中的验证码。</p>
+<ul>
+<li>
+<p>OCR（Tesseract） - 商业项目一般不考虑</p>
+</li>
+<li>
+<p>专业识别平台 - 超级鹰 / 云打码</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> hashlib <span style="color:#f92672">import</span> md5
+     
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ChaoClient</span>(object):
+     
+    <span style="color:#66d9ef">def</span> __init__(self, username, password, soft_id):
+        self<span style="color:#f92672">.</span>username <span style="color:#f92672">=</span> username
+        password <span style="color:#f92672">=</span>  password<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;utf-8&#39;</span>)
+        self<span style="color:#f92672">.</span>password <span style="color:#f92672">=</span> md5(password)<span style="color:#f92672">.</span>hexdigest()
+        self<span style="color:#f92672">.</span>soft_id <span style="color:#f92672">=</span> soft_id
+        self<span style="color:#f92672">.</span>base_params <span style="color:#f92672">=</span> {
+            <span style="color:#e6db74">&#39;user&#39;</span>: self<span style="color:#f92672">.</span>username,
+            <span style="color:#e6db74">&#39;pass2&#39;</span>: self<span style="color:#f92672">.</span>password,
+            <span style="color:#e6db74">&#39;softid&#39;</span>: self<span style="color:#f92672">.</span>soft_id,
+        }
+        self<span style="color:#f92672">.</span>headers <span style="color:#f92672">=</span> {
+            <span style="color:#e6db74">&#39;Connection&#39;</span>: <span style="color:#e6db74">&#39;Keep-Alive&#39;</span>,
+            <span style="color:#e6db74">&#39;User-Agent&#39;</span>: <span style="color:#e6db74">&#39;Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0)&#39;</span>,
+        }
+     
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">post_pic</span>(self, im, codetype):
+        params <span style="color:#f92672">=</span> {
+            <span style="color:#e6db74">&#39;codetype&#39;</span>: codetype,
+        }
+        params<span style="color:#f92672">.</span>update(self<span style="color:#f92672">.</span>base_params)
+        files <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;userfile&#39;</span>: (<span style="color:#e6db74">&#39;captcha.jpg&#39;</span>, im)}
+        r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(<span style="color:#e6db74">&#39;http://upload.chaojiying.net/Upload/Processing.php&#39;</span>, data<span style="color:#f92672">=</span>params, files<span style="color:#f92672">=</span>files, headers<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>headers)
+        <span style="color:#66d9ef">return</span> r<span style="color:#f92672">.</span>json()
+     
+     
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    client <span style="color:#f92672">=</span> ChaoClient(<span style="color:#e6db74">&#39;用户名&#39;</span>, <span style="color:#e6db74">&#39;密码&#39;</span>, <span style="color:#e6db74">&#39;软件ID&#39;</span>)
+    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;captcha.jpg&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> file:                                                
+        <span style="color:#66d9ef">print</span>(client<span style="color:#f92672">.</span>post_pic(file, <span style="color:#ae81ff">1902</span>))                                          
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>绕开“陷阱”。</p>
+<ul>
+<li>网页上有诱使爬虫爬取的爬取的隐藏链接（陷阱或蜜罐）</li>
+<li>通过Selenium+WebDriver+Chrome判断链接是否可见或在可视区域</li>
+</ul>
+</li>
+<li>
+<p>隐藏身份。</p>
+<ul>
+<li>
+<p>代理服务 -  快代理 / 讯代理 / 芝麻代理 / 蘑菇代理 / 云代理</p>
+<p><a href="https://cuiqingcai.com/5094.html">《爬虫代理哪家强？十大付费代理详细对比评测出炉！》</a></p>
+</li>
+<li>
+<p>洋葱路由 - 国内需要翻墙才能使用</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Shell" data-lang="Shell">yum -y install tor
+useradd admin -d /home/admin
+passwd admin
+chown -R admin:admin /home/admin
+chown -R admin:admin /var/run/tor
+tor
+</code></pre></div></li>
+</ul>
+</li>
+</ol>
+
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls" autoplay>
+                        <source type="audio/mpeg" src="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">
+                        <a href="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">/mp3/シンクロニシティ.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/Scrapy%E5%85%A5%E9%97%A8/" rel="prev">上一篇</a>
+                    
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/Django%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE/" rel="next">下一篇</a>
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var audio = document.getElementById('audio');
+        audio.play();
+    }
+</script>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "Nanase Blog";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

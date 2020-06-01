@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>构造程序逻辑-经典例题 &middot; Nanase Blog</title>
+  <meta name="keywords" content="书兰, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="今日も頑張っていきましょ～">
+  <meta name="author" content="Nanase">
+  <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        构造程序逻辑-经典例题</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                构造程序逻辑-经典例题</h1>
+                <div class="stuff">
+                    
+                    <span>June 2, 2017</span>
+                    <span>字数 1366</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <h2 id="构造程序逻辑">构造程序逻辑</h2>
+<p>对于编程语言的初学者来说，在学习了Python的核心语言元素（变量、类型、运算符、表达式、分支结构、循环结构等）之后，必须做的一件事情就是尝试用所学知识去解决现实中的问题，换句话说就是锻炼自己把用人类自然语言描述的算法（解决问题的方法和步骤）翻译成Python代码的能力，而这件事情必须通过大量的练习才能达成。</p>
+<h3 id="经典的例子">经典的例子</h3>
+<ol>
+<li>
+<p>寻找<strong>水仙花数</strong>。</p>
+<blockquote>
+<p><strong>说明</strong>：水仙花数也被称为超完全数字不变数、自恋数、自幂数、阿姆斯特朗数，它是一个3位数，该数字每个位上数字的立方之和正好等于它本身，例如：$1^3 + 5^3+ 3^3=153$。</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">找出所有水仙花数
+</span><span style="color:#e6db74">   
+</span><span style="color:#e6db74">Version: 0.1
+</span><span style="color:#e6db74">Author: 书兰
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+   
+<span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">1000</span>):
+    low <span style="color:#f92672">=</span> num <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>
+    mid <span style="color:#f92672">=</span> num <span style="color:#f92672">//</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>
+    high <span style="color:#f92672">=</span> num <span style="color:#f92672">//</span> <span style="color:#ae81ff">100</span>
+    <span style="color:#66d9ef">if</span> num <span style="color:#f92672">==</span> low <span style="color:#f92672">**</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> mid <span style="color:#f92672">**</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> high <span style="color:#f92672">**</span> <span style="color:#ae81ff">3</span>:
+        <span style="color:#66d9ef">print</span>(num)
+</code></pre></div><p>在上面的代码中，我们通过整除和求模运算分别找出了一个三位数的个位、十位和百位，这种小技巧在实际开发中还是常用的。用类似的方法，我们还可以实现将一个正整数反转，例如：将12345变成54321，代码如下所示。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">正整数的反转
+</span><span style="color:#e6db74">   
+</span><span style="color:#e6db74">Version: 0.1
+</span><span style="color:#e6db74">Author: 书兰
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+   
+num <span style="color:#f92672">=</span> int(input(<span style="color:#e6db74">&#39;num = &#39;</span>))
+reversed_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">while</span> num <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+    reversed_num <span style="color:#f92672">=</span> reversed_num <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> num <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>
+    num <span style="color:#f92672">//=</span> <span style="color:#ae81ff">10</span>
+<span style="color:#66d9ef">print</span>(reversed_num)
+</code></pre></div></li>
+<li>
+<p><strong>百钱百鸡</strong>问题。</p>
+<blockquote>
+<p><strong>说明</strong>：百钱百鸡是我国古代数学家<a href="https://baike.baidu.com/item/%E5%BC%A0%E4%B8%98%E5%BB%BA/10246238">张丘建</a>在《算经》一书中提出的数学问题：鸡翁一值钱五，鸡母一值钱三，鸡雏三值钱一。百钱买百鸡，问鸡翁、鸡母、鸡雏各几何？翻译成现代文是：公鸡5元一只，母鸡3元一只，小鸡1元三只，用100块钱买一百只鸡，问公鸡、母鸡、小鸡各有多少只？</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">《百钱百鸡》问题
+</span><span style="color:#e6db74">   
+</span><span style="color:#e6db74">Version: 0.1
+</span><span style="color:#e6db74">Author: 书兰
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+   
+<span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">20</span>):
+    <span style="color:#66d9ef">for</span> y <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">33</span>):
+        z <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> x <span style="color:#f92672">-</span> y
+        <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> x <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> y <span style="color:#f92672">+</span> z <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;公鸡: </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">只, 母鸡: </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">只, 小鸡: </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">只&#39;</span> <span style="color:#f92672">%</span> (x, y, z))
+</code></pre></div><p>上面使用的方法叫做<strong>穷举法</strong>，也称为<strong>暴力搜索法</strong>，这种方法通过一项一项的列举备选解决方案中所有可能的候选项并检查每个候选项是否符合问题的描述，最终得到问题的解。这种方法看起来比较笨拙，但对于运算能力非常强大的计算机来说，通常都是一个可行的甚至是不错的选择，而且问题的解如果存在，这种方法一定能够找到它。</p>
+</li>
+<li>
+<p><strong>CRAPS赌博游戏</strong>。</p>
+<blockquote>
+<p><strong>说明</strong>：CRAPS又称花旗骰，是美国拉斯维加斯非常受欢迎的一种的桌上赌博游戏。该游戏使用两粒骰子，玩家通过摇两粒骰子获得点数进行游戏。简单的规则是：玩家第一次摇骰子如果摇出了7点或11点，玩家胜；玩家第一次如果摇出2点、3点或12点，庄家胜；其他点数玩家继续摇骰子，如果玩家摇出了7点，庄家胜；如果玩家摇出了第一次摇的点数，玩家胜；其他点数，玩家继续要骰子，直到分出胜负。</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">Craps赌博游戏
+</span><span style="color:#e6db74">我们设定玩家开始游戏时有1000元的赌注
+</span><span style="color:#e6db74">游戏结束的条件是玩家输光所有的赌注
+</span><span style="color:#e6db74">   
+</span><span style="color:#e6db74">Version: 0.1
+</span><span style="color:#e6db74">Author: 书兰
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<span style="color:#f92672">from</span> random <span style="color:#f92672">import</span> randint
+   
+money <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>
+<span style="color:#66d9ef">while</span> money <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;你的总资产为:&#39;</span>, money)
+    needs_go_on <span style="color:#f92672">=</span> False
+    <span style="color:#66d9ef">while</span> True:
+        debt <span style="color:#f92672">=</span> int(input(<span style="color:#e6db74">&#39;请下注: &#39;</span>))
+        <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span> debt <span style="color:#f92672">&lt;=</span> money:
+            <span style="color:#66d9ef">break</span>
+    first <span style="color:#f92672">=</span> randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>) <span style="color:#f92672">+</span> randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;玩家摇出了</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">点&#39;</span> <span style="color:#f92672">%</span> first)
+    <span style="color:#66d9ef">if</span> first <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">or</span> first <span style="color:#f92672">==</span> <span style="color:#ae81ff">11</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;玩家胜!&#39;</span>)
+        money <span style="color:#f92672">+=</span> debt
+    <span style="color:#66d9ef">elif</span> first <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">or</span> first <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">or</span> first <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;庄家胜!&#39;</span>)
+        money <span style="color:#f92672">-=</span> debt
+    <span style="color:#66d9ef">else</span>:
+        needs_go_on <span style="color:#f92672">=</span> True
+    <span style="color:#66d9ef">while</span> needs_go_on:
+        needs_go_on <span style="color:#f92672">=</span> False
+        current <span style="color:#f92672">=</span> randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>) <span style="color:#f92672">+</span> randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>)
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;玩家摇出了</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">点&#39;</span> <span style="color:#f92672">%</span> current)
+        <span style="color:#66d9ef">if</span> current <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;庄家胜&#39;</span>)
+            money <span style="color:#f92672">-=</span> debt
+        <span style="color:#66d9ef">elif</span> current <span style="color:#f92672">==</span> first:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;玩家胜&#39;</span>)
+            money <span style="color:#f92672">+=</span> debt
+        <span style="color:#66d9ef">else</span>:
+            needs_go_on <span style="color:#f92672">=</span> True
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;你破产了, 游戏结束!&#39;</span>)
+</code></pre></div></li>
+</ol>
+
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls" autoplay>
+                        <source type="audio/mpeg" src="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">
+                        <a href="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">/mp3/シンクロニシティ.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/" rel="prev">上一篇</a>
+                    
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84/" rel="next">下一篇</a>
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var audio = document.getElementById('audio');
+        audio.play();
+    }
+</script>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "Nanase Blog";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

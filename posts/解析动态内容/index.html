@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>解析动态内容 &middot; Nanase Blog</title>
+  <meta name="keywords" content="书兰, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="今日も頑張っていきましょ～">
+  <meta name="author" content="Nanase">
+  <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        解析动态内容</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                解析动态内容</h1>
+                <div class="stuff">
+                    
+                    <span>August 21, 2017</span>
+                    <span>字数 1643</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <h2 id="解析动态内容">解析动态内容</h2>
+<p>根据权威机构发布的全球互联网可访问性审计报告，全球约有四分之三的网站其内容或部分内容是通过JavaScript动态生成的，这就意味着在浏览器窗口中“查看网页源代码”时无法在HTML代码中找到这些内容，也就是说我们之前用的抓取数据的方式无法正常运转了。解决这样的问题基本上有两种方案，一是JavaScript逆向工程；另一种是渲染JavaScript获得渲染后的内容。</p>
+<h3 id="javascript逆向工程">JavaScript逆向工程</h3>
+<p>下面我们以“360图片”网站为例，说明什么是JavaScript逆向工程。其实所谓的JavaScript逆向工程就是找到通过Ajax技术动态获取数据的接口。在浏览器中输入<a href="http://image.so.com/z?ch=beauty">http://image.so.com/z?ch=beauty</a>就可以打开“360图片”的“美女”版块.</p>
+<p>但是当我们在浏览器中通过右键菜单“显示网页源代码”的时候，居然惊奇的发现页面的HTML代码中连一个<code>&lt;img&gt;</code>标签都没有，那么我们看到的图片是怎么显示出来的呢？原来所有的图片都是通过JavaScript动态加载的，而在浏览器的“开发人员工具”的“网络”中可以找到获取这些图片数据的网络API接口。</p>
+<p>那么结论就很简单了，只要我们找到了这些网络API接口，那么就能通过这些接口获取到数据，当然实际开发的时候可能还要对这些接口的参数以及接口返回的数据进行分析，了解每个参数的意义以及返回的JSON数据的格式，这样才能在我们的爬虫中使用这些数据。</p>
+<p>关于如何从网络API中获取JSON格式的数据并提取出我们需要的内容，在之前的<a href="../Day01-15/Day11/%E6%96%87%E4%BB%B6%E5%92%8C%E5%BC%82%E5%B8%B8.md">《文件和异常》</a>一文中已经讲解过了，这里不再进行赘述。</p>
+<h3 id="使用selenium">使用Selenium</h3>
+<p>尽管很多网站对自己的网络API接口进行了保护，增加了获取数据的难度，但是只要经过足够的努力，绝大多数还是可以被逆向工程的，但是在实际开发中，我们可以通过浏览器渲染引擎来避免这些繁琐的工作，WebKit就是一个利用的渲染引擎。</p>
+<p>WebKit的代码始于1998年的KHTML项目，当时它是Konqueror浏览器的渲染引擎。2001年，苹果公司从这个项目的代码中衍生出了WebKit并应用于Safari浏览器，早期的Chrome浏览器也使用了该内核。在Python中，我们可以通过Qt框架获得WebKit引擎并使用它来渲染页面获得动态内容，关于这个内容请大家自行阅读<a href="http://python.jobbole.com/84600/">《爬虫技术:动态页面抓取超级指南》</a>一文。</p>
+<p>如果没有打算用上面所说的方式来渲染页面并获得动态内容，其实还有一种替代方案就是使用自动化测试工具Selenium，它提供了浏览器自动化的API接口，这样就可以通过操控浏览器来获取动态内容。首先可以使用pip来安装Selenium。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Shell" data-lang="Shell">pip3 install selenium
+</code></pre></div><p>下面以“阿里V任务”的“直播服务”为例，来演示如何使用Selenium获取到动态内容并抓取主播图片。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">import</span> requests
+
+<span style="color:#f92672">from</span> bs4 <span style="color:#f92672">import</span> BeautifulSoup
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    resp <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;https://v.taobao.com/v/content/live?catetype=704&amp;from=taonvlang&#39;</span>)
+    soup <span style="color:#f92672">=</span> BeautifulSoup(resp<span style="color:#f92672">.</span>text, <span style="color:#e6db74">&#39;lxml&#39;</span>)
+    <span style="color:#66d9ef">for</span> img_tag <span style="color:#f92672">in</span> soup<span style="color:#f92672">.</span>select(<span style="color:#e6db74">&#39;img[src]&#39;</span>):
+        <span style="color:#66d9ef">print</span>(img_tag<span style="color:#f92672">.</span>attrs[<span style="color:#e6db74">&#39;src&#39;</span>])
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><p>运行上面的程序会发现没有任何的输出，因为页面的HTML代码上根本找不到<code>&lt;img&gt;</code>标签。接下来我们使用Selenium来获取到页面上的动态内容，再提取主播图片。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> bs4 <span style="color:#f92672">import</span> BeautifulSoup
+<span style="color:#f92672">from</span> selenium <span style="color:#f92672">import</span> webdriver
+<span style="color:#f92672">from</span> selenium.webdriver.common.keys <span style="color:#f92672">import</span> Keys
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    driver <span style="color:#f92672">=</span> webdriver<span style="color:#f92672">.</span>Chrome()
+    driver<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;https://v.taobao.com/v/content/live?catetype=704&amp;from=taonvlang&#39;</span>)
+    soup <span style="color:#f92672">=</span> BeautifulSoup(driver<span style="color:#f92672">.</span>page_source, <span style="color:#e6db74">&#39;lxml&#39;</span>)
+    <span style="color:#66d9ef">for</span> img_tag <span style="color:#f92672">in</span> soup<span style="color:#f92672">.</span>body<span style="color:#f92672">.</span>select(<span style="color:#e6db74">&#39;img[src]&#39;</span>):
+        <span style="color:#66d9ef">print</span>(img_tag<span style="color:#f92672">.</span>attrs[<span style="color:#e6db74">&#39;src&#39;</span>])
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><p>在上面的程序中，我们通过Selenium实现对Chrome浏览器的操控，如果要操控其他的浏览器，可以创对应的浏览器对象，例如Firefox、IE等。运行上面的程序，如果看到如下所示的错误提示，那是说明我们还没有将Chrome浏览器的驱动添加到PATH环境变量中，也没有在程序中指定Chrome浏览器驱动所在的位置。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Shell" data-lang="Shell">selenium.common.exceptions.WebDriverException: Message: <span style="color:#e6db74">&#39;chromedriver&#39;</span> executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+</code></pre></div><p>为了解决上面的问题，可以到Selenium的<a href="https://www.seleniumhq.org">官方网站</a>找到浏览器驱动的下载链接并下载需要的驱动，在Linux或macOS系统下可以通过下面的命令来设置PATH环境变量，Windows下配置环境变量也非常简单，不清楚的可以自行了解。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Shell" data-lang="Shell">export PATH<span style="color:#f92672">=</span>$PATH:/Users/Hao/Downloads/Tools/chromedriver/
+</code></pre></div><p>其中<code>/Users/Hao/Downloads/Tools/chromedriver/ </code>就是chromedriver所在的路径。</p>
+
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls" autoplay>
+                        <source type="audio/mpeg" src="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">
+                        <a href="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">/mp3/シンクロニシティ.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%92%8CAjax%E8%AF%B7%E6%B1%82/" rel="prev">上一篇</a>
+                    
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/Scrapy%E5%85%A5%E9%97%A8/" rel="next">下一篇</a>
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var audio = document.getElementById('audio');
+        audio.play();
+    }
+</script>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "Nanase Blog";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

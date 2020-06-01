@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>存储数据 &middot; Nanase Blog</title>
+  <meta name="keywords" content="书兰, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="今日も頑張っていきましょ～">
+  <meta name="author" content="Nanase">
+  <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        存储数据</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                存储数据</h1>
+                <div class="stuff">
+                    
+                    <span>August 4, 2017</span>
+                    <span>字数 667</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <h2 id="存储数据">存储数据</h2>
+<h3 id="存储海量数据">存储海量数据</h3>
+<p>数据持久化的首选方案应该是关系型数据库，关系型数据库的产品很多，包括：Oracle、MySQL、SQLServer、PostgreSQL等。如果要存储海量的低价值数据，文档数据库也是不错的选择，MongoDB是文档数据库中的佼佼者，之前我们已经讲解过MongDB的相关知识，在此不再进行赘述。</p>
+<h3 id="数据缓存">数据缓存</h3>
+<p>我们可能需要从已经抓取过的页面中提取出更多的数据，重新去下载这些页面对于规模不大的网站倒是问题也不大，但是如果能够把这些页面缓存起来，对应用的性能会有明显的改善。可以使用Redis来提供高速缓存服务.</p>
+<h3 id="实例---缓存知乎发现上的链接和页面代码">实例 - 缓存知乎发现上的链接和页面代码</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> hashlib <span style="color:#f92672">import</span> sha1
+<span style="color:#f92672">from</span> urllib.parse <span style="color:#f92672">import</span> urljoin
+
+<span style="color:#f92672">import</span> pickle
+<span style="color:#f92672">import</span> re
+<span style="color:#f92672">import</span> requests
+<span style="color:#f92672">import</span> zlib
+
+<span style="color:#f92672">from</span> bs4 <span style="color:#f92672">import</span> BeautifulSoup
+<span style="color:#f92672">from</span> redis <span style="color:#f92672">import</span> Redis
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    <span style="color:#75715e"># 指定种子页面</span>
+    base_url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://www.zhihu.com/&#39;</span>
+    seed_url <span style="color:#f92672">=</span> urljoin(base_url, <span style="color:#e6db74">&#39;explore&#39;</span>)
+    <span style="color:#75715e"># 创建Redis客户端</span>
+    client <span style="color:#f92672">=</span> Redis(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;1.2.3.4&#39;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">6379</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;1qaz2wsx&#39;</span>)
+    <span style="color:#75715e"># 设置用户代理(否则访问会被拒绝)</span>
+    headers <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;user-agent&#39;</span>: <span style="color:#e6db74">&#39;Baiduspider&#39;</span>}
+    <span style="color:#75715e"># 通过requests模块发送GET请求并指定用户代理</span>
+    resp <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(seed_url, headers<span style="color:#f92672">=</span>headers)
+    <span style="color:#75715e"># 创建BeautifulSoup对象并指定使用lxml作为解析器</span>
+    soup <span style="color:#f92672">=</span> BeautifulSoup(resp<span style="color:#f92672">.</span>text, <span style="color:#e6db74">&#39;lxml&#39;</span>)
+    href_regex <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^/question&#39;</span>)
+    <span style="color:#75715e"># 将URL处理成SHA1摘要(长度固定更简短)</span>
+    hasher_proto <span style="color:#f92672">=</span> sha1()
+    <span style="color:#75715e"># 查找所有href属性以/question打头的a标签</span>
+    <span style="color:#66d9ef">for</span> a_tag <span style="color:#f92672">in</span> soup<span style="color:#f92672">.</span>find_all(<span style="color:#e6db74">&#39;a&#39;</span>, {<span style="color:#e6db74">&#39;href&#39;</span>: href_regex}):
+        <span style="color:#75715e"># 获取a标签的href属性值并组装完整的URL</span>
+        href <span style="color:#f92672">=</span> a_tag<span style="color:#f92672">.</span>attrs[<span style="color:#e6db74">&#39;href&#39;</span>]
+        full_url <span style="color:#f92672">=</span> urljoin(base_url, href)
+        <span style="color:#75715e"># 传入URL生成SHA1摘要</span>
+        hasher <span style="color:#f92672">=</span> hasher_proto<span style="color:#f92672">.</span>copy()
+        hasher<span style="color:#f92672">.</span>update(full_url<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;utf-8&#39;</span>))
+        field_key <span style="color:#f92672">=</span> hasher<span style="color:#f92672">.</span>hexdigest()
+        <span style="color:#75715e"># 如果Redis的键&#39;zhihu&#39;对应的hash数据类型中没有URL的摘要就访问页面并缓存</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> client<span style="color:#f92672">.</span>hexists(<span style="color:#e6db74">&#39;zhihu&#39;</span>, field_key):
+            html_page <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(full_url, headers<span style="color:#f92672">=</span>headers)<span style="color:#f92672">.</span>text
+            <span style="color:#75715e"># 对页面进行序列化和压缩操作</span>
+            zipped_page <span style="color:#f92672">=</span> zlib<span style="color:#f92672">.</span>compress(pickle<span style="color:#f92672">.</span>dumps(html_page))
+            <span style="color:#75715e"># 使用hash数据类型保存URL摘要及其对应的页面代码</span>
+            client<span style="color:#f92672">.</span>hset(<span style="color:#e6db74">&#39;zhihu&#39;</span>, field_key, zipped_page)
+    <span style="color:#75715e"># 显示总共缓存了多少个页面</span>
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Total </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> question pages found.&#39;</span> <span style="color:#f92672">%</span> client<span style="color:#f92672">.</span>hlen(<span style="color:#e6db74">&#39;zhihu&#39;</span>))
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div>
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls" autoplay>
+                        <source type="audio/mpeg" src="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">
+                        <a href="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">/mp3/シンクロニシティ.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%92%8C%E8%A7%A3%E6%9E%90/" rel="prev">上一篇</a>
+                    
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E5%B9%B6%E5%8F%91%E4%B8%8B%E8%BD%BD/" rel="next">下一篇</a>
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var audio = document.getElementById('audio');
+        audio.play();
+    }
+</script>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "Nanase Blog";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

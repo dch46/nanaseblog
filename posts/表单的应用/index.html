@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>表单的应用 &middot; Nanase Blog</title>
+  <meta name="keywords" content="书兰, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="今日も頑張っていきましょ～">
+  <meta name="author" content="Nanase">
+  <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        表单的应用</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                表单的应用</h1>
+                <div class="stuff">
+                    
+                    <span>July 12, 2017</span>
+                    <span>字数 4759</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <h2 id="表单的应用">表单的应用</h2>
+<p>实现“用户注册”和“用户登录”的功能，并限制只有登录的用户才能为进行操作。Django框架中提供了对表单的封装，而且提供了多种不同的使用方式。</p>
+<p>首先添加用户模型。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span>(models<span style="color:#f92672">.</span>Model):
+    <span style="color:#e6db74">&#34;&#34;&#34;用户&#34;&#34;&#34;</span>
+    no <span style="color:#f92672">=</span> models<span style="color:#f92672">.</span>AutoField(primary_key<span style="color:#f92672">=</span>True, verbose_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;编号&#39;</span>)
+    username <span style="color:#f92672">=</span> models<span style="color:#f92672">.</span>CharField(max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>, unique<span style="color:#f92672">=</span>True, verbose_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;用户名&#39;</span>)
+    password <span style="color:#f92672">=</span> models<span style="color:#f92672">.</span>CharField(max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span>, verbose_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;密码&#39;</span>)
+    regdate <span style="color:#f92672">=</span> models<span style="color:#f92672">.</span>DateTimeField(auto_now_add<span style="color:#f92672">=</span>True, verbose_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;注册时间&#39;</span>)
+
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Meta</span>:
+        db_table <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;tb_user&#39;</span>
+        verbose_name_plural <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;用户&#39;</span>
+</code></pre></div><p>通过生成迁移和执行迁移操作，在数据库中创建对应的用户表。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Shell" data-lang="Shell"><span style="color:#f92672">(</span>venv<span style="color:#f92672">)</span>$ python manage.py makemigrations vote
+...
+<span style="color:#f92672">(</span>venv<span style="color:#f92672">)</span>$ python manage.py migrate
+...
+</code></pre></div><p>定制一个非常简单的注册模板页面。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-HTML" data-lang="HTML"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;用户注册&lt;/<span style="color:#f92672">title</span>&gt;
+    &lt;<span style="color:#f92672">style</span>&gt;<span style="color:#75715e">/* 此处省略层叠样式表选择器 */</span>&lt;/<span style="color:#f92672">style</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+    &lt;<span style="color:#f92672">h1</span>&gt;用户注册&lt;/<span style="color:#f92672">h1</span>&gt;
+    &lt;<span style="color:#f92672">hr</span>&gt;
+    &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hint&#34;</span>&gt;{{ hint }}&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/register/&#34;</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span>&gt;
+        {% csrf_token %}
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input&#34;</span>&gt;
+            &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;username&#34;</span>&gt;用户名：&lt;/<span style="color:#f92672">label</span>&gt;
+            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;username&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;username&#34;</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input&#34;</span>&gt;
+            &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span>&gt;密码：&lt;/<span style="color:#f92672">label</span>&gt;
+            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input&#34;</span>&gt;
+            &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;repassword&#34;</span>&gt;确认密码：&lt;/<span style="color:#f92672">label</span>&gt;
+            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;repassword&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;repassword&#34;</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input&#34;</span>&gt;
+            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;注册&#34;</span>&gt;
+            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;reset&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;重置&#34;</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;/<span style="color:#f92672">form</span>&gt;
+    &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/login&#34;</span>&gt;返回登录&lt;/<span style="color:#f92672">a</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>注意，在上面的表单中，我们使用了模板指令<code>{% csrf_token %}</code>为表单添加一个隐藏域（type属性值为hidden的input标签），它的作用是在表单中生成一个随机令牌（token）来防范<a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0">跨站请求伪造</a>（通常简称为CSRF），这也是Django在提交表单时的硬性要求，除非我们设置了免除CSRF令牌。下图是一个关于CSRF简单生动的例子，它来自于<a href="https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5">维基百科</a>。</p>
+<p>用户在提交注册表单时，我们还需要对用户的输入进行验证，例如我们的网站要求用户名必须由字母、数字、下划线构成且长度在4-20个字符之间，密码的长度为8-20个字符，确认密码必须跟密码保持一致。这些验证操作首先可以通过浏览器中的JavaScript代码来完成，但是即便如此，在服务器端仍然要对用户输入再次进行验证来避免将无效的数据库交给数据库，因为用户可能会禁用浏览器的JavaScript功能，也有可能绕过浏览器的输入检查将注册数据提交给服务器，所以服务器端的用户输入检查仍然是必要的。</p>
+<p>我们可以利用Django框架封装的表单功能来对用户输入的有效性进行检查，虽然Django封装的表单还能帮助我们定制出页面上的表单元素，但这显然是一种灵活性很差的设计，这样的功能在实际开发中基本不考虑，所以表单主要的作用就在于数据验证，具体的做法如下所示。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">USERNAME_PATTERN <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;\w{4,20}&#39;</span>)
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RegisterForm</span>(forms<span style="color:#f92672">.</span>ModelForm):
+    repassword <span style="color:#f92672">=</span> forms<span style="color:#f92672">.</span>CharField(min_length<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">clean_username</span>(self):
+        username <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>cleaned_data[<span style="color:#e6db74">&#39;username&#39;</span>]
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> USERNAME_PATTERN<span style="color:#f92672">.</span>fullmatch(username):
+            <span style="color:#66d9ef">raise</span> ValidationError(<span style="color:#e6db74">&#39;用户名由字母、数字和下划线构成且长度为4-20个字符&#39;</span>)
+        <span style="color:#66d9ef">return</span> username
+        
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">clean_password</span>(self):
+        password <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>cleaned_data[<span style="color:#e6db74">&#39;password&#39;</span>]
+        <span style="color:#66d9ef">if</span> len(password) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">or</span> len(password) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">20</span>:
+            <span style="color:#66d9ef">raise</span> ValidationError(<span style="color:#e6db74">&#39;无效的密码，密码长度为8-20个字符&#39;</span>)
+        <span style="color:#66d9ef">return</span> to_md5_hex(self<span style="color:#f92672">.</span>cleaned_data[<span style="color:#e6db74">&#39;password&#39;</span>])
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">clean_repassword</span>(self):
+        repassword <span style="color:#f92672">=</span> to_md5_hex(self<span style="color:#f92672">.</span>cleaned_data[<span style="color:#e6db74">&#39;repassword&#39;</span>])
+        <span style="color:#66d9ef">if</span> repassword <span style="color:#f92672">!=</span> self<span style="color:#f92672">.</span>cleaned_data[<span style="color:#e6db74">&#39;password&#39;</span>]:
+            <span style="color:#66d9ef">raise</span> ValidationError(<span style="color:#e6db74">&#39;密码和确认密码不一致&#39;</span>)
+        <span style="color:#66d9ef">return</span> repassword
+
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Meta</span>:
+        model <span style="color:#f92672">=</span> User
+        exclude <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;no&#39;</span>, <span style="color:#e6db74">&#39;regdate&#39;</span>)
+</code></pre></div><p>上面，我们定义了一个与User模型绑定的表单（继承自ModelForm），我们排除了用户编号（no）和注册日期（regdate）这两个属性，并添加了一个repassword属性用来接收从用户表单传给服务器的确认密码。我们在定义User模型时已经对用户名的最大长度进行了限制，上面我们又对确认密码的最小和最大长度进行了限制，但是这些都不足以完成我们对用户输入的验证。上面以<code>clean_</code>打头的方法就是我们自定义的验证规则。很明显，<code>clean_username</code>是对用户名的检查，而<code>clean_password</code>是对密码的检查。由于数据库二维表中不应该保存密码的原文，所以对密码做了一个简单的MD5摘要处理，实际开发中如果只做出这样的处理还不太够，因为即便使用了摘要，仍然有利用彩虹表反向查询破解用户密码的风险，如何做得更好我们会在后续的内容中讲到。为字符串生成MD5摘要的代码如下所示。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_md5_hex</span>(message):
+    <span style="color:#66d9ef">return</span> hashlib<span style="color:#f92672">.</span>md5(message<span style="color:#f92672">.</span>encode())<span style="color:#f92672">.</span>hexdigest()
+</code></pre></div><p>新增一个视图函数实现用户注册的功能。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">register</span>(request):
+    page, hint <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;register.html&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>
+    <span style="color:#66d9ef">if</span> request<span style="color:#f92672">.</span>method <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;POST&#39;</span>:
+        form <span style="color:#f92672">=</span> RegisterForm(request<span style="color:#f92672">.</span>POST)
+        <span style="color:#66d9ef">if</span> form<span style="color:#f92672">.</span>is_valid():
+            form<span style="color:#f92672">.</span>save()
+            page <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;login.html&#39;</span>
+            hint <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;注册成功，请登录&#39;</span>
+        <span style="color:#66d9ef">else</span>:
+            hint <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;请输入有效的注册信息&#39;</span>
+    <span style="color:#66d9ef">return</span> render(request, page, {<span style="color:#e6db74">&#39;hint&#39;</span>: hint})
+</code></pre></div><p>如果用户发起GET请求，将直接跳转到注册的页面；如果用户以POST方式提交注册表单，则创建自定义的注册表单对象并获取用户输入。可以通过表单对象的<code>is_valid</code>方法对表单进行验证，如果用户输入没有问题，该方法返回True，否则返回False；由于我们定义的RegisterForm继承自ModelForm，因此也可以直接使用表单对象的<code>save</code>方法来保存模型。下面是注册请求的URL配置。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> django.contrib <span style="color:#f92672">import</span> admin
+<span style="color:#f92672">from</span> django.urls <span style="color:#f92672">import</span> path
+
+<span style="color:#f92672">from</span> vote <span style="color:#f92672">import</span> views
+
+urlpatterns <span style="color:#f92672">=</span> [
+	<span style="color:#75715e"># 此处省略上面的代码</span>
+    path(<span style="color:#e6db74">&#39;register/&#39;</span>, views<span style="color:#f92672">.</span>register, name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;register&#39;</span>),
+    <span style="color:#75715e"># 此处省略下面的代码</span>
+]
+</code></pre></div><blockquote>
+<p>说明：<code>path</code>函数可以通过name参数给URL绑定一个逆向解析的名字，也就是说，如果需要可以从后面给的名字逆向解析出对应的URL。</p>
+</blockquote>
+<p>我们再来定制一个非常简单的登录页。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-HTML" data-lang="HTML"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;用户登录&lt;/<span style="color:#f92672">title</span>&gt;
+    &lt;<span style="color:#f92672">style</span>&gt;<span style="color:#75715e">/* 此处省略层叠样式表选择器 */</span>&lt;/<span style="color:#f92672">style</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+    &lt;<span style="color:#f92672">h1</span>&gt;用户登录&lt;/<span style="color:#f92672">h1</span>&gt;
+    &lt;<span style="color:#f92672">hr</span>&gt;
+    &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hint&#34;</span>&gt;{{ hint }}&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/login/&#34;</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span>&gt;
+        {% csrf_token %}
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input&#34;</span>&gt;
+            &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;username&#34;</span>&gt;用户名：&lt;/<span style="color:#f92672">label</span>&gt;
+            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;username&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;username&#34;</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input&#34;</span>&gt;
+            &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span>&gt;密码：&lt;/<span style="color:#f92672">label</span>&gt;
+            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input captcha&#34;</span>&gt;
+            &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;captcha&#34;</span>&gt;验证码：&lt;/<span style="color:#f92672">label</span>&gt;
+            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;captcha&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;captcha&#34;</span>&gt;
+            &lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/captcha/&#34;</span> <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;120&#34;</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input&#34;</span>&gt;
+            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;登录&#34;</span>&gt;
+            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;reset&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;重置&#34;</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;/<span style="color:#f92672">form</span>&gt;
+    &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/register&#34;</span>&gt;注册新用户&lt;/<span style="color:#f92672">a</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>上面的登录页中，我们要求用户提供验证码，验证码全称是<strong>全自动区分计算机和人类的公开图灵测试</strong>，它是一种用来区分系统的使用者是计算机还是人类的程序。简单的说就是程序出一个只有人类能够回答的问题，由系统使用者来解答，由于计算机理论上无法解答程序提出的问题，所以回答出问题的用户就可以被认为是人类。大多数的网站都使用了不同类型的验证码技术来防范用程序自动注册用户或模拟用户登录（暴力破解用户密码），因为验证码具有一次消费性，而没有通过图灵测试的程序是不能够完成注册或登录的。</p>
+<p>在Python程序中生成验证码并不算特别复杂，但需要三方库Pillow的支持（PIL的分支），因为要对验证码图片进行旋转、扭曲、拉伸以及加入干扰信息来防范那些用OCR（光学文字识别）破解验证码的程序。下面的代码封装了生成验证码图片的功能，大家可以直接用这些代码来生成图片验证码，不要“重复发明轮子”。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">图片验证码
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> random
+
+<span style="color:#f92672">from</span> io <span style="color:#f92672">import</span> BytesIO
+
+<span style="color:#f92672">from</span> PIL <span style="color:#f92672">import</span> Image
+<span style="color:#f92672">from</span> PIL <span style="color:#f92672">import</span> ImageFilter
+<span style="color:#f92672">from</span> PIL.ImageDraw <span style="color:#f92672">import</span> Draw
+<span style="color:#f92672">from</span> PIL.ImageFont <span style="color:#f92672">import</span> truetype
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Bezier</span>(object):
+    <span style="color:#e6db74">&#34;&#34;&#34;贝塞尔曲线&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> __init__(self):
+        self<span style="color:#f92672">.</span>tsequence <span style="color:#f92672">=</span> tuple([t <span style="color:#f92672">/</span> <span style="color:#ae81ff">20.0</span> <span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">21</span>)])
+        self<span style="color:#f92672">.</span>beziers <span style="color:#f92672">=</span> {}
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_bezier</span>(self, n):
+        <span style="color:#e6db74">&#34;&#34;&#34;绘制贝塞尔曲线&#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">try</span>:
+            <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>beziers[n]
+        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">KeyError</span>:
+            combinations <span style="color:#f92672">=</span> pascal_row(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+            result <span style="color:#f92672">=</span> []
+            <span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>tsequence:
+                tpowers <span style="color:#f92672">=</span> (t <span style="color:#f92672">**</span> i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(n))
+                upowers <span style="color:#f92672">=</span> ((<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> t) <span style="color:#f92672">**</span> i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))
+                coefs <span style="color:#f92672">=</span> [c <span style="color:#f92672">*</span> a <span style="color:#f92672">*</span> b <span style="color:#66d9ef">for</span> c, a, b <span style="color:#f92672">in</span> zip(combinations,
+                                                      tpowers, upowers)]
+                result<span style="color:#f92672">.</span>append(coefs)
+            self<span style="color:#f92672">.</span>beziers[n] <span style="color:#f92672">=</span> result
+            <span style="color:#66d9ef">return</span> result
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Captcha</span>(object):
+    <span style="color:#e6db74">&#34;&#34;&#34;验证码&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> __init__(self, width, height, fonts<span style="color:#f92672">=</span>None, color<span style="color:#f92672">=</span>None):
+        self<span style="color:#f92672">.</span>_image <span style="color:#f92672">=</span> None
+        self<span style="color:#f92672">.</span>_fonts <span style="color:#f92672">=</span> fonts <span style="color:#66d9ef">if</span> fonts <span style="color:#66d9ef">else</span> \
+            [os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(__file__), <span style="color:#e6db74">&#39;fonts&#39;</span>, font)
+             <span style="color:#66d9ef">for</span> font <span style="color:#f92672">in</span> [<span style="color:#e6db74">&#39;ArialRB.ttf&#39;</span>, <span style="color:#e6db74">&#39;ArialNI.ttf&#39;</span>, <span style="color:#e6db74">&#39;Georgia.ttf&#39;</span>, <span style="color:#e6db74">&#39;Kongxin.ttf&#39;</span>]]
+        self<span style="color:#f92672">.</span>_color <span style="color:#f92672">=</span> color <span style="color:#66d9ef">if</span> color <span style="color:#66d9ef">else</span> random_color(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">200</span>, random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">220</span>, <span style="color:#ae81ff">255</span>))
+        self<span style="color:#f92672">.</span>_width, self<span style="color:#f92672">.</span>_height <span style="color:#f92672">=</span> width, height
+
+    <span style="color:#a6e22e">@classmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">instance</span>(cls, width<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>, height<span style="color:#f92672">=</span><span style="color:#ae81ff">75</span>):
+        prop_name <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#39;_instance_{width}_{height}&#39;</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> hasattr(cls, prop_name):
+            setattr(cls, prop_name, cls(width, height))
+        <span style="color:#66d9ef">return</span> getattr(cls, prop_name)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">background</span>(self):
+        <span style="color:#e6db74">&#34;&#34;&#34;绘制背景&#34;&#34;&#34;</span>
+        Draw(self<span style="color:#f92672">.</span>_image)<span style="color:#f92672">.</span>rectangle([(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>), self<span style="color:#f92672">.</span>_image<span style="color:#f92672">.</span>size],
+                                    fill<span style="color:#f92672">=</span>random_color(<span style="color:#ae81ff">230</span>, <span style="color:#ae81ff">255</span>))
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">smooth</span>(self):
+        <span style="color:#e6db74">&#34;&#34;&#34;平滑图像&#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_image<span style="color:#f92672">.</span>filter(ImageFilter<span style="color:#f92672">.</span>SMOOTH)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">curve</span>(self, width<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, number<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>, color<span style="color:#f92672">=</span>None):
+        <span style="color:#e6db74">&#34;&#34;&#34;绘制曲线&#34;&#34;&#34;</span>
+        dx, height <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>_image<span style="color:#f92672">.</span>size
+        dx <span style="color:#f92672">/=</span> number
+        path <span style="color:#f92672">=</span> [(dx <span style="color:#f92672">*</span> i, random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">0</span>, height))
+                <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, number)]
+        bcoefs <span style="color:#f92672">=</span> Bezier()<span style="color:#f92672">.</span>make_bezier(number <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+        points <span style="color:#f92672">=</span> []
+        <span style="color:#66d9ef">for</span> coefs <span style="color:#f92672">in</span> bcoefs:
+            points<span style="color:#f92672">.</span>append(tuple(sum([coef <span style="color:#f92672">*</span> p <span style="color:#66d9ef">for</span> coef, p <span style="color:#f92672">in</span> zip(coefs, ps)])
+                                <span style="color:#66d9ef">for</span> ps <span style="color:#f92672">in</span> zip(<span style="color:#f92672">*</span>path)))
+        Draw(self<span style="color:#f92672">.</span>_image)<span style="color:#f92672">.</span>line(points, fill<span style="color:#f92672">=</span>color <span style="color:#66d9ef">if</span> color <span style="color:#66d9ef">else</span> self<span style="color:#f92672">.</span>_color, width<span style="color:#f92672">=</span>width)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">noise</span>(self, number<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>, level<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, color<span style="color:#f92672">=</span>None):
+        <span style="color:#e6db74">&#34;&#34;&#34;绘制扰码&#34;&#34;&#34;</span>
+        width, height <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>_image<span style="color:#f92672">.</span>size
+        dx, dy <span style="color:#f92672">=</span> width <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>, height <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>
+        width, height <span style="color:#f92672">=</span> width <span style="color:#f92672">-</span> dx, height <span style="color:#f92672">-</span> dy
+        draw <span style="color:#f92672">=</span> Draw(self<span style="color:#f92672">.</span>_image)
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(number):
+            x <span style="color:#f92672">=</span> int(random<span style="color:#f92672">.</span>uniform(dx, width))
+            y <span style="color:#f92672">=</span> int(random<span style="color:#f92672">.</span>uniform(dy, height))
+            draw<span style="color:#f92672">.</span>line(((x, y), (x <span style="color:#f92672">+</span> level, y)),
+                      fill<span style="color:#f92672">=</span>color <span style="color:#66d9ef">if</span> color <span style="color:#66d9ef">else</span> self<span style="color:#f92672">.</span>_color, width<span style="color:#f92672">=</span>level)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">text</span>(self, captcha_text, fonts, font_sizes<span style="color:#f92672">=</span>None, drawings<span style="color:#f92672">=</span>None, squeeze_factor<span style="color:#f92672">=</span><span style="color:#ae81ff">0.75</span>, color<span style="color:#f92672">=</span>None):
+        <span style="color:#e6db74">&#34;&#34;&#34;绘制文本&#34;&#34;&#34;</span>
+        color <span style="color:#f92672">=</span> color <span style="color:#66d9ef">if</span> color <span style="color:#66d9ef">else</span> self<span style="color:#f92672">.</span>_color
+        fonts <span style="color:#f92672">=</span> tuple([truetype(name, size)
+                       <span style="color:#66d9ef">for</span> name <span style="color:#f92672">in</span> fonts
+                       <span style="color:#66d9ef">for</span> size <span style="color:#f92672">in</span> font_sizes <span style="color:#f92672">or</span> (<span style="color:#ae81ff">65</span>, <span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">75</span>)])
+        draw <span style="color:#f92672">=</span> Draw(self<span style="color:#f92672">.</span>_image)
+        char_images <span style="color:#f92672">=</span> []
+        <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> captcha_text:
+            font <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>choice(fonts)
+            c_width, c_height <span style="color:#f92672">=</span> draw<span style="color:#f92672">.</span>textsize(c, font<span style="color:#f92672">=</span>font)
+            char_image <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>new(<span style="color:#e6db74">&#39;RGB&#39;</span>, (c_width, c_height), (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>))
+            char_draw <span style="color:#f92672">=</span> Draw(char_image)
+            char_draw<span style="color:#f92672">.</span>text((<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>), c, font<span style="color:#f92672">=</span>font, fill<span style="color:#f92672">=</span>color)
+            char_image <span style="color:#f92672">=</span> char_image<span style="color:#f92672">.</span>crop(char_image<span style="color:#f92672">.</span>getbbox())
+            <span style="color:#66d9ef">for</span> drawing <span style="color:#f92672">in</span> drawings:
+                d <span style="color:#f92672">=</span> getattr(self, drawing)
+                char_image <span style="color:#f92672">=</span> d(char_image)
+            char_images<span style="color:#f92672">.</span>append(char_image)
+        width, height <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>_image<span style="color:#f92672">.</span>size
+        offset <span style="color:#f92672">=</span> int((width <span style="color:#f92672">-</span> sum(int(i<span style="color:#f92672">.</span>size[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> squeeze_factor)
+                                  <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> char_images[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">-</span>
+                      char_images[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>size[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
+        <span style="color:#66d9ef">for</span> char_image <span style="color:#f92672">in</span> char_images:
+            c_width, c_height <span style="color:#f92672">=</span> char_image<span style="color:#f92672">.</span>size
+            mask <span style="color:#f92672">=</span> char_image<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#39;L&#39;</span>)<span style="color:#f92672">.</span>point(<span style="color:#66d9ef">lambda</span> i: i <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.97</span>)
+            self<span style="color:#f92672">.</span>_image<span style="color:#f92672">.</span>paste(char_image,
+                        (offset, int((height <span style="color:#f92672">-</span> c_height) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)),
+                        mask)
+            offset <span style="color:#f92672">+=</span> int(c_width <span style="color:#f92672">*</span> squeeze_factor)
+
+    <span style="color:#a6e22e">@staticmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">warp</span>(image, dx_factor<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>, dy_factor<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>):
+        <span style="color:#e6db74">&#34;&#34;&#34;图像扭曲&#34;&#34;&#34;</span>
+        width, height <span style="color:#f92672">=</span> image<span style="color:#f92672">.</span>size
+        dx <span style="color:#f92672">=</span> width <span style="color:#f92672">*</span> dx_factor
+        dy <span style="color:#f92672">=</span> height <span style="color:#f92672">*</span> dy_factor
+        x1 <span style="color:#f92672">=</span> int(random<span style="color:#f92672">.</span>uniform(<span style="color:#f92672">-</span>dx, dx))
+        y1 <span style="color:#f92672">=</span> int(random<span style="color:#f92672">.</span>uniform(<span style="color:#f92672">-</span>dy, dy))
+        x2 <span style="color:#f92672">=</span> int(random<span style="color:#f92672">.</span>uniform(<span style="color:#f92672">-</span>dx, dx))
+        y2 <span style="color:#f92672">=</span> int(random<span style="color:#f92672">.</span>uniform(<span style="color:#f92672">-</span>dy, dy))
+        warp_image <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>new(
+            <span style="color:#e6db74">&#39;RGB&#39;</span>,
+            (width <span style="color:#f92672">+</span> abs(x1) <span style="color:#f92672">+</span> abs(x2), height <span style="color:#f92672">+</span> abs(y1) <span style="color:#f92672">+</span> abs(y2)))
+        warp_image<span style="color:#f92672">.</span>paste(image, (abs(x1), abs(y1)))
+        width2, height2 <span style="color:#f92672">=</span> warp_image<span style="color:#f92672">.</span>size
+        <span style="color:#66d9ef">return</span> warp_image<span style="color:#f92672">.</span>transform(
+            (width, height),
+            Image<span style="color:#f92672">.</span>QUAD,
+            (x1, y1, <span style="color:#f92672">-</span>x1, height2 <span style="color:#f92672">-</span> y2, width2 <span style="color:#f92672">+</span> x2, height2 <span style="color:#f92672">+</span> y2, width2 <span style="color:#f92672">-</span> x2, <span style="color:#f92672">-</span>y1))
+
+    <span style="color:#a6e22e">@staticmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">offset</span>(image, dx_factor<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>, dy_factor<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>):
+        <span style="color:#e6db74">&#34;&#34;&#34;图像偏移&#34;&#34;&#34;</span>
+        width, height <span style="color:#f92672">=</span> image<span style="color:#f92672">.</span>size
+        dx <span style="color:#f92672">=</span> int(random<span style="color:#f92672">.</span>random() <span style="color:#f92672">*</span> width <span style="color:#f92672">*</span> dx_factor)
+        dy <span style="color:#f92672">=</span> int(random<span style="color:#f92672">.</span>random() <span style="color:#f92672">*</span> height <span style="color:#f92672">*</span> dy_factor)
+        offset_image <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>new(<span style="color:#e6db74">&#39;RGB&#39;</span>, (width <span style="color:#f92672">+</span> dx, height <span style="color:#f92672">+</span> dy))
+        offset_image<span style="color:#f92672">.</span>paste(image, (dx, dy))
+        <span style="color:#66d9ef">return</span> offset_image
+
+    <span style="color:#a6e22e">@staticmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">rotate</span>(image, angle<span style="color:#f92672">=</span><span style="color:#ae81ff">25</span>):
+        <span style="color:#e6db74">&#34;&#34;&#34;图像旋转&#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">return</span> image<span style="color:#f92672">.</span>rotate(random<span style="color:#f92672">.</span>uniform(<span style="color:#f92672">-</span>angle, angle),
+                            Image<span style="color:#f92672">.</span>BILINEAR, expand<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate</span>(self, captcha_text<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>, fmt<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;PNG&#39;</span>):
+        <span style="color:#e6db74">&#34;&#34;&#34;生成验证码(文字和图片)&#34;&#34;&#34;</span>
+        self<span style="color:#f92672">.</span>_image <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>new(<span style="color:#e6db74">&#39;RGB&#39;</span>, (self<span style="color:#f92672">.</span>_width, self<span style="color:#f92672">.</span>_height), (<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>))
+        self<span style="color:#f92672">.</span>background()
+        self<span style="color:#f92672">.</span>text(captcha_text, self<span style="color:#f92672">.</span>_fonts,
+                  drawings<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;warp&#39;</span>, <span style="color:#e6db74">&#39;rotate&#39;</span>, <span style="color:#e6db74">&#39;offset&#39;</span>])
+        self<span style="color:#f92672">.</span>curve()
+        self<span style="color:#f92672">.</span>noise()
+        self<span style="color:#f92672">.</span>smooth()
+        image_bytes <span style="color:#f92672">=</span> BytesIO()
+        self<span style="color:#f92672">.</span>_image<span style="color:#f92672">.</span>save(image_bytes, format<span style="color:#f92672">=</span>fmt)
+        <span style="color:#66d9ef">return</span> image_bytes<span style="color:#f92672">.</span>getvalue()
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pascal_row</span>(n<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;生成Pascal三角第n行&#34;&#34;&#34;</span>
+    result <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>]
+    x, numerator <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, n
+    <span style="color:#66d9ef">for</span> denominator <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, n <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+        x <span style="color:#f92672">*=</span> numerator
+        x <span style="color:#f92672">/=</span> denominator
+        result<span style="color:#f92672">.</span>append(x)
+        numerator <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">if</span> n <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+        result<span style="color:#f92672">.</span>extend(reversed(result[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))
+    <span style="color:#66d9ef">else</span>:
+        result<span style="color:#f92672">.</span>extend(reversed(result))
+    <span style="color:#66d9ef">return</span> result
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">random_color</span>(start<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, end<span style="color:#f92672">=</span><span style="color:#ae81ff">255</span>, opacity<span style="color:#f92672">=</span><span style="color:#ae81ff">255</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;获得随机颜色&#34;&#34;&#34;</span>
+    red <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(start, end)
+    green <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(start, end)
+    blue <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(start, end)
+    <span style="color:#66d9ef">if</span> opacity <span style="color:#f92672">is</span> None:
+        <span style="color:#66d9ef">return</span> red, green, blue
+    <span style="color:#66d9ef">return</span> red, green, blue, opacity
+</code></pre></div><blockquote>
+<p>说明：上面的代码在生成验证码图片时用到了三种字体文件，使用上面的代码时需要添加字体文件到应用目录下的fonts目录中。</p>
+</blockquote>
+<p>下面的视图函数用来生成验证码并通过HttpResponse对象输出到用户浏览器中。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">ALL_CHARS <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_captcha_text</span>(length<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>):
+    selected_chars <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>choices(ALL_CHARS, k<span style="color:#f92672">=</span>length)
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(selected_chars)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_captcha</span>(request):
+    <span style="color:#e6db74">&#34;&#34;&#34;获得验证码&#34;&#34;&#34;</span>
+    captcha_text <span style="color:#f92672">=</span> get_captcha_text()
+    image <span style="color:#f92672">=</span> Captcha<span style="color:#f92672">.</span>instance()<span style="color:#f92672">.</span>generate(captcha_text)
+    <span style="color:#66d9ef">return</span> HttpResponse(image, content_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;image/png&#39;</span>)
+</code></pre></div><p>为了验证用户提交的登录表单，我们再定义个表单类。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoginForm</span>(forms<span style="color:#f92672">.</span>Form):
+    username <span style="color:#f92672">=</span> forms<span style="color:#f92672">.</span>CharField(min_length<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+    password <span style="color:#f92672">=</span> forms<span style="color:#f92672">.</span>CharField(min_length<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+    captcha <span style="color:#f92672">=</span> forms<span style="color:#f92672">.</span>CharField(min_length<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">clean_username</span>(self):
+        username <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>cleaned_data[<span style="color:#e6db74">&#39;username&#39;</span>]
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> USERNAME_PATTERN<span style="color:#f92672">.</span>fullmatch(username):
+            <span style="color:#66d9ef">raise</span> ValidationError(<span style="color:#e6db74">&#39;无效的用户名&#39;</span>)
+        <span style="color:#66d9ef">return</span> username
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">clean_password</span>(self):
+        <span style="color:#66d9ef">return</span> to_md5_hex(self<span style="color:#f92672">.</span>cleaned_data[<span style="color:#e6db74">&#39;password&#39;</span>])
+</code></pre></div><p>跟之前我们定义的注册表单类略有区别，登录表单类直接继承自Form没有跟模型绑定，定义了三个字段分别对应登录表单中的用户名、密码和验证码。接下来是处理用户登录的视图函数。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">login</span>(request):
+    hint <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+    <span style="color:#66d9ef">if</span> request<span style="color:#f92672">.</span>method <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;POST&#39;</span>:
+        form <span style="color:#f92672">=</span> LoginForm(request<span style="color:#f92672">.</span>POST)
+        <span style="color:#66d9ef">if</span> form<span style="color:#f92672">.</span>is_valid():
+            username <span style="color:#f92672">=</span> form<span style="color:#f92672">.</span>cleaned_data[<span style="color:#e6db74">&#39;username&#39;</span>]
+            password <span style="color:#f92672">=</span> form<span style="color:#f92672">.</span>cleaned_data[<span style="color:#e6db74">&#39;password&#39;</span>]
+            user <span style="color:#f92672">=</span> User<span style="color:#f92672">.</span>objects<span style="color:#f92672">.</span>filter(username<span style="color:#f92672">=</span>username, password<span style="color:#f92672">=</span>password)<span style="color:#f92672">.</span>first()
+            <span style="color:#66d9ef">if</span> user:
+                <span style="color:#66d9ef">return</span> redirect(<span style="color:#e6db74">&#39;/&#39;</span>)
+            <span style="color:#66d9ef">else</span>:
+                hint <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;用户名或密码错误&#39;</span>
+        <span style="color:#66d9ef">else</span>:
+            hint <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;请输入有效的登录信息&#39;</span>
+    <span style="color:#66d9ef">return</span> render(request, <span style="color:#e6db74">&#39;login.html&#39;</span>, {<span style="color:#e6db74">&#39;hint&#39;</span>: hint})
+</code></pre></div><p>映射URL。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> django.contrib <span style="color:#f92672">import</span> admin
+<span style="color:#f92672">from</span> django.urls <span style="color:#f92672">import</span> path
+
+<span style="color:#f92672">from</span> vote <span style="color:#f92672">import</span> views
+
+urlpatterns <span style="color:#f92672">=</span> [
+	<span style="color:#75715e"># 此处省略上面的代码</span>
+    path(<span style="color:#e6db74">&#39;login/&#39;</span>, views<span style="color:#f92672">.</span>login, name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;login&#39;</span>),
+    <span style="color:#75715e"># 此处省略下面的代码</span>
+]
+</code></pre></div><p>需要指出，上面我们设定用户登录成功时直接返回首页，而且在用户登录时并没有验证用户输入的验证码是否正确，这些我们留到下一个单元再为大家讲解。另外，如果要在Django自带的管理后台中进行表单验证，可以在admin.py的模型管理类中指定<code>form</code>属性为自定义的表单即可，例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserForm</span>(forms<span style="color:#f92672">.</span>ModelForm):
+    password <span style="color:#f92672">=</span> forms<span style="color:#f92672">.</span>CharField(min_length<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>,
+                               widget<span style="color:#f92672">=</span>forms<span style="color:#f92672">.</span>PasswordInput, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;密码&#39;</span>)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">clean_username</span>(self):
+        username <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>cleaned_data[<span style="color:#e6db74">&#39;username&#39;</span>]
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> USERNAME_PATTERN<span style="color:#f92672">.</span>fullmatch(username):
+            <span style="color:#66d9ef">raise</span> ValidationError(<span style="color:#e6db74">&#39;用户名由字母、数字和下划线构成且长度为4-20个字符&#39;</span>)
+        <span style="color:#66d9ef">return</span> username
+        
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">clean_password</span>(self):
+        password <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>cleaned_data[<span style="color:#e6db74">&#39;password&#39;</span>]
+        <span style="color:#66d9ef">return</span> to_md5_hex(self<span style="color:#f92672">.</span>cleaned_data[<span style="color:#e6db74">&#39;password&#39;</span>])
+
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Meta</span>:
+        model <span style="color:#f92672">=</span> User
+        exclude <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;no&#39;</span>, )
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserAdmin</span>(admin<span style="color:#f92672">.</span>ModelAdmin):
+    list_display <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;no&#39;</span>, <span style="color:#e6db74">&#39;username&#39;</span>, <span style="color:#e6db74">&#39;password&#39;</span>, <span style="color:#e6db74">&#39;email&#39;</span>, <span style="color:#e6db74">&#39;tel&#39;</span>)
+    ordering <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;no&#39;</span>, )
+    form <span style="color:#f92672">=</span> UserForm
+    list_per_page <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+
+
+admin<span style="color:#f92672">.</span>site<span style="color:#f92672">.</span>register(User, UserAdmin)
+</code></pre></div>
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls" autoplay>
+                        <source type="audio/mpeg" src="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">
+                        <a href="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">/mp3/シンクロニシティ.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84/" rel="prev">上一篇</a>
+                    
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/" rel="next">下一篇</a>
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var audio = document.getElementById('audio');
+        audio.play();
+    }
+</script>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "Nanase Blog";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

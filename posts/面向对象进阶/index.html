@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>面向对象进阶 &middot; Nanase Blog</title>
+  <meta name="keywords" content="书兰, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="今日も頑張っていきましょ～">
+  <meta name="author" content="Nanase">
+  <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        面向对象进阶</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                面向对象进阶</h1>
+                <div class="stuff">
+                    
+                    <span>June 10, 2015</span>
+                    <span>字数 6453</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <h2 id="面向对象进阶">面向对象进阶</h2>
+<p>了解了面向对象的入门知识，知道了如何定义类，如何创建对象以及如何给对象发消息。为了能够更好的使用面向对象编程思想进行程序开发，我们还需要对Python中的面向对象编程进行更为深入的了解。</p>
+<h3 id="property装饰器">@property装饰器</h3>
+<p>Python中属性和方法访问权限的问题，虽然我们不建议将属性设置为私有的，但是如果直接将属性暴露给外界也是有问题的，比如我们没有办法检查赋给属性的值是否有效。我们之前的建议是将属性命名以单下划线开头，通过这种方式来暗示属性是受保护的，不建议外界直接访问，那么如果想访问属性可以通过属性的getter（访问器）和setter（修改器）方法进行对应的操作。如果要做到这点，就可以考虑使用@property包装器来包装getter和setter方法，使得对属性的访问既安全又方便，代码如下所示。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>(object):
+
+    <span style="color:#66d9ef">def</span> __init__(self, name, age):
+        self<span style="color:#f92672">.</span>_name <span style="color:#f92672">=</span> name
+        self<span style="color:#f92672">.</span>_age <span style="color:#f92672">=</span> age
+
+    <span style="color:#75715e"># 访问器 - getter方法</span>
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">name</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_name
+
+    <span style="color:#75715e"># 访问器 - getter方法</span>
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">age</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_age
+
+    <span style="color:#75715e"># 修改器 - setter方法</span>
+    <span style="color:#a6e22e">@age.setter</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">age</span>(self, age):
+        self<span style="color:#f92672">.</span>_age <span style="color:#f92672">=</span> age
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">play</span>(self):
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>_age <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">16</span>:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">正在玩飞行棋.&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_name)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">正在玩斗地主.&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_name)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    person <span style="color:#f92672">=</span> Person(<span style="color:#e6db74">&#39;西野七瀬&#39;</span>, <span style="color:#ae81ff">12</span>)
+    person<span style="color:#f92672">.</span>play()
+    person<span style="color:#f92672">.</span>age <span style="color:#f92672">=</span> <span style="color:#ae81ff">22</span>
+    person<span style="color:#f92672">.</span>play()
+    <span style="color:#75715e"># person.name = &#39;斋藤飞鸟&#39;  # AttributeError: can&#39;t set attribute</span>
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><h3 id="__slots__魔法">__slots__魔法</h3>
+<p>我们讲到这里，不知道大家是否已经意识到，Python是一门<a href="https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E8%AF%AD%E8%A8%80">动态语言</a>。通常，动态语言允许我们在程序运行时给对象绑定新的属性或方法，当然也可以对已经绑定的属性和方法进行解绑定。但是如果我们需要限定自定义类型的对象只能绑定某些属性，可以通过在类中定义__slots__变量来进行限定。需要注意的是__slots__的限定只对当前类的对象生效，对子类并不起任何作用。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>(object):
+
+    <span style="color:#75715e"># 限定Person对象只能绑定_name, _age和_gender属性</span>
+    __slots__ <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;_name&#39;</span>, <span style="color:#e6db74">&#39;_age&#39;</span>, <span style="color:#e6db74">&#39;_gender&#39;</span>)
+
+    <span style="color:#66d9ef">def</span> __init__(self, name, age):
+        self<span style="color:#f92672">.</span>_name <span style="color:#f92672">=</span> name
+        self<span style="color:#f92672">.</span>_age <span style="color:#f92672">=</span> age
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">name</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_name
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">age</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_age
+
+    <span style="color:#a6e22e">@age.setter</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">age</span>(self, age):
+        self<span style="color:#f92672">.</span>_age <span style="color:#f92672">=</span> age
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">play</span>(self):
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>_age <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">16</span>:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">正在玩飞行棋.&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_name)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">正在玩斗地主.&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_name)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    person <span style="color:#f92672">=</span> Person(<span style="color:#e6db74">&#39;西野七瀬&#39;</span>, <span style="color:#ae81ff">22</span>)
+    person<span style="color:#f92672">.</span>play()
+    person<span style="color:#f92672">.</span>_gender <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;女&#39;</span>
+    <span style="color:#75715e"># AttributeError: &#39;Person&#39; object has no attribute &#39;_is_gay&#39;</span>
+    <span style="color:#75715e"># person._is_gay = True</span>
+</code></pre></div><h3 id="静态方法和类方法">静态方法和类方法</h3>
+<p>之前，我们在类中定义的方法都是对象方法，也就是说这些方法都是发送给对象的消息。实际上，我们写在类中的方法并不需要都是对象方法，例如我们定义一个“三角形”类，通过传入三条边长来构造三角形，并提供计算周长和面积的方法，但是传入的三条边长未必能构造出三角形对象，因此我们可以先写一个方法来验证三条边长是否可以构成三角形，这个方法很显然就不是对象方法，因为在调用这个方法时三角形对象尚未创建出来（因为都不知道三条边能不能构成三角形），所以这个方法是属于三角形类而并不属于三角形对象的。我们可以使用静态方法来解决这类问题，代码如下所示。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> math <span style="color:#f92672">import</span> sqrt
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Triangle</span>(object):
+
+    <span style="color:#66d9ef">def</span> __init__(self, a, b, c):
+        self<span style="color:#f92672">.</span>_a <span style="color:#f92672">=</span> a
+        self<span style="color:#f92672">.</span>_b <span style="color:#f92672">=</span> b
+        self<span style="color:#f92672">.</span>_c <span style="color:#f92672">=</span> c
+
+    <span style="color:#a6e22e">@staticmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">is_valid</span>(a, b, c):
+        <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b <span style="color:#f92672">&gt;</span> c <span style="color:#f92672">and</span> b <span style="color:#f92672">+</span> c <span style="color:#f92672">&gt;</span> a <span style="color:#f92672">and</span> a <span style="color:#f92672">+</span> c <span style="color:#f92672">&gt;</span> b
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">perimeter</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_a <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>_b <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>_c
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">area</span>(self):
+        half <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>perimeter() <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
+        <span style="color:#66d9ef">return</span> sqrt(half <span style="color:#f92672">*</span> (half <span style="color:#f92672">-</span> self<span style="color:#f92672">.</span>_a) <span style="color:#f92672">*</span>
+                    (half <span style="color:#f92672">-</span> self<span style="color:#f92672">.</span>_b) <span style="color:#f92672">*</span> (half <span style="color:#f92672">-</span> self<span style="color:#f92672">.</span>_c))
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    a, b, c <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>
+    <span style="color:#75715e"># 静态方法和类方法都是通过给类发消息来调用的</span>
+    <span style="color:#66d9ef">if</span> Triangle<span style="color:#f92672">.</span>is_valid(a, b, c):
+        t <span style="color:#f92672">=</span> Triangle(a, b, c)
+        <span style="color:#66d9ef">print</span>(t<span style="color:#f92672">.</span>perimeter())
+        <span style="color:#75715e"># 也可以通过给类发消息来调用对象方法但是要传入接收消息的对象作为参数</span>
+        <span style="color:#75715e"># print(Triangle.perimeter(t))</span>
+        <span style="color:#66d9ef">print</span>(t<span style="color:#f92672">.</span>area())
+        <span style="color:#75715e"># print(Triangle.area(t))</span>
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;无法构成三角形.&#39;</span>)
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><p>和静态方法比较类似，Python还可以在类中定义类方法，类方法的第一个参数约定名为cls，它代表的是当前类相关的信息的对象（类本身也是一个对象，有的地方也称之为类的元数据对象），通过这个参数我们可以获取和类相关的信息并且可以创建出类的对象，代码如下所示。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> time <span style="color:#f92672">import</span> time, localtime, sleep
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Clock</span>(object):
+    <span style="color:#e6db74">&#34;&#34;&#34;数字时钟&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> __init__(self, hour<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, minute<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, second<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+        self<span style="color:#f92672">.</span>_hour <span style="color:#f92672">=</span> hour
+        self<span style="color:#f92672">.</span>_minute <span style="color:#f92672">=</span> minute
+        self<span style="color:#f92672">.</span>_second <span style="color:#f92672">=</span> second
+
+    <span style="color:#a6e22e">@classmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">now</span>(cls):
+        ctime <span style="color:#f92672">=</span> localtime(time())
+        <span style="color:#66d9ef">return</span> cls(ctime<span style="color:#f92672">.</span>tm_hour, ctime<span style="color:#f92672">.</span>tm_min, ctime<span style="color:#f92672">.</span>tm_sec)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run</span>(self):
+        <span style="color:#e6db74">&#34;&#34;&#34;走字&#34;&#34;&#34;</span>
+        self<span style="color:#f92672">.</span>_second <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>_second <span style="color:#f92672">==</span> <span style="color:#ae81ff">60</span>:
+            self<span style="color:#f92672">.</span>_second <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+            self<span style="color:#f92672">.</span>_minute <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>_minute <span style="color:#f92672">==</span> <span style="color:#ae81ff">60</span>:
+                self<span style="color:#f92672">.</span>_minute <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+                self<span style="color:#f92672">.</span>_hour <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>_hour <span style="color:#f92672">==</span> <span style="color:#ae81ff">24</span>:
+                    self<span style="color:#f92672">.</span>_hour <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show</span>(self):
+        <span style="color:#e6db74">&#34;&#34;&#34;显示时间&#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%02d</span><span style="color:#e6db74">:</span><span style="color:#e6db74">%02d</span><span style="color:#e6db74">:</span><span style="color:#e6db74">%02d</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> \
+               (self<span style="color:#f92672">.</span>_hour, self<span style="color:#f92672">.</span>_minute, self<span style="color:#f92672">.</span>_second)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    <span style="color:#75715e"># 通过类方法创建对象并获取系统时间</span>
+    clock <span style="color:#f92672">=</span> Clock<span style="color:#f92672">.</span>now()
+    <span style="color:#66d9ef">while</span> True:
+        <span style="color:#66d9ef">print</span>(clock<span style="color:#f92672">.</span>show())
+        sleep(<span style="color:#ae81ff">1</span>)
+        clock<span style="color:#f92672">.</span>run()
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><h3 id="类之间的关系">类之间的关系</h3>
+<p>简单的说，类和类之间的关系有三种：is-a、has-a和use-a关系。</p>
+<ul>
+<li>is-a关系也叫继承或泛化，比如学生和人的关系、手机和电子产品的关系都属于继承关系。</li>
+<li>has-a关系通常称之为关联，比如部门和员工的关系，汽车和引擎的关系都属于关联关系；关联关系如果是整体和部分的关联，那么我们称之为聚合关系；如果整体进一步负责了部分的生命周期（整体和部分是不可分割的，同时同在也同时消亡），那么这种就是最强的关联关系，我们称之为合成关系。</li>
+<li>use-a关系通常称之为依赖，比如司机有一个驾驶的行为（方法），其中（的参数）使用到了汽车，那么司机和汽车的关系就是依赖关系。</li>
+</ul>
+<p>我们可以使用一种叫做<a href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80">UML</a>（统一建模语言）的东西来进行面向对象建模，其中一项重要的工作就是把类和类之间的关系用标准化的图形符号描述出来。关于UML我们在这里不做详细的介绍，有兴趣的读者可以自行阅读<a href="https://e.jd.com/30392949.html">《UML面向对象设计基础》</a>一书。</p>
+<p>利用类之间的这些关系，我们可以在已有类的基础上来完成某些操作，也可以在已有类的基础上创建新的类，这些都是实现代码复用的重要手段。复用现有的代码不仅可以减少开发的工作量，也有利于代码的管理和维护，这是我们在日常工作中都会使用到的技术手段。</p>
+<h3 id="继承和多态">继承和多态</h3>
+<p>刚才我们提到了，可以在已有类的基础上创建新类，这其中的一种做法就是让一个类从另一个类那里将属性和方法直接继承下来，从而减少重复代码的编写。提供继承信息的我们称之为父类，也叫超类或基类；得到继承信息的我们称之为子类，也叫派生类或衍生类。子类除了继承父类提供的属性和方法，还可以定义自己特有的属性和方法，所以子类比父类拥有的更多的能力，在实际开发中，我们经常会用子类对象去替换掉一个父类对象，这是面向对象编程中一个常见的行为，对应的原则称之为<a href="https://zh.wikipedia.org/wiki/%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99">里氏替换原则</a>。下面我们先看一个继承的例子。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>(object):
+    <span style="color:#e6db74">&#34;&#34;&#34;人&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> __init__(self, name, age):
+        self<span style="color:#f92672">.</span>_name <span style="color:#f92672">=</span> name
+        self<span style="color:#f92672">.</span>_age <span style="color:#f92672">=</span> age
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">name</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_name
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">age</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_age
+
+    <span style="color:#a6e22e">@age.setter</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">age</span>(self, age):
+        self<span style="color:#f92672">.</span>_age <span style="color:#f92672">=</span> age
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">play</span>(self):
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">正在愉快的玩耍.&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_name)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">watch_av</span>(self):
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>_age <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">18</span>:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">正在观看live.&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_name)
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">只能观看《legalhigh》.&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_name)
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span>(Person):
+    <span style="color:#e6db74">&#34;&#34;&#34;学生&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> __init__(self, name, age, grade):
+        super()<span style="color:#f92672">.</span>__init__(name, age)
+        self<span style="color:#f92672">.</span>_grade <span style="color:#f92672">=</span> grade
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">grade</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_grade
+
+    <span style="color:#a6e22e">@grade.setter</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">grade</span>(self, grade):
+        self<span style="color:#f92672">.</span>_grade <span style="color:#f92672">=</span> grade
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">study</span>(self, course):
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">的</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">正在学习</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">.&#39;</span> <span style="color:#f92672">%</span> (self<span style="color:#f92672">.</span>_grade, self<span style="color:#f92672">.</span>_name, course))
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Teacher</span>(Person):
+    <span style="color:#e6db74">&#34;&#34;&#34;老师&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> __init__(self, name, age, title):
+        super()<span style="color:#f92672">.</span>__init__(name, age)
+        self<span style="color:#f92672">.</span>_title <span style="color:#f92672">=</span> title
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">title</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_title
+
+    <span style="color:#a6e22e">@title.setter</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">title</span>(self, title):
+        self<span style="color:#f92672">.</span>_title <span style="color:#f92672">=</span> title
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">teach</span>(self, course):
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s%s</span><span style="color:#e6db74">正在讲</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">.&#39;</span> <span style="color:#f92672">%</span> (self<span style="color:#f92672">.</span>_name, self<span style="color:#f92672">.</span>_title, course))
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    stu <span style="color:#f92672">=</span> Student(<span style="color:#e6db74">&#39;西野七瀬&#39;</span>, <span style="color:#ae81ff">15</span>, <span style="color:#e6db74">&#39;初三&#39;</span>)
+    stu<span style="color:#f92672">.</span>study(<span style="color:#e6db74">&#39;数学&#39;</span>)
+    stu<span style="color:#f92672">.</span>watch_av()
+    t <span style="color:#f92672">=</span> Teacher(<span style="color:#e6db74">&#39;书兰&#39;</span>, <span style="color:#ae81ff">38</span>, <span style="color:#e6db74">&#39;砖家&#39;</span>)
+    t<span style="color:#f92672">.</span>teach(<span style="color:#e6db74">&#39;Python程序设计&#39;</span>)
+    t<span style="color:#f92672">.</span>watch_av()
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><p>子类在继承了父类的方法后，可以对父类已有的方法给出新的实现版本，这个动作称之为方法重写（override）。通过方法重写我们可以让父类的同一个行为在子类中拥有不同的实现版本，当我们调用这个经过子类重写的方法时，不同的子类对象会表现出不同的行为，这个就是多态（poly-morphism）。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABCMeta, abstractmethod
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Pet</span>(object, metaclass<span style="color:#f92672">=</span>ABCMeta):
+    <span style="color:#e6db74">&#34;&#34;&#34;宠物&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> __init__(self, nickname):
+        self<span style="color:#f92672">.</span>_nickname <span style="color:#f92672">=</span> nickname
+
+    <span style="color:#a6e22e">@abstractmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_voice</span>(self):
+        <span style="color:#e6db74">&#34;&#34;&#34;发出声音&#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">pass</span>
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dog</span>(Pet):
+    <span style="color:#e6db74">&#34;&#34;&#34;狗&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_voice</span>(self):
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">: 汪汪汪...&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_nickname)
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span>(Pet):
+    <span style="color:#e6db74">&#34;&#34;&#34;猫&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_voice</span>(self):
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">: 喵...喵...&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_nickname)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    pets <span style="color:#f92672">=</span> [Dog(<span style="color:#e6db74">&#39;旺财&#39;</span>), Cat(<span style="color:#e6db74">&#39;凯蒂&#39;</span>), Dog(<span style="color:#e6db74">&#39;大黄&#39;</span>)]
+    <span style="color:#66d9ef">for</span> pet <span style="color:#f92672">in</span> pets:
+        pet<span style="color:#f92672">.</span>make_voice()
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><p>在上面的代码中，我们将<code>Pet</code>类处理成了一个抽象类，所谓抽象类就是不能够创建对象的类，这种类的存在就是专门为了让其他类去继承它。Python从语法层面并没有像Java或C#那样提供对抽象类的支持，但是我们可以通过<code>abc</code>模块的<code>ABCMeta</code>元类和<code>abstractmethod</code>包装器来达到抽象类的效果，如果一个类中存在抽象方法那么这个类就不能够实例化（创建对象）。上面的代码中，<code>Dog</code>和<code>Cat</code>两个子类分别对<code>Pet</code>类中的<code>make_voice</code>抽象方法进行了重写并给出了不同的实现版本，当我们在<code>main</code>函数中调用该方法时，这个方法就表现出了多态行为（同样的方法做了不同的事情）。</p>
+<h3 id="综合案例">综合案例</h3>
+<h4 id="案例1奥特曼打小怪兽">案例1：奥特曼打小怪兽。</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABCMeta, abstractmethod
+<span style="color:#f92672">from</span> random <span style="color:#f92672">import</span> randint, randrange
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Fighter</span>(object, metaclass<span style="color:#f92672">=</span>ABCMeta):
+    <span style="color:#e6db74">&#34;&#34;&#34;战斗者&#34;&#34;&#34;</span>
+
+    <span style="color:#75715e"># 通过__slots__魔法限定对象可以绑定的成员变量</span>
+    __slots__ <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;_name&#39;</span>, <span style="color:#e6db74">&#39;_hp&#39;</span>)
+
+    <span style="color:#66d9ef">def</span> __init__(self, name, hp):
+        <span style="color:#e6db74">&#34;&#34;&#34;初始化方法
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        :param name: 名字
+</span><span style="color:#e6db74">        :param hp: 生命值
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        self<span style="color:#f92672">.</span>_name <span style="color:#f92672">=</span> name
+        self<span style="color:#f92672">.</span>_hp <span style="color:#f92672">=</span> hp
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">name</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_name
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hp</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_hp
+
+    <span style="color:#a6e22e">@hp.setter</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hp</span>(self, hp):
+        self<span style="color:#f92672">.</span>_hp <span style="color:#f92672">=</span> hp <span style="color:#66d9ef">if</span> hp <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span>
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">alive</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_hp <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>
+
+    <span style="color:#a6e22e">@abstractmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attack</span>(self, other):
+        <span style="color:#e6db74">&#34;&#34;&#34;攻击
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        :param other: 被攻击的对象
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">pass</span>
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Ultraman</span>(Fighter):
+    <span style="color:#e6db74">&#34;&#34;&#34;奥特曼&#34;&#34;&#34;</span>
+
+    __slots__ <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;_name&#39;</span>, <span style="color:#e6db74">&#39;_hp&#39;</span>, <span style="color:#e6db74">&#39;_mp&#39;</span>)
+
+    <span style="color:#66d9ef">def</span> __init__(self, name, hp, mp):
+        <span style="color:#e6db74">&#34;&#34;&#34;初始化方法
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        :param name: 名字
+</span><span style="color:#e6db74">        :param hp: 生命值
+</span><span style="color:#e6db74">        :param mp: 魔法值
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        super()<span style="color:#f92672">.</span>__init__(name, hp)
+        self<span style="color:#f92672">.</span>_mp <span style="color:#f92672">=</span> mp
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attack</span>(self, other):
+        other<span style="color:#f92672">.</span>hp <span style="color:#f92672">-=</span> randint(<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">25</span>)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">huge_attack</span>(self, other):
+        <span style="color:#e6db74">&#34;&#34;&#34;究极必杀技(打掉对方至少50点或四分之三的血)
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        :param other: 被攻击的对象
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        :return: 使用成功返回True否则返回False
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>_mp <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">50</span>:
+            self<span style="color:#f92672">.</span>_mp <span style="color:#f92672">-=</span> <span style="color:#ae81ff">50</span>
+            injury <span style="color:#f92672">=</span> other<span style="color:#f92672">.</span>hp <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">//</span> <span style="color:#ae81ff">4</span>
+            injury <span style="color:#f92672">=</span> injury <span style="color:#66d9ef">if</span> injury <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">50</span> <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">50</span>
+            other<span style="color:#f92672">.</span>hp <span style="color:#f92672">-=</span> injury
+            <span style="color:#66d9ef">return</span> True
+        <span style="color:#66d9ef">else</span>:
+            self<span style="color:#f92672">.</span>attack(other)
+            <span style="color:#66d9ef">return</span> False
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">magic_attack</span>(self, others):
+        <span style="color:#e6db74">&#34;&#34;&#34;魔法攻击
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        :param others: 被攻击的群体
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        :return: 使用魔法成功返回True否则返回False
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>_mp <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">20</span>:
+            self<span style="color:#f92672">.</span>_mp <span style="color:#f92672">-=</span> <span style="color:#ae81ff">20</span>
+            <span style="color:#66d9ef">for</span> temp <span style="color:#f92672">in</span> others:
+                <span style="color:#66d9ef">if</span> temp<span style="color:#f92672">.</span>alive:
+                    temp<span style="color:#f92672">.</span>hp <span style="color:#f92672">-=</span> randint(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">15</span>)
+            <span style="color:#66d9ef">return</span> True
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">return</span> False
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">resume</span>(self):
+        <span style="color:#e6db74">&#34;&#34;&#34;恢复魔法值&#34;&#34;&#34;</span>
+        incr_point <span style="color:#f92672">=</span> randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">10</span>)
+        self<span style="color:#f92672">.</span>_mp <span style="color:#f92672">+=</span> incr_point
+        <span style="color:#66d9ef">return</span> incr_point
+
+    <span style="color:#66d9ef">def</span> __str__(self):
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;~~~</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">奥特曼~~~</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_name <span style="color:#f92672">+</span> \
+            <span style="color:#e6db74">&#39;生命值: </span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_hp <span style="color:#f92672">+</span> \
+            <span style="color:#e6db74">&#39;魔法值: </span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_mp
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Monster</span>(Fighter):
+    <span style="color:#e6db74">&#34;&#34;&#34;小怪兽&#34;&#34;&#34;</span>
+
+    __slots__ <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;_name&#39;</span>, <span style="color:#e6db74">&#39;_hp&#39;</span>)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attack</span>(self, other):
+        other<span style="color:#f92672">.</span>hp <span style="color:#f92672">-=</span> randint(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>)
+
+    <span style="color:#66d9ef">def</span> __str__(self):
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;~~~</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">小怪兽~~~</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_name <span style="color:#f92672">+</span> \
+            <span style="color:#e6db74">&#39;生命值: </span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>_hp
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">is_any_alive</span>(monsters):
+    <span style="color:#e6db74">&#34;&#34;&#34;判断有没有小怪兽是活着的&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">for</span> monster <span style="color:#f92672">in</span> monsters:
+        <span style="color:#66d9ef">if</span> monster<span style="color:#f92672">.</span>alive <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+            <span style="color:#66d9ef">return</span> True
+    <span style="color:#66d9ef">return</span> False
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">select_alive_one</span>(monsters):
+    <span style="color:#e6db74">&#34;&#34;&#34;选中一只活着的小怪兽&#34;&#34;&#34;</span>
+    monsters_len <span style="color:#f92672">=</span> len(monsters)
+    <span style="color:#66d9ef">while</span> True:
+        index <span style="color:#f92672">=</span> randrange(monsters_len)
+        monster <span style="color:#f92672">=</span> monsters[index]
+        <span style="color:#66d9ef">if</span> monster<span style="color:#f92672">.</span>alive <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+            <span style="color:#66d9ef">return</span> monster
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">display_info</span>(ultraman, monsters):
+    <span style="color:#e6db74">&#34;&#34;&#34;显示奥特曼和小怪兽的信息&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">print</span>(ultraman)
+    <span style="color:#66d9ef">for</span> monster <span style="color:#f92672">in</span> monsters:
+        <span style="color:#66d9ef">print</span>(monster, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    u <span style="color:#f92672">=</span> Ultraman(<span style="color:#e6db74">&#39;书兰&#39;</span>, <span style="color:#ae81ff">1000</span>, <span style="color:#ae81ff">120</span>)
+    m1 <span style="color:#f92672">=</span> Monster(<span style="color:#e6db74">&#39;白石麻衣&#39;</span>, <span style="color:#ae81ff">250</span>)
+    m2 <span style="color:#f92672">=</span> Monster(<span style="color:#e6db74">&#39;斋藤飞鸟&#39;</span>, <span style="color:#ae81ff">500</span>)
+    m3 <span style="color:#f92672">=</span> Monster(<span style="color:#e6db74">&#39;西野七瀬&#39;</span>, <span style="color:#ae81ff">750</span>)
+    ms <span style="color:#f92672">=</span> [m1, m2, m3]
+    fight_round <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">while</span> u<span style="color:#f92672">.</span>alive <span style="color:#f92672">and</span> is_any_alive(ms):
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;========第</span><span style="color:#e6db74">%02d</span><span style="color:#e6db74">回合========&#39;</span> <span style="color:#f92672">%</span> fight_round)
+        m <span style="color:#f92672">=</span> select_alive_one(ms)  <span style="color:#75715e"># 选中一只小怪兽</span>
+        skill <span style="color:#f92672">=</span> randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">10</span>)   <span style="color:#75715e"># 通过随机数选择使用哪种技能</span>
+        <span style="color:#66d9ef">if</span> skill <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>:  <span style="color:#75715e"># 60%的概率使用普通攻击</span>
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">使用普通攻击打了</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">.&#39;</span> <span style="color:#f92672">%</span> (u<span style="color:#f92672">.</span>name, m<span style="color:#f92672">.</span>name))
+            u<span style="color:#f92672">.</span>attack(m)
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">的魔法值恢复了</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">点.&#39;</span> <span style="color:#f92672">%</span> (u<span style="color:#f92672">.</span>name, u<span style="color:#f92672">.</span>resume()))
+        <span style="color:#66d9ef">elif</span> skill <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">9</span>:  <span style="color:#75715e"># 30%的概率使用魔法攻击(可能因魔法值不足而失败)</span>
+            <span style="color:#66d9ef">if</span> u<span style="color:#f92672">.</span>magic_attack(ms):
+                <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">使用了魔法攻击.&#39;</span> <span style="color:#f92672">%</span> u<span style="color:#f92672">.</span>name)
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">使用魔法失败.&#39;</span> <span style="color:#f92672">%</span> u<span style="color:#f92672">.</span>name)
+        <span style="color:#66d9ef">else</span>:  <span style="color:#75715e"># 10%的概率使用究极必杀技(如果魔法值不足则使用普通攻击)</span>
+            <span style="color:#66d9ef">if</span> u<span style="color:#f92672">.</span>huge_attack(m):
+                <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">使用究极必杀技虐了</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">.&#39;</span> <span style="color:#f92672">%</span> (u<span style="color:#f92672">.</span>name, m<span style="color:#f92672">.</span>name))
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">使用普通攻击打了</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">.&#39;</span> <span style="color:#f92672">%</span> (u<span style="color:#f92672">.</span>name, m<span style="color:#f92672">.</span>name))
+                <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">的魔法值恢复了</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">点.&#39;</span> <span style="color:#f92672">%</span> (u<span style="color:#f92672">.</span>name, u<span style="color:#f92672">.</span>resume()))
+        <span style="color:#66d9ef">if</span> m<span style="color:#f92672">.</span>alive <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:  <span style="color:#75715e"># 如果选中的小怪兽没有死就回击奥特曼</span>
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">回击了</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">.&#39;</span> <span style="color:#f92672">%</span> (m<span style="color:#f92672">.</span>name, u<span style="color:#f92672">.</span>name))
+            m<span style="color:#f92672">.</span>attack(u)
+        display_info(u, ms)  <span style="color:#75715e"># 每个回合结束后显示奥特曼和小怪兽的信息</span>
+        fight_round <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">========战斗结束!========</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+    <span style="color:#66d9ef">if</span> u<span style="color:#f92672">.</span>alive <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">奥特曼胜利!&#39;</span> <span style="color:#f92672">%</span> u<span style="color:#f92672">.</span>name)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;小怪兽胜利!&#39;</span>)
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><h4 id="案例2扑克游戏">案例2：扑克游戏。</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">import</span> random
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Card</span>(object):
+    <span style="color:#e6db74">&#34;&#34;&#34;一张牌&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> __init__(self, suite, face):
+        self<span style="color:#f92672">.</span>_suite <span style="color:#f92672">=</span> suite
+        self<span style="color:#f92672">.</span>_face <span style="color:#f92672">=</span> face
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">face</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_face
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">suite</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_suite
+
+    <span style="color:#66d9ef">def</span> __str__(self):
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>_face <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+            face_str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;A&#39;</span>
+        <span style="color:#66d9ef">elif</span> self<span style="color:#f92672">.</span>_face <span style="color:#f92672">==</span> <span style="color:#ae81ff">11</span>:
+            face_str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;J&#39;</span>
+        <span style="color:#66d9ef">elif</span> self<span style="color:#f92672">.</span>_face <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span>:
+            face_str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Q&#39;</span>
+        <span style="color:#66d9ef">elif</span> self<span style="color:#f92672">.</span>_face <span style="color:#f92672">==</span> <span style="color:#ae81ff">13</span>:
+            face_str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;K&#39;</span>
+        <span style="color:#66d9ef">else</span>:
+            face_str <span style="color:#f92672">=</span> str(self<span style="color:#f92672">.</span>_face)
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s%s</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> (self<span style="color:#f92672">.</span>_suite, face_str)
+    
+    <span style="color:#66d9ef">def</span> __repr__(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>__str__()
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Poker</span>(object):
+    <span style="color:#e6db74">&#34;&#34;&#34;一副牌&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> __init__(self):
+        self<span style="color:#f92672">.</span>_cards <span style="color:#f92672">=</span> [Card(suite, face) 
+                       <span style="color:#66d9ef">for</span> suite <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;♠♥♣♦&#39;</span>
+                       <span style="color:#66d9ef">for</span> face <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">14</span>)]
+        self<span style="color:#f92672">.</span>_current <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cards</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_cards
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">shuffle</span>(self):
+        <span style="color:#e6db74">&#34;&#34;&#34;洗牌(随机乱序)&#34;&#34;&#34;</span>
+        self<span style="color:#f92672">.</span>_current <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        random<span style="color:#f92672">.</span>shuffle(self<span style="color:#f92672">.</span>_cards)
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">next</span>(self):
+        <span style="color:#e6db74">&#34;&#34;&#34;发牌&#34;&#34;&#34;</span>
+        card <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>_cards[self<span style="color:#f92672">.</span>_current]
+        self<span style="color:#f92672">.</span>_current <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">return</span> card
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">has_next</span>(self):
+        <span style="color:#e6db74">&#34;&#34;&#34;还有没有牌&#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_current <span style="color:#f92672">&lt;</span> len(self<span style="color:#f92672">.</span>_cards)
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Player</span>(object):
+    <span style="color:#e6db74">&#34;&#34;&#34;玩家&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> __init__(self, name):
+        self<span style="color:#f92672">.</span>_name <span style="color:#f92672">=</span> name
+        self<span style="color:#f92672">.</span>_cards_on_hand <span style="color:#f92672">=</span> []
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">name</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_name
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cards_on_hand</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_cards_on_hand
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get</span>(self, card):
+        <span style="color:#e6db74">&#34;&#34;&#34;摸牌&#34;&#34;&#34;</span>
+        self<span style="color:#f92672">.</span>_cards_on_hand<span style="color:#f92672">.</span>append(card)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">arrange</span>(self, card_key):
+        <span style="color:#e6db74">&#34;&#34;&#34;玩家整理手上的牌&#34;&#34;&#34;</span>
+        self<span style="color:#f92672">.</span>_cards_on_hand<span style="color:#f92672">.</span>sort(key<span style="color:#f92672">=</span>card_key)
+
+
+<span style="color:#75715e"># 排序规则-先根据花色再根据点数排序</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_key</span>(card):
+    <span style="color:#66d9ef">return</span> (card<span style="color:#f92672">.</span>suite, card<span style="color:#f92672">.</span>face)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    p <span style="color:#f92672">=</span> Poker()
+    p<span style="color:#f92672">.</span>shuffle()
+    players <span style="color:#f92672">=</span> [Player(<span style="color:#e6db74">&#39;东邪&#39;</span>), Player(<span style="color:#e6db74">&#39;西毒&#39;</span>), Player(<span style="color:#e6db74">&#39;南帝&#39;</span>), Player(<span style="color:#e6db74">&#39;北丐&#39;</span>)]
+    <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">13</span>):
+        <span style="color:#66d9ef">for</span> player <span style="color:#f92672">in</span> players:
+            player<span style="color:#f92672">.</span>get(p<span style="color:#f92672">.</span>next)
+    <span style="color:#66d9ef">for</span> player <span style="color:#f92672">in</span> players:
+        <span style="color:#66d9ef">print</span>(player<span style="color:#f92672">.</span>name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;:&#39;</span>, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39; &#39;</span>)
+        player<span style="color:#f92672">.</span>arrange(get_key)
+        <span style="color:#66d9ef">print</span>(player<span style="color:#f92672">.</span>cards_on_hand)
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><blockquote>
+<p><strong>说明：</strong> 大家可以自己尝试在上面代码的基础上写一个简单的扑克游戏，例如21点(Black Jack)，游戏的规则可以自己在网上找一找。</p>
+</blockquote>
+<h4 id="案例3工资结算系统">案例3：工资结算系统。</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">某公司有三种类型的员工 分别是部门经理、程序员和销售员
+</span><span style="color:#e6db74">需要设计一个工资结算系统 根据提供的员工信息来计算月薪
+</span><span style="color:#e6db74">部门经理的月薪是每月固定15000元
+</span><span style="color:#e6db74">程序员的月薪按本月工作时间计算 每小时150元
+</span><span style="color:#e6db74">销售员的月薪是1200元的底薪加上销售额5%的提成
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABCMeta, abstractmethod
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Employee</span>(object, metaclass<span style="color:#f92672">=</span>ABCMeta):
+    <span style="color:#e6db74">&#34;&#34;&#34;员工&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> __init__(self, name):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        初始化方法
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        :param name: 姓名
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        self<span style="color:#f92672">.</span>_name <span style="color:#f92672">=</span> name
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">name</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_name
+
+    <span style="color:#a6e22e">@abstractmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_salary</span>(self):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        获得月薪
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        :return: 月薪
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">pass</span>
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Manager</span>(Employee):
+    <span style="color:#e6db74">&#34;&#34;&#34;部门经理&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_salary</span>(self):
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">15000.0</span>
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Programmer</span>(Employee):
+    <span style="color:#e6db74">&#34;&#34;&#34;程序员&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> __init__(self, name, working_hour<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+        super()<span style="color:#f92672">.</span>__init__(name)
+        self<span style="color:#f92672">.</span>_working_hour <span style="color:#f92672">=</span> working_hour
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">working_hour</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_working_hour
+
+    <span style="color:#a6e22e">@working_hour.setter</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">working_hour</span>(self, working_hour):
+        self<span style="color:#f92672">.</span>_working_hour <span style="color:#f92672">=</span> working_hour <span style="color:#66d9ef">if</span> working_hour <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_salary</span>(self):
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">150.0</span> <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>_working_hour
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Salesman</span>(Employee):
+    <span style="color:#e6db74">&#34;&#34;&#34;销售员&#34;&#34;&#34;</span>
+
+    <span style="color:#66d9ef">def</span> __init__(self, name, sales<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+        super()<span style="color:#f92672">.</span>__init__(name)
+        self<span style="color:#f92672">.</span>_sales <span style="color:#f92672">=</span> sales
+
+    <span style="color:#a6e22e">@property</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sales</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_sales
+
+    <span style="color:#a6e22e">@sales.setter</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sales</span>(self, sales):
+        self<span style="color:#f92672">.</span>_sales <span style="color:#f92672">=</span> sales <span style="color:#66d9ef">if</span> sales <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_salary</span>(self):
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1200.0</span> <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>_sales <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.05</span>
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    emps <span style="color:#f92672">=</span> [
+        Manager(<span style="color:#e6db74">&#39;刘备&#39;</span>), Programmer(<span style="color:#e6db74">&#39;诸葛亮&#39;</span>),
+        Manager(<span style="color:#e6db74">&#39;曹操&#39;</span>), Salesman(<span style="color:#e6db74">&#39;荀彧&#39;</span>),
+        Salesman(<span style="color:#e6db74">&#39;吕布&#39;</span>), Programmer(<span style="color:#e6db74">&#39;张辽&#39;</span>),
+        Programmer(<span style="color:#e6db74">&#39;赵云&#39;</span>)
+    ]
+    <span style="color:#66d9ef">for</span> emp <span style="color:#f92672">in</span> emps:
+        <span style="color:#66d9ef">if</span> isinstance(emp, Programmer):
+            emp<span style="color:#f92672">.</span>working_hour <span style="color:#f92672">=</span> int(input(<span style="color:#e6db74">&#39;请输入</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">本月工作时间: &#39;</span> <span style="color:#f92672">%</span> emp<span style="color:#f92672">.</span>name))
+        <span style="color:#66d9ef">elif</span> isinstance(emp, Salesman):
+            emp<span style="color:#f92672">.</span>sales <span style="color:#f92672">=</span> float(input(<span style="color:#e6db74">&#39;请输入</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">本月销售额: &#39;</span> <span style="color:#f92672">%</span> emp<span style="color:#f92672">.</span>name))
+        <span style="color:#75715e"># 同样是接收get_salary这个消息但是不同的员工表现出了不同的行为(多态)</span>
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">本月工资为: ￥</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">元&#39;</span> <span style="color:#f92672">%</span>
+              (emp<span style="color:#f92672">.</span>name, emp<span style="color:#f92672">.</span>get_salary()))
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div>
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls" autoplay>
+                        <source type="audio/mpeg" src="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">
+                        <a href="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">/mp3/シンクロニシティ.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" rel="prev">上一篇</a>
+                    
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E6%8A%A5%E8%A1%A8%E4%B8%8E%E6%97%A5%E5%BF%97/" rel="next">下一篇</a>
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var audio = document.getElementById('audio');
+        audio.play();
+    }
+</script>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "Nanase Blog";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tornado on Nanase Blog</title>
+    <link>http://www.nishinonanase.xyz/tags/Tornado/</link>
+    <description>Recent content in Tornado on Nanase Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 23 May 2017 13:18:23 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.nishinonanase.xyz/tags/Tornado/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>异步化</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%BC%82%E6%AD%A5%E5%8C%96/</link>
+      <pubDate>Tue, 23 May 2017 13:18:23 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%BC%82%E6%AD%A5%E5%8C%96/</guid>
+      <description>异步化 如果没有对RequestHandler中的get或post方法进行异步处理，这就意味着，一旦在</description>
+    </item>
+    
+  </channel>
+</rss>

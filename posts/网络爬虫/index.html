@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>网络爬虫 &middot; Nanase Blog</title>
+  <meta name="keywords" content="书兰, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="今日も頑張っていきましょ～">
+  <meta name="author" content="Nanase">
+  <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        网络爬虫</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                网络爬虫</h1>
+                <div class="stuff">
+                    
+                    <span>August 1, 2017</span>
+                    <span>字数 3877</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <h3 id="网络爬虫的概念">网络爬虫的概念</h3>
+<p>网络爬虫（web crawler），以前经常称之为网络蜘蛛（spider），是按照一定的规则自动浏览万维网并获取信息的机器人程序（或脚本），曾经被广泛的应用于互联网搜索引擎。使用过互联网和浏览器的人都知道，网页中除了供用户阅读的文字信息之外，还包含一些超链接。网络爬虫系统正是通过网页中的超链接信息不断获得网络上的其它页面。正因如此，网络数据采集的过程就像一个爬虫或者蜘蛛在网络上漫游，所以才被形象的称为网络爬虫或者网络蜘蛛。</p>
+<h4 id="爬虫的应用领域">爬虫的应用领域</h4>
+<p>在理想的状态下，所有ICP（Internet Content Provider）都应该为自己的网站提供API接口来共享它们允许其他程序获取的数据，在这种情况下爬虫就不是必需品，国内比较有名的电商平台（如淘宝、京东等）、社交平台（如腾讯微博等）等网站都提供了自己的Open API，但是这类Open API通常会对可以抓取的数据以及抓取数据的频率进行限制。对于大多数的公司而言，及时的获取行业相关数据是企业生存的重要环节之一，然而大部分企业在行业数据方面的匮乏是其与生俱来的短板，合理的利用爬虫来获取数据并从中提取出有商业价值的信息是至关重要的。当然爬虫还有很多重要的应用领域，下面列举了其中的一部分：</p>
+<ol>
+<li>搜索引擎</li>
+<li>新闻聚合</li>
+<li>社交应用</li>
+<li>舆情监控</li>
+<li>行业数据</li>
+</ol>
+<h3 id="合法性和背景调研">合法性和背景调研</h3>
+<h4 id="爬虫合法性探讨">爬虫合法性探讨</h4>
+<ol>
+<li>网络爬虫领域目前还属于拓荒阶段，虽然互联网世界已经通过自己的游戏规则建立起一定的道德规范(Robots协议，全称是“网络爬虫排除标准”)，但法律部分还在建立和完善中，也就是说，现在这个领域暂时还是灰色地带。</li>
+<li>“法不禁止即为许可”，如果爬虫就像浏览器一样获取的是前端显示的数据（网页上的公开信息）而不是网站后台的私密敏感信息，就不太担心法律法规的约束，因为目前大数据产业链的发展速度远远超过了法律的完善程度。</li>
+<li>在爬取网站的时候，需要限制自己的爬虫遵守Robots协议，同时控制网络爬虫程序的抓取数据的速度；在使用数据的时候，必须要尊重网站的知识产权（从Web 2.0时代开始，虽然Web上的数据很多都是由用户提供的，但是网站平台是投入了运营成本的，当用户在注册和发布内容时，平台通常就已经获得了对数据的所有权、使用权和分发权）。如果违反了这些规定，在打官司的时候败诉几率相当高。</li>
+</ol>
+<h4 id="robotstxt文件">Robots.txt文件</h4>
+<p>大多数网站都会定义robots.txt文件，下面以淘宝的<a href="http://www.taobao.com/robots.txt">robots.txt</a>文件为例，看看该网站对爬虫有哪些限制。</p>
+<pre><code>
+User-agent:  Baiduspider
+Allow:  /article
+Allow:  /oshtml
+Disallow:  /product/
+Disallow:  /
+
+User-Agent:  Googlebot
+Allow:  /article
+Allow:  /oshtml
+Allow:  /product
+Allow:  /spu
+Allow:  /dianpu
+Allow:  /oversea
+Allow:  /list
+Disallow:  /
+
+User-agent:  Bingbot
+Allow:  /article
+Allow:  /oshtml
+Allow:  /product
+Allow:  /spu
+Allow:  /dianpu
+Allow:  /oversea
+Allow:  /list
+Disallow:  /
+
+User-Agent:  360Spider
+Allow:  /article
+Allow:  /oshtml
+Disallow:  /
+
+User-Agent:  Yisouspider
+Allow:  /article
+Allow:  /oshtml
+Disallow:  /
+
+User-Agent:  Sogouspider
+Allow:  /article
+Allow:  /oshtml
+Allow:  /product
+Disallow:  /
+
+User-Agent:  Yahoo!  Slurp
+Allow:  /product
+Allow:  /spu
+Allow:  /dianpu
+Allow:  /oversea
+Allow:  /list
+Disallow:  /
+
+User-Agent:  *
+Disallow:  /
+</code></pre><p>注意上面robots.txt第一段的最后一行，通过设置“Disallow: /”禁止百度爬虫访问除了“Allow”规定页面外的其他所有页面。因此当你在百度搜索“淘宝”的时候，搜索结果下方会出现：“由于该网站的robots.txt文件存在限制指令（限制搜索引擎抓取），系统无法提供该页面的内容描述”。百度作为一个搜索引擎，至少在表面上遵守了淘宝网的robots.txt协议，所以用户不能从百度上搜索到淘宝内部的产品信息。</p>
+<h3 id="相关工具介绍">相关工具介绍</h3>
+<h4 id="http协议">HTTP协议</h4>
+<p>在开始讲解爬虫之前，我们稍微对HTTP（超文本传输协议）做一些回顾，因为我们在网页上看到的内容通常是浏览器执行HTML语言得到的结果，而HTTP就是传输HTML数据的协议。HTTP和其他很多应用级协议一样是构建在TCP（传输控制协议）之上的，它利用了TCP提供的可靠的传输服务实现了Web应用中的数据交换。按照维基百科上的介绍，设计HTTP最初的目的是为了提供一种发布和接收<a href="https://zh.wikipedia.org/wiki/HTML">HTML</a>页面的方法，也就是说这个协议是浏览器和Web服务器之间传输的数据的载体。关于这个协议的详细信息以及目前的发展状况，大家可以阅读阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2016/08/http.html">《HTTP 协议入门》</a>、<a href="http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html">《互联网协议入门》</a>系列以及<a href="http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">《图解HTTPS协议》</a>进行了解，下图是我在四川省网络通信技术重点实验室工作期间用开源协议分析工具Ethereal（抓包工具WireShark的前身）截取的访问百度首页时的HTTP请求和响应的报文（协议数据），由于Ethereal截取的是经过网络适配器的数据，因此可以清晰的看到从物理链路层到应用层的协议数据。</p>
+<p>HTTP请求（请求行+请求头+空行+[消息体]）：</p>
+<p>HTTP响应（响应行+响应头+空行+消息体）：</p>
+<blockquote>
+<p>说明：但愿这两张如同泛黄照片般的截图帮助你大概的了解到HTTP是一个怎样的协议。</p>
+</blockquote>
+<h4 id="相关工具">相关工具</h4>
+<ol>
+<li>
+<p>Chrome Developer Tools：谷歌浏览器内置的开发者工具。</p>
+</li>
+<li>
+<p>POSTMAN：功能强大的网页调试与RESTful请求工具。</p>
+</li>
+<li>
+<p>HTTPie：命令行HTTP客户端。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Shell" data-lang="Shell">pip3 install httpie
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Shell" data-lang="Shell">http --header http://www.scu.edu.cn
+HTTP/1.1 <span style="color:#ae81ff">200</span> OK
+Accept-Ranges: bytes
+Cache-Control: private, max-age<span style="color:#f92672">=</span><span style="color:#ae81ff">600</span>
+Connection: Keep-Alive
+Content-Encoding: gzip
+Content-Language: zh-CN
+Content-Length: <span style="color:#ae81ff">14403</span>
+Content-Type: text/html
+Date: Sun, <span style="color:#ae81ff">27</span> May <span style="color:#ae81ff">2018</span> 15:38:25 GMT
+ETag: <span style="color:#e6db74">&#34;e6ec-56d3032d70a32-gzip&#34;</span>
+Expires: Sun, <span style="color:#ae81ff">27</span> May <span style="color:#ae81ff">2018</span> 15:48:25 GMT
+Keep-Alive: timeout<span style="color:#f92672">=</span>5, max<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>
+Last-Modified: Sun, <span style="color:#ae81ff">27</span> May <span style="color:#ae81ff">2018</span> 13:44:22 GMT
+Server: VWebServer
+Vary: User-Agent,Accept-Encoding
+X-Frame-Options: SAMEORIGIN
+</code></pre></div></li>
+<li>
+<p>BuiltWith：识别网站所用技术的工具。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Shell" data-lang="Shell">pip3 install builtwith
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">import</span> builtwith
+<span style="color:#f92672">&gt;&gt;&gt;</span> builtwith<span style="color:#f92672">.</span>parse(<span style="color:#e6db74">&#39;http://www.bootcss.com/&#39;</span>)
+{<span style="color:#e6db74">&#39;web-servers&#39;</span>: [<span style="color:#e6db74">&#39;Nginx&#39;</span>], <span style="color:#e6db74">&#39;font-scripts&#39;</span>: [<span style="color:#e6db74">&#39;Font Awesome&#39;</span>], <span style="color:#e6db74">&#39;javascript-frameworks&#39;</span>: [<span style="color:#e6db74">&#39;Lo-dash&#39;</span>, <span style="color:#e6db74">&#39;Underscore.js&#39;</span>, <span style="color:#e6db74">&#39;Vue.js&#39;</span>, <span style="color:#e6db74">&#39;Zepto&#39;</span>, <span style="color:#e6db74">&#39;jQuery&#39;</span>], <span style="color:#e6db74">&#39;web-frameworks&#39;</span>: [<span style="color:#e6db74">&#39;Twitter Bootstrap&#39;</span>]}
+<span style="color:#f92672">&gt;&gt;&gt;</span>
+<span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">import</span> ssl
+<span style="color:#f92672">&gt;&gt;&gt;</span> ssl<span style="color:#f92672">.</span>_create_default_https_context <span style="color:#f92672">=</span> ssl<span style="color:#f92672">.</span>_create_unverified_context
+<span style="color:#f92672">&gt;&gt;&gt;</span> builtwith<span style="color:#f92672">.</span>parse(<span style="color:#e6db74">&#39;https://www.jianshu.com/&#39;</span>)
+{<span style="color:#e6db74">&#39;web-servers&#39;</span>: [<span style="color:#e6db74">&#39;Tengine&#39;</span>], <span style="color:#e6db74">&#39;web-frameworks&#39;</span>: [<span style="color:#e6db74">&#39;Twitter Bootstrap&#39;</span>, <span style="color:#e6db74">&#39;Ruby on Rails&#39;</span>], <span style="color:#e6db74">&#39;programming-languages&#39;</span>: [<span style="color:#e6db74">&#39;Ruby&#39;</span>]}
+</code></pre></div></li>
+<li>
+<p>python-whois：查询网站所有者的工具。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Shell" data-lang="Shell">pip3 install python-whois
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">import</span> whois
+<span style="color:#f92672">&gt;&gt;&gt;</span> whois<span style="color:#f92672">.</span>whois(<span style="color:#e6db74">&#39;baidu.com&#39;</span>)
+{<span style="color:#e6db74">&#39;domain_name&#39;</span>: [<span style="color:#e6db74">&#39;BAIDU.COM&#39;</span>, <span style="color:#e6db74">&#39;baidu.com&#39;</span>], <span style="color:#e6db74">&#39;registrar&#39;</span>: <span style="color:#e6db74">&#39;MarkMonitor, Inc.&#39;</span>, <span style="color:#e6db74">&#39;whois_server&#39;</span>: <span style="color:#e6db74">&#39;whois.markmonitor.com&#39;</span>, <span style="color:#e6db74">&#39;referral_url&#39;</span>: None, <span style="color:#e6db74">&#39;updated_date&#39;</span>: [datetime<span style="color:#f92672">.</span>datetime(<span style="color:#ae81ff">2017</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">28</span>), datetime<span style="color:#f92672">.</span>datetime(<span style="color:#ae81ff">2017</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">28</span>)], <span style="color:#e6db74">&#39;creation_date&#39;</span>: [datetime<span style="color:#f92672">.</span>datetime(<span style="color:#ae81ff">1999</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">17</span>), datetime<span style="color:#f92672">.</span>datetime(<span style="color:#ae81ff">1999</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">17</span>)], <span style="color:#e6db74">&#39;expiration_date&#39;</span>: [datetime<span style="color:#f92672">.</span>datetime(<span style="color:#ae81ff">2026</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">17</span>), datetime<span style="color:#f92672">.</span>datetime(<span style="color:#ae81ff">2026</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)], <span style="color:#e6db74">&#39;name_servers&#39;</span>: [<span style="color:#e6db74">&#39;DNS.BAIDU.COM&#39;</span>, <span style="color:#e6db74">&#39;NS2.BAIDU.COM&#39;</span>, <span style="color:#e6db74">&#39;NS3.BAIDU.COM&#39;</span>, <span style="color:#e6db74">&#39;NS4.BAIDU.COM&#39;</span>, <span style="color:#e6db74">&#39;NS7.BAIDU.COM&#39;</span>, <span style="color:#e6db74">&#39;dns.baidu.com&#39;</span>, <span style="color:#e6db74">&#39;ns4.baidu.com&#39;</span>, <span style="color:#e6db74">&#39;ns3.baidu.com&#39;</span>, <span style="color:#e6db74">&#39;ns7.baidu.com&#39;</span>, <span style="color:#e6db74">&#39;ns2.baidu.com&#39;</span>], <span style="color:#e6db74">&#39;status&#39;</span>: [<span style="color:#e6db74">&#39;clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited&#39;</span>, <span style="color:#e6db74">&#39;clientTransferProhibited https://icann.org/epp#clientTransferProhibited&#39;</span>, <span style="color:#e6db74">&#39;clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited&#39;</span>, <span style="color:#e6db74">&#39;serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited&#39;</span>, <span style="color:#e6db74">&#39;serverTransferProhibited https://icann.org/epp#serverTransferProhibited&#39;</span>, <span style="color:#e6db74">&#39;serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited&#39;</span>, <span style="color:#e6db74">&#39;clientUpdateProhibited (https://www.icann.org/epp#clientUpdateProhibited)&#39;</span>, <span style="color:#e6db74">&#39;clientTransferProhibited (https://www.icann.org/epp#clientTransferProhibited)&#39;</span>, <span style="color:#e6db74">&#39;clientDeleteProhibited (https://www.icann.org/epp#clientDeleteProhibited)&#39;</span>, <span style="color:#e6db74">&#39;serverUpdateProhibited (https://www.icann.org/epp#serverUpdateProhibited)&#39;</span>, <span style="color:#e6db74">&#39;serverTransferProhibited (https://www.icann.org/epp#serverTransferProhibited)&#39;</span>, <span style="color:#e6db74">&#39;serverDeleteProhibited (https://www.icann.org/epp#serverDeleteProhibited)&#39;</span>], <span style="color:#e6db74">&#39;emails&#39;</span>: [<span style="color:#e6db74">&#39;abusecomplaints@markmonitor.com&#39;</span>, <span style="color:#e6db74">&#39;whoisrelay@markmonitor.com&#39;</span>], <span style="color:#e6db74">&#39;dnssec&#39;</span>: <span style="color:#e6db74">&#39;unsigned&#39;</span>, <span style="color:#e6db74">&#39;name&#39;</span>: None, <span style="color:#e6db74">&#39;org&#39;</span>: <span style="color:#e6db74">&#39;Beijing Baidu Netcom Science Technology Co., Ltd.&#39;</span>, <span style="color:#e6db74">&#39;address&#39;</span>: None, <span style="color:#e6db74">&#39;city&#39;</span>: None, <span style="color:#e6db74">&#39;state&#39;</span>: <span style="color:#e6db74">&#39;Beijing&#39;</span>, <span style="color:#e6db74">&#39;zipcode&#39;</span>: None, <span style="color:#e6db74">&#39;country&#39;</span>: <span style="color:#e6db74">&#39;CN&#39;</span>}
+</code></pre></div></li>
+<li>
+<p>robotparser：解析robots.txt的工具。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">from</span> urllib <span style="color:#f92672">import</span> robotparser
+<span style="color:#f92672">&gt;&gt;&gt;</span> parser <span style="color:#f92672">=</span> robotparser<span style="color:#f92672">.</span>RobotFileParser()
+<span style="color:#f92672">&gt;&gt;&gt;</span> parser<span style="color:#f92672">.</span>set_url(<span style="color:#e6db74">&#39;https://www.taobao.com/robots.txt&#39;</span>)
+<span style="color:#f92672">&gt;&gt;&gt;</span> parser<span style="color:#f92672">.</span>read()
+<span style="color:#f92672">&gt;&gt;&gt;</span> parser<span style="color:#f92672">.</span>can_fetch(<span style="color:#e6db74">&#39;Baiduspider&#39;</span>, <span style="color:#e6db74">&#39;http://www.taobao.com/article&#39;</span>)
+True
+<span style="color:#f92672">&gt;&gt;&gt;</span> parser<span style="color:#f92672">.</span>can_fetch(<span style="color:#e6db74">&#39;Baiduspider&#39;</span>, <span style="color:#e6db74">&#39;http://www.taobao.com/product&#39;</span>)
+False
+</code></pre></div></li>
+</ol>
+<h3 id="一个简单的爬虫">一个简单的爬虫</h3>
+<p>一个基本的爬虫通常分为数据采集（网页下载）、数据处理（网页解析）和数据存储（将有用的信息持久化）三个部分的内容，当然更为高级的爬虫在数据采集和处理时会使用并发编程或分布式技术，这就需要有调度器（安排线程或进程执行对应的任务）、后台管理程序（监控爬虫的工作状态以及检查数据抓取的结果）等的参与。</p>
+<p>一般来说，爬虫的工作流程包括以下几个步骤：</p>
+<ol>
+<li>设定抓取目标（种子页面/起始页面）并获取网页。</li>
+<li>当服务器无法访问时，按照指定的重试次数尝试重新下载页面。</li>
+<li>在需要的时候设置用户代理或隐藏真实IP，否则可能无法访问页面。</li>
+<li>对获取的页面进行必要的解码操作然后抓取出需要的信息。</li>
+<li>在获取的页面中通过某种方式（如正则表达式）抽取出页面中的链接信息。</li>
+<li>对链接进行进一步的处理（获取页面并重复上面的动作）。</li>
+<li>将有用的信息进行持久化以备后续的处理。</li>
+</ol>
+<p>下面的例子给出了一个从“搜狐体育”上获取NBA新闻标题和链接的爬虫。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> urllib.error <span style="color:#f92672">import</span> URLError
+<span style="color:#f92672">from</span> urllib.request <span style="color:#f92672">import</span> urlopen
+
+<span style="color:#f92672">import</span> re
+<span style="color:#f92672">import</span> pymysql
+<span style="color:#f92672">import</span> ssl
+
+<span style="color:#f92672">from</span> pymysql <span style="color:#f92672">import</span> Error
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decode_page</span>(page_bytes, charsets<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#39;utf-8&#39;</span>,)):
+    <span style="color:#e6db74">&#34;&#34;&#34;通过指定的字符集对页面进行解码(不是每个网站都将字符集设置为utf-8)&#34;&#34;&#34;</span>
+    page_html <span style="color:#f92672">=</span> None
+    <span style="color:#66d9ef">for</span> charset <span style="color:#f92672">in</span> charsets:
+        <span style="color:#66d9ef">try</span>:
+            page_html <span style="color:#f92672">=</span> page_bytes<span style="color:#f92672">.</span>decode(charset)
+            <span style="color:#66d9ef">break</span>
+        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">UnicodeDecodeError</span>:
+            <span style="color:#66d9ef">pass</span>
+            <span style="color:#75715e"># logging.error(&#39;Decode:&#39;, error)</span>
+    <span style="color:#66d9ef">return</span> page_html
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_page_html</span>(seed_url, <span style="color:#f92672">*</span>, retry_times<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, charsets<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#39;utf-8&#39;</span>,)):
+    <span style="color:#e6db74">&#34;&#34;&#34;获取页面的HTML代码(通过递归实现指定次数的重试操作)&#34;&#34;&#34;</span>
+    page_html <span style="color:#f92672">=</span> None
+    <span style="color:#66d9ef">try</span>:
+        page_html <span style="color:#f92672">=</span> decode_page(urlopen(seed_url)<span style="color:#f92672">.</span>read(), charsets)
+    <span style="color:#66d9ef">except</span> URLError:
+        <span style="color:#75715e"># logging.error(&#39;URL:&#39;, error)</span>
+        <span style="color:#66d9ef">if</span> retry_times <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+            <span style="color:#66d9ef">return</span> get_page_html(seed_url, retry_times<span style="color:#f92672">=</span>retry_times <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>,
+                                 charsets<span style="color:#f92672">=</span>charsets)
+    <span style="color:#66d9ef">return</span> page_html
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_matched_parts</span>(page_html, pattern_str, pattern_ignore_case<span style="color:#f92672">=</span>re<span style="color:#f92672">.</span>I):
+    <span style="color:#e6db74">&#34;&#34;&#34;从页面中提取需要的部分(通常是链接也可以通过正则表达式进行指定)&#34;&#34;&#34;</span>
+    pattern_regex <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(pattern_str, pattern_ignore_case)
+    <span style="color:#66d9ef">return</span> pattern_regex<span style="color:#f92672">.</span>findall(page_html) <span style="color:#66d9ef">if</span> page_html <span style="color:#66d9ef">else</span> []
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">start_crawl</span>(seed_url, match_pattern, <span style="color:#f92672">*</span>, max_depth<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;开始执行爬虫程序并对指定的数据进行持久化操作&#34;&#34;&#34;</span>
+    conn <span style="color:#f92672">=</span> pymysql<span style="color:#f92672">.</span>connect(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;localhost&#39;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">3306</span>,
+                           database<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;crawler&#39;</span>, user<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;root&#39;</span>,
+                           password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;123456&#39;</span>, charset<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;utf8&#39;</span>)
+    <span style="color:#66d9ef">try</span>:
+        <span style="color:#66d9ef">with</span> conn<span style="color:#f92672">.</span>cursor() <span style="color:#66d9ef">as</span> cursor:
+            url_list <span style="color:#f92672">=</span> [seed_url]
+            <span style="color:#75715e"># 通过下面的字典避免重复抓取并控制抓取深度</span>
+            visited_url_list <span style="color:#f92672">=</span> {seed_url: <span style="color:#ae81ff">0</span>}
+            <span style="color:#66d9ef">while</span> url_list:
+                current_url <span style="color:#f92672">=</span> url_list<span style="color:#f92672">.</span>pop(<span style="color:#ae81ff">0</span>)
+                depth <span style="color:#f92672">=</span> visited_url_list[current_url]
+                <span style="color:#66d9ef">if</span> depth <span style="color:#f92672">!=</span> max_depth:
+                    <span style="color:#75715e"># 尝试用utf-8/gbk/gb2312三种字符集进行页面解码</span>
+                    page_html <span style="color:#f92672">=</span> get_page_html(current_url, charsets<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#39;utf-8&#39;</span>, <span style="color:#e6db74">&#39;gbk&#39;</span>, <span style="color:#e6db74">&#39;gb2312&#39;</span>))
+                    links_list <span style="color:#f92672">=</span> get_matched_parts(page_html, match_pattern)
+                    param_list <span style="color:#f92672">=</span> []
+                    <span style="color:#66d9ef">for</span> link <span style="color:#f92672">in</span> links_list:
+                        <span style="color:#66d9ef">if</span> link <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> visited_url_list:
+                            visited_url_list[link] <span style="color:#f92672">=</span> depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+                            page_html <span style="color:#f92672">=</span> get_page_html(link, charsets<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#39;utf-8&#39;</span>, <span style="color:#e6db74">&#39;gbk&#39;</span>, <span style="color:#e6db74">&#39;gb2312&#39;</span>))
+                            headings <span style="color:#f92672">=</span> get_matched_parts(page_html, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;&lt;h1&gt;(.*)&lt;span&#39;</span>)
+                            <span style="color:#66d9ef">if</span> headings:
+                                param_list<span style="color:#f92672">.</span>append((headings[<span style="color:#ae81ff">0</span>], link))
+                    cursor<span style="color:#f92672">.</span>executemany(<span style="color:#e6db74">&#39;insert into tb_result values (default, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">)&#39;</span>,
+                                       param_list)
+                    conn<span style="color:#f92672">.</span>commit()
+    <span style="color:#66d9ef">except</span> Error:
+        <span style="color:#66d9ef">pass</span>
+        <span style="color:#75715e"># logging.error(&#39;SQL:&#39;, error)</span>
+    <span style="color:#66d9ef">finally</span>:
+        conn<span style="color:#f92672">.</span>close()
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    <span style="color:#e6db74">&#34;&#34;&#34;主函数&#34;&#34;&#34;</span>
+    ssl<span style="color:#f92672">.</span>_create_default_https_context <span style="color:#f92672">=</span> ssl<span style="color:#f92672">.</span>_create_unverified_context
+    start_crawl(<span style="color:#e6db74">&#39;http://sports.sohu.com/nba_a.shtml&#39;</span>,
+                <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;&lt;a[^&gt;]+test=a\s[^&gt;]*href=[&#34;</span><span style="color:#ae81ff">\&#39;</span><span style="color:#e6db74">](.*?)[&#34;</span><span style="color:#ae81ff">\&#39;</span><span style="color:#e6db74">]&#39;</span>,
+                max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><p>由于使用了MySQL实现持久化操作，所以要先启动MySQL服务器并创建名为<code>crawler</code>的数据库和名为<code>tb_result</code>的二维表才能运行该程序。</p>
+<h3 id="爬虫注意事项">爬虫注意事项</h3>
+<p>通过上面的例子，我们对爬虫已经有了一个感性的认识，在编写爬虫时有以下一些注意事项：</p>
+<ol>
+<li>
+<p>处理相对链接。有的时候我们从页面中获取的链接不是一个完整的绝对链接而是一个相对链接，这种情况下需要将其与URL前缀进行拼接（<code>urllib.parse</code>中的<code>urljoin()</code>函数可以完成此项操作）。</p>
+</li>
+<li>
+<p>设置代理服务。有些网站会限制访问的区域（例如美国的Netflix屏蔽了很多国家的访问），有些爬虫需要隐藏自己的身份，在这种情况下可以设置使用代理服务器，代理服务器有免费的服务器和付费的商业服务器，但后者稳定性和可用性都更好，强烈建议在商业项目中使用付费的代理服务器。可以通过修改<code>urllib.request</code>中的<code>ProxyHandler</code>来为请求设置代理服务器。</p>
+</li>
+<li>
+<p>限制下载速度。如果我们的爬虫获取网页的速度过快，可能就会面临被封禁或者产生“损害动产”的风险（这个可能会导致吃官司且败诉），可以在两次下载之间添加延时从而对爬虫进行限速。</p>
+</li>
+<li>
+<p>避免爬虫陷阱。有些网站会动态生成页面内容，这会导致产生无限多的页面（例如在线万年历通常会有无穷无尽的链接）。可以通过记录到达当前页面经过了多少个链接（链接深度）来解决该问题，当达到事先设定的最大深度时爬虫就不再像队列中添加该网页中的链接了。</p>
+</li>
+<li>
+<p>SSL相关问题。在使用<code>urlopen</code>打开一个HTTPS链接时会验证一次SSL证书，如果不做出处理会产生错误提示“SSL: CERTIFICATE_VERIFY_FAILED”，可以通过以下两种方式加以解决：</p>
+<ul>
+<li>
+<p>使用未经验证的上下文</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">import</span> ssl
+     
+request <span style="color:#f92672">=</span> urllib<span style="color:#f92672">.</span>request<span style="color:#f92672">.</span>Request(url<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;...&#39;</span>, headers<span style="color:#f92672">=</span>{<span style="color:#f92672">...</span>}) 
+context <span style="color:#f92672">=</span> ssl<span style="color:#f92672">.</span>_create_unverified_context()
+web_page <span style="color:#f92672">=</span> urllib<span style="color:#f92672">.</span>request<span style="color:#f92672">.</span>urlopen(request, context<span style="color:#f92672">=</span>context)
+</code></pre></div></li>
+<li>
+<p>设置全局性取消证书验证</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">import</span> ssl
+     
+ssl<span style="color:#f92672">.</span>_create_default_https_context <span style="color:#f92672">=</span> ssl<span style="color:#f92672">.</span>_create_unverified_context
+</code></pre></div></li>
+</ul>
+</li>
+</ol>
+
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls" autoplay>
+                        <source type="audio/mpeg" src="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">
+                        <a href="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">/mp3/シンクロニシティ.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E8%A1%A8%E5%8D%95%E7%9A%84%E5%BA%94%E7%94%A8/" rel="prev">上一篇</a>
+                    
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%92%8C%E8%A7%A3%E6%9E%90/" rel="next">下一篇</a>
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var audio = document.getElementById('audio');
+        audio.play();
+    }
+</script>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "Nanase Blog";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>二零一 on Nanase Blog</title>
+    <link>http://www.nishinonanase.xyz/categories/%E4%BA%8C%E9%9B%B6%E4%B8%80/</link>
+    <description>Recent content in 二零一 on Nanase Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 01 Jun 2020 13:06:10 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.nishinonanase.xyz/categories/%E4%BA%8C%E9%9B%B6%E4%B8%80/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>报表与日志</title>
+      <link>http://www.nishinonanase.xyz/posts/%E6%8A%A5%E8%A1%A8%E4%B8%8E%E6%97%A5%E5%BF%97/</link>
+      <pubDate>Mon, 01 Jun 2020 13:06:10 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E6%8A%A5%E8%A1%A8%E4%B8%8E%E6%97%A5%E5%BF%97/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

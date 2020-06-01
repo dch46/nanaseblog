@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>算法入门 &middot; Nanase Blog</title>
+  <meta name="keywords" content="书兰, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="今日も頑張っていきましょ～">
+  <meta name="author" content="Nanase">
+  <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        算法入门</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                算法入门</h1>
+                <div class="stuff">
+                    
+                    <span>March 12, 2018</span>
+                    <span>字数 2799</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <h2 id="算法入门系列课程1---周而复始">算法入门系列课程1 - 周而复始</h2>
+<h3 id="算法概述">算法概述</h3>
+<ol>
+<li>
+<p>什么是算法？</p>
+<p>解决问题的正确方法和具体的实施步骤。</p>
+<p>例子1：如何在两栋相距50m的大楼的两个房间牵一条线（两个房间都有窗）？</p>
+<ul>
+<li>养一只鸟（如鸽子），将线送过去</li>
+<li>用很长的杆子将线递过去</li>
+<li>用无人机（遥控飞行器）将线送过去</li>
+</ul>
+<p>如何评价这些方法的好坏？<strong>少花钱，不费事</strong>！</p>
+<p>例子2：大教室里坐了几百名学生一起听课，如何快速的统计学生人数？</p>
+<p>例子3：向列表容器中<strong>逆向</strong>插入100000个元素。</p>
+<ul>
+<li>
+<p>方法1：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">nums <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">100000</span>):
+    nums<span style="color:#f92672">.</span>append(i)
+nums<span style="color:#f92672">.</span>reverse()
+</code></pre></div></li>
+<li>
+<p>方法2：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">nums <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">100000</span>):
+    nums<span style="color:#f92672">.</span>insert(<span style="color:#ae81ff">0</span>, i)
+</code></pre></div></li>
+</ul>
+<p>例子3：生成Fibonacci数列（前100个Fibonacci数）。</p>
+<ul>
+<li>
+<p>方法1 - 递推：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">a, b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">101</span>):
+    a, b <span style="color:#f92672">=</span> b, a <span style="color:#f92672">+</span> b
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{num}: {a}&#39;</span>)
+</code></pre></div></li>
+<li>
+<p>方法2 - 递归：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fib</span>(num):
+    <span style="color:#66d9ef">if</span> num <span style="color:#f92672">in</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>):
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">return</span> fib(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> fib(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)
+     
+     
+<span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">101</span>):
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{num}: {fib(num)}&#39;</span>)
+</code></pre></div></li>
+<li>
+<p>方法3 - 改进的递归：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fib</span>(num, temp<span style="color:#f92672">=</span>{}):
+    <span style="color:#66d9ef">if</span> num <span style="color:#f92672">in</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>):
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">elif</span> num <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> temp:
+        temp[num] <span style="color:#f92672">=</span> fib(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> fib(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)
+    <span style="color:#66d9ef">return</span> temp[num]
+</code></pre></div></li>
+<li>
+<p>方法4  - 改进的递归：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> functools <span style="color:#f92672">import</span> lru_cache
+     
+     
+<span style="color:#a6e22e">@lru_cache</span>()
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fib</span>(num):
+    <span style="color:#66d9ef">if</span> num <span style="color:#f92672">in</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>):
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">return</span> fib(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> fib(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>如何评价算法的好坏？</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">渐近时间复杂度</a>和渐近空间复杂度。</p>
+</li>
+<li>
+<p>大<em><strong>O</strong></em>符号的意义？</p>
+<p>表示一个函数相对于输入规模的增长速度，也可以称之为函数的数量级。</p>
+<table>
+<thead>
+<tr>
+<th>大<em>O</em>符号</th>
+<th>说明</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$$O(c)$$</td>
+<td>常量时间复杂度</td>
+<td>布隆过滤器 / 哈希存储</td>
+</tr>
+<tr>
+<td>$$O(log_2n)$$</td>
+<td>对数时间复杂度</td>
+<td>二分查找（折半查找）</td>
+</tr>
+<tr>
+<td>$$O(n)$$</td>
+<td>线性时间复杂度</td>
+<td>顺序查找 / 桶排序</td>
+</tr>
+<tr>
+<td>$$O(n*log_2n)$$</td>
+<td>对数线性时间复杂度</td>
+<td>高级排序算法（归并排序、快速排序）</td>
+</tr>
+<tr>
+<td>$$O(n^2)$$</td>
+<td>平方时间复杂度</td>
+<td>简单排序算法（选择排序、插入排序、冒泡排序）</td>
+</tr>
+<tr>
+<td>$$O(n^3)$$</td>
+<td>立方时间复杂度</td>
+<td>Floyd算法 / 矩阵乘法运算</td>
+</tr>
+<tr>
+<td>$$O(2^n)$$</td>
+<td>几何级数时间复杂度</td>
+<td>汉诺塔</td>
+</tr>
+<tr>
+<td>$$O(n!)$$</td>
+<td>阶乘时间复杂度</td>
+<td>旅行经销商问题</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<h3 id="穷举法">穷举法</h3>
+<p>在计算机科学中，<strong>穷举法</strong>或者<strong>暴力搜索法</strong>是一个非常非常直观的解决问题的方法，这种方法通过一项一项的列举解决方案所有可能的候选项以及检查每个候选项是否符合问题的描述，最终得到问题的解。</p>
+<p>虽然暴力搜索很容易实现，并且如果解决方案存在它就一定能够找到，但是它的代价是和候选方案的数量成比例的，由于这一点，在很多实际问题中，消耗的代价会随着问题规模的增加而快速地增长。因此，当问题规模有限或当存在可用于将候选解决方案的集合减少到可管理大小时，就可以使用暴力搜索。另外，当实现方法的简单度比速度更重要的时候，也可以考虑使用这种方法。</p>
+<h3 id="经典例子">经典例子</h3>
+<ol>
+<li>
+<p><strong>百钱百鸡</strong>问题：公鸡5元一只，母鸡3元一只，小鸡1元三只，用100元买一百只鸡，问公鸡、母鸡、小鸡各有多少只？</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">21</span>):
+    <span style="color:#66d9ef">for</span> y <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">34</span>):
+        z <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> x <span style="color:#f92672">-</span> y
+        <span style="color:#66d9ef">if</span> z <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> x <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> y <span style="color:#f92672">+</span> z <span style="color:#f92672">//</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>:
+            <span style="color:#66d9ef">print</span>(x, y, z)
+</code></pre></div></li>
+<li>
+<p><strong>五人分鱼</strong>问题：ABCDE五人在某天夜里合伙捕鱼，最后疲惫不堪各自睡觉。第二天A第一个醒来，他将鱼分为5份，扔掉多余的1条，拿走了属于自己的一份；B第二个醒来，也将鱼分为5份，扔掉多余的1条，拿走属于自己的一份；然后C、D、E依次醒来，也按同样的方式分鱼，问他们至少捕了多少条鱼？</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">fish <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>
+<span style="color:#66d9ef">while</span> True:
+    total <span style="color:#f92672">=</span> fish
+    enough <span style="color:#f92672">=</span> True
+    <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">5</span>):
+        <span style="color:#66d9ef">if</span> (total <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+            total <span style="color:#f92672">=</span> (total <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">//</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span>
+        <span style="color:#66d9ef">else</span>:
+            enough <span style="color:#f92672">=</span> False
+            <span style="color:#66d9ef">break</span>
+    <span style="color:#66d9ef">if</span> enough:
+        <span style="color:#66d9ef">print</span>(fish)
+        <span style="color:#66d9ef">break</span>
+    fish <span style="color:#f92672">+=</span> <span style="color:#ae81ff">5</span>
+</code></pre></div></li>
+<li>
+<p><strong>暴力破解口令</strong>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">import</span> re
+   
+<span style="color:#f92672">import</span> PyPDF2
+   
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;Python_Tricks_encrypted.pdf&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> pdf_file_stream:
+    reader <span style="color:#f92672">=</span> PyPDF2<span style="color:#f92672">.</span>PdfFileReader(pdf_file_stream)
+    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;dictionary.txt&#39;</span>, <span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> txt_file_stream:
+        file_iter <span style="color:#f92672">=</span> iter(<span style="color:#66d9ef">lambda</span>: txt_file_stream<span style="color:#f92672">.</span>readline(), <span style="color:#e6db74">&#39;&#39;</span>)
+        <span style="color:#66d9ef">for</span> word <span style="color:#f92672">in</span> file_iter:
+            word <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>sub(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;\s&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>, word)
+            <span style="color:#66d9ef">if</span> reader<span style="color:#f92672">.</span>decrypt(word):
+                <span style="color:#66d9ef">print</span>(word)
+                <span style="color:#66d9ef">break</span>
+</code></pre></div></li>
+</ol>
+<h3 id="现实中的递归">现实中的递归</h3>
+<p>从前有座山，山里有座庙，庙里有个老和尚，正在给小和尚讲故事呢！故事是什么呢？从前有座山，山里有座庙，庙里有个老和尚，正在给小和尚讲故事呢！故事是什么呢？从前有座山，山里有座庙，庙里有个老和尚，正在给小和尚讲故事呢！故事是什么呢？……</p>
+<p>野比大雄在房间里，用时光电视看着未来的情况。电视画面中，野比大雄在房间里，用时光电视看着未来的情况。电视画面中，野比大雄在房间里，用时光电视看着未来的情况……</p>
+<p>阶乘的递归定义：$$0! = 1$$，$$n!=n*(n-1)!$$ ，使用被定义对象的自身来为其下定义称为递归定义。</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%BE%B7%E7%BD%97%E6%96%AF%E7%89%B9%E6%95%88%E5%BA%94">德罗斯特效应</a>是递归的一种视觉形式。图中女性手持的物体中有一幅她本人手持同一物体的小图片，进而小图片中还有更小的一幅她手持同一物体的图片……</p>
+<p><img src="./res/droste.png" alt=""></p>
+<h3 id="递归的应用">递归的应用</h3>
+<p>在程序中，一个函数如果直接或者间接的调用了自身，我们就称之为递归函数。</p>
+<p>写递归函数有两个要点：</p>
+<ol>
+<li>收敛条件 - 什么时候结束递归。</li>
+<li>递归公式 - 每一项与前一项（前<em>N</em>项）的关系。</li>
+</ol>
+<p>例子1：求阶乘。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fac</span>(num):
+    <span style="color:#66d9ef">if</span> num <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">return</span> num <span style="color:#f92672">*</span> fac(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</code></pre></div><p>Python对递归的深度加以了限制（默认1000层函数调用），如果想突破这个限制，可以使用下面的方法。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">import</span> sys
+
+sys<span style="color:#f92672">.</span>setrecursionlimit(<span style="color:#ae81ff">10000</span>)
+</code></pre></div><p>例子2：爬楼梯 - 楼梯有<em>n</em>个台阶，一步可以走1阶、2阶或3阶，走完<em>n</em>个台阶共有多少种不同的走法。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">climb</span>(num):
+    <span style="color:#66d9ef">if</span> num <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">elif</span> num <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">return</span> climb(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> climb(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> climb(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>)
+</code></pre></div><p><strong>注意</strong>：上面的递归函数性能会非常的差，因为时间复杂度是几何级数级的。</p>
+<p>优化后的代码。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> functools <span style="color:#f92672">import</span> lru_cache
+
+
+<span style="color:#a6e22e">@lru_cache</span>()
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">climb</span>(num):
+    <span style="color:#66d9ef">if</span> num <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">elif</span> num <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">return</span> climb(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> climb(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> climb(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>)
+</code></pre></div><p>不使用的递归的代码。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">climb</span>(num):
+    a, b, c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>
+    <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>):
+        a, b, c <span style="color:#f92672">=</span> b, c, a <span style="color:#f92672">+</span> b <span style="color:#f92672">+</span> c
+    <span style="color:#66d9ef">return</span> a
+</code></pre></div><p><strong>重点</strong>：有更好的办法的时候，请不要考虑递归。</p>
+<h3 id="回溯法">回溯法</h3>
+<p><strong>回溯法</strong>是<a href="https://zh.wikipedia.org/wiki/%E6%9A%B4%E5%8A%9B%E6%90%9C%E5%B0%8B%E6%B3%95">暴力搜索法</a>中的一种。对于某些计算问题而言，回溯法是一种可以找出所有（或一部分）解的一般性算法，尤其适用于约束满足问题（在解决约束满足问题时，我们逐步构造更多的候选解，并且在确定某一部分候选解不可能补全成正确解之后放弃继续搜索这个部分候选解本身及其可以拓展出的子候选解，转而测试其他的部分候选解）。</p>
+<h3 id="经典案例">经典案例</h3>
+<p>例子1：<strong>迷宫寻路</strong>。</p>
+<p><img src="./res/maze.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">迷宫寻路
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<span style="color:#f92672">import</span> random
+<span style="color:#f92672">import</span> sys
+
+WALL <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+ROAD <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+
+ROWS <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+COLS <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">find_way</span>(maze, i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, step<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;走迷宫&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> i <span style="color:#f92672">&lt;</span> ROWS <span style="color:#f92672">and</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> j <span style="color:#f92672">&lt;</span> COLS <span style="color:#f92672">and</span> maze[i][j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+        maze[i][j] <span style="color:#f92672">=</span> step
+        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> ROWS <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> j <span style="color:#f92672">==</span> COLS <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>:
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;=&#39;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">20</span>)
+            display(maze)
+            sys<span style="color:#f92672">.</span>exit(<span style="color:#ae81ff">0</span>)
+        find_way(maze, i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, j, step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        find_way(maze, i, j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        find_way(maze, i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, j, step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        find_way(maze, i, j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        maze[i][j] <span style="color:#f92672">=</span> ROAD
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reset</span>(maze):
+    <span style="color:#e6db74">&#34;&#34;&#34;重置迷宫&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(ROWS):
+        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(COLS):
+            num <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">10</span>)
+            maze[i][j] <span style="color:#f92672">=</span> WALL <span style="color:#66d9ef">if</span> num <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">7</span> <span style="color:#66d9ef">else</span> ROAD
+    maze[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> maze[ROWS <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][COLS <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> ROAD
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">display</span>(maze):
+    <span style="color:#e6db74">&#34;&#34;&#34;显示迷宫&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> maze:
+        <span style="color:#66d9ef">for</span> col <span style="color:#f92672">in</span> row:
+            <span style="color:#66d9ef">if</span> col <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>:
+                <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;■&#39;</span>, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39; &#39;</span>)
+            <span style="color:#66d9ef">elif</span> col <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+                <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;□&#39;</span>, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39; &#39;</span>)
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{col}&#39;</span><span style="color:#f92672">.</span>ljust(<span style="color:#ae81ff">2</span>), end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)
+        <span style="color:#66d9ef">print</span>()
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    <span style="color:#e6db74">&#34;&#34;&#34;主函数&#34;&#34;&#34;</span>
+    maze <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> COLS <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(ROWS)]
+    reset(maze)
+    display(maze)
+    find_way(maze)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;没有出路!!!&#39;</span>)
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div><p>**说明：**上面的代码用随机放置围墙的方式来生成迷宫，更好的生成迷宫的方式请参考<a href="https://indienova.com/indie-game-development/generate-tile-based-maze-with-backtracking/">《简单的使用回溯法生成 Tile Based 迷宫》</a>一文。</p>
+<p>例子2：<strong>骑士巡逻</strong> - 国际象棋中的骑士（马），按照骑士的移动规则走遍整个棋盘的每一个方格，而且每个方格只能够经过一次。</p>
+<p><img src="./res/knight_tour.gif" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">骑士巡逻
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<span style="color:#f92672">import</span> sys
+
+SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">display</span>(board):
+    <span style="color:#e6db74">&#34;&#34;&#34;显示棋盘&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> board:
+        <span style="color:#66d9ef">for</span> col <span style="color:#f92672">in</span> row:
+            <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{col}&#39;</span><span style="color:#f92672">.</span>rjust(<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;0&#39;</span>), end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39; &#39;</span>)
+        <span style="color:#66d9ef">print</span>()
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">patrol</span>(board, i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, step<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;巡逻&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> i <span style="color:#f92672">&lt;</span> SIZE <span style="color:#f92672">and</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> j <span style="color:#f92672">&lt;</span> SIZE <span style="color:#f92672">and</span> board[i][j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+        board[i][j] <span style="color:#f92672">=</span> step
+        <span style="color:#66d9ef">if</span> step <span style="color:#f92672">==</span> SIZE <span style="color:#f92672">*</span> SIZE:
+            display(board)
+            sys<span style="color:#f92672">.</span>exit(<span style="color:#ae81ff">0</span>)
+        patrol(board, i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, j <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>, step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        patrol(board, i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>, j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        patrol(board, i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>, j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        patrol(board, i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, j <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>, step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        patrol(board, i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, j <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>, step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        patrol(board, i <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>, j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        patrol(board, i <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>, j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        patrol(board, i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, j <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>, step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+        board[i][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    <span style="color:#e6db74">&#34;&#34;&#34;主函数&#34;&#34;&#34;</span>
+    board <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> SIZE <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(SIZE)]
+    patrol(board)
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div>
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls" autoplay>
+                        <source type="audio/mpeg" src="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">
+                        <a href="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">/mp3/シンクロニシティ.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/MySQL%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="prev">上一篇</a>
+                    
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/Hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" rel="next">下一篇</a>
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var audio = document.getElementById('audio');
+        audio.play();
+    }
+</script>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "Nanase Blog";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

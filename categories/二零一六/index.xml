@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>二零一六 on Nanase Blog</title>
+    <link>http://www.nishinonanase.xyz/categories/%E4%BA%8C%E9%9B%B6%E4%B8%80%E5%85%AD/</link>
+    <description>Recent content in 二零一六 on Nanase Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 24 Jul 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.nishinonanase.xyz/categories/%E4%BA%8C%E9%9B%B6%E4%B8%80%E5%85%AD/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>建造者模式</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 24 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+      <description>意图Intent Builder Pattern: Separate the construction of a complex object form its representation so that the same construction process can create different representations 造者模式:将一个复杂对象的构建与它的表示</description>
+    </item>
+    
+    <item>
+      <title>原型模式</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sat, 23 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description>意图Intent Prototype Pattern：Specify the kinds of objects to create using a prototypical instance,and create new objects by copying this prototype. 原型模式:用原型实</description>
+    </item>
+    
+    <item>
+      <title>抽象工厂</title>
+      <link>http://www.nishinonanase.xyz/posts/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</link>
+      <pubDate>Wed, 20 Jul 2016 13:30:25 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</guid>
+      <description>意图Intent Abstract Factory Pattern:Provide an interface for creating families of related or dependent objects without specifying their concrete classes. 抽象工厂模式：提供一个创建一系列相关或相互依赖对</description>
+    </item>
+    
+    <item>
+      <title>Python语言进阶</title>
+      <link>http://www.nishinonanase.xyz/posts/Python%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6/</link>
+      <pubDate>Thu, 14 Jul 2016 11:20:54 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/Python%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6/</guid>
+      <description>重要知识点 生成式（推导式）的用法 prices = { &amp;#39;AAPL&amp;#39;: 191.88, &amp;#39;GOOG&amp;#39;: 1186.96, &amp;#39;IBM&amp;#39;: 149.24, &amp;#39;ORCL&amp;#39;: 48.44, &amp;#39;ACN&amp;#39;: 166.89, &amp;#39;FB&amp;#39;: 208.09, &amp;#39;SYMC&amp;#39;: 21.29 } # 用股票价格大于100元的股票构</description>
+    </item>
+    
+    <item>
+      <title>Redis持久化</title>
+      <link>http://www.nishinonanase.xyz/posts/Redis%E6%8C%81%E4%B9%85%E5%8C%96/</link>
+      <pubDate>Wed, 13 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/Redis%E6%8C%81%E4%B9%85%E5%8C%96/</guid>
+      <description>RDB持久化 RDB持久化是把当前进程数据生成快照保存到硬盘的过程，触发RDB持久化过程分为手动触发和</description>
+    </item>
+    
+    <item>
+      <title>工厂方法模式</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Wed, 13 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</guid>
+      <description>意图Intent Factory Pattern:Define an interface for creating an object,but let subclass decide which class to instantiate.Factory Method lets a class defer instantiation to subclass. 工厂方法模式：定义一个用于创建对象的接</description>
+    </item>
+    
+    <item>
+      <title>简单工厂</title>
+      <link>http://www.nishinonanase.xyz/posts/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82/</link>
+      <pubDate>Wed, 13 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82/</guid>
+      <description>意图Intent Simple Factory Pattern：Creates objects without exposing the instantiation logic to the client. Refers to the newly created object through a common interfa</description>
+    </item>
+    
+    <item>
+      <title>单例模式</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Tue, 12 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description>意图Intent Singleton Pattern：Ensure a class has only one instance, and provide a global point of access to it. 单例模式：确保某一个类只</description>
+    </item>
+    
+    <item>
+      <title>Web快速上手</title>
+      <link>http://www.nishinonanase.xyz/posts/web%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</link>
+      <pubDate>Wed, 01 Jun 2016 11:25:07 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/web%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</guid>
+      <description>快速上手 Web开发的早期阶段，开发者需要手动编写每个页面，例如一个新闻门户网站，每天都要修改它的HT</description>
+    </item>
+    
+    <item>
+      <title>正则表达式</title>
+      <link>http://www.nishinonanase.xyz/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
+      <pubDate>Wed, 01 Jun 2016 11:11:01 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
+      <description>使用正则表达式 正则表达式相关知识 在编写处理字符串的程序或网页时，经常会有查找符合某些复杂规则的字符串</description>
+    </item>
+    
+    <item>
+      <title>文件和异常</title>
+      <link>http://www.nishinonanase.xyz/posts/%E6%96%87%E4%BB%B6%E5%92%8C%E5%BC%82%E5%B8%B8/</link>
+      <pubDate>Wed, 01 Jun 2016 11:08:58 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E6%96%87%E4%BB%B6%E5%92%8C%E5%BC%82%E5%B8%B8/</guid>
+      <description>文件和异常 实际开发中常常会遇到对数据进行持久化操作的场景，而实现数据持久化最直接简单的方式就是将数据</description>
+    </item>
+    
+    <item>
+      <title>语言元素</title>
+      <link>http://www.nishinonanase.xyz/posts/%E8%AF%AD%E8%A8%80%E5%85%83%E7%B4%A0/</link>
+      <pubDate>Wed, 01 Jun 2016 10:33:09 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E8%AF%AD%E8%A8%80%E5%85%83%E7%B4%A0/</guid>
+      <description>语言元素 指令和程序 计算机的硬件系统通常由五大部件构成，包括：运算器、控制器、存储器、输入设备和输出设</description>
+    </item>
+    
+    <item>
+      <title>适配器模式</title>
+      <link>http://www.nishinonanase.xyz/posts/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Mon, 25 Apr 2016 18:25:35 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+      <description>意图Intent Adapter Pattern:Convert the inface of a class into another interface clients expect.Adapter lets classes work together that couldn’t otherwise because of incompatible interface. 适配器模式:将一个类的接</description>
+    </item>
+    
+    <item>
+      <title>报表与日志</title>
+      <link>http://www.nishinonanase.xyz/posts/%E6%8A%A5%E8%A1%A8%E4%B8%8E%E6%97%A5%E5%BF%97/</link>
+      <pubDate>Sat, 23 Apr 2016 13:06:10 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E6%8A%A5%E8%A1%A8%E4%B8%8E%E6%97%A5%E5%BF%97/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

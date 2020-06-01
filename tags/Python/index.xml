@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Nanase Blog</title>
+    <link>http://www.nishinonanase.xyz/tags/Python/</link>
+    <description>Recent content in Python on Nanase Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 21 Aug 2017 13:03:27 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.nishinonanase.xyz/tags/Python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>静态资源和Ajax请求</title>
+      <link>http://www.nishinonanase.xyz/posts/%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%92%8CAjax%E8%AF%B7%E6%B1%82/</link>
+      <pubDate>Mon, 21 Aug 2017 13:03:27 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%92%8CAjax%E8%AF%B7%E6%B1%82/</guid>
+      <description>静态资源和Ajax请求 基于前面两个章节讲解的知识，我们已经可以使用Django框架来完成Web应用的</description>
+    </item>
+    
+    <item>
+      <title>分支结构</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Wed, 21 Jun 2017 12:34:12 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84/</guid>
+      <description>分支结构 应用场景 迄今为止，我们写的Python代码都是一条一条语句顺序执行，这种代码结构通常称之为顺</description>
+    </item>
+    
+    <item>
+      <title>构造程序逻辑-经典例题</title>
+      <link>http://www.nishinonanase.xyz/posts/%E6%9E%84%E9%80%A0%E7%A8%8B%E5%BA%8F%E9%80%BB%E8%BE%91/</link>
+      <pubDate>Fri, 02 Jun 2017 10:48:13 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E6%9E%84%E9%80%A0%E7%A8%8B%E5%BA%8F%E9%80%BB%E8%BE%91/</guid>
+      <description>构造程序逻辑 对于编程语言的初学者来说，在学习了Python的核心语言元素（变量、类型、运算符、表达式</description>
+    </item>
+    
+    <item>
+      <title>Python编程惯例</title>
+      <link>http://www.nishinonanase.xyz/posts/Python%E7%BC%96%E7%A8%8B%E6%83%AF%E4%BE%8B/</link>
+      <pubDate>Thu, 01 Jun 2017 10:18:12 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/Python%E7%BC%96%E7%A8%8B%E6%83%AF%E4%BE%8B/</guid>
+      <description>Python编程惯例 “惯例”这个词指的是“习惯的做法，常规的办法，一贯的做法”，与这个词对应的英文单</description>
+    </item>
+    
+    <item>
+      <title>中间件的使用</title>
+      <link>http://www.nishinonanase.xyz/posts/%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sat, 18 Mar 2017 13:08:50 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>中间件的应用 实现登录验证 我们在用户登录成功后通过session保留了用户信息，接下来我们可以应用做一</description>
+    </item>
+    
+    <item>
+      <title>前后端分离开发</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Wed, 01 Mar 2017 13:07:20 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%BC%80%E5%8F%91/</guid>
+      <description>前后端分离开发入门 在传统的Web应用开发中，大多数的程序员会将浏览器作为前后端的分界线。将浏览器中为</description>
+    </item>
+    
+    <item>
+      <title>Python语言进阶</title>
+      <link>http://www.nishinonanase.xyz/posts/Python%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6/</link>
+      <pubDate>Thu, 14 Jul 2016 11:20:54 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/Python%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6/</guid>
+      <description>重要知识点 生成式（推导式）的用法 prices = { &amp;#39;AAPL&amp;#39;: 191.88, &amp;#39;GOOG&amp;#39;: 1186.96, &amp;#39;IBM&amp;#39;: 149.24, &amp;#39;ORCL&amp;#39;: 48.44, &amp;#39;ACN&amp;#39;: 166.89, &amp;#39;FB&amp;#39;: 208.09, &amp;#39;SYMC&amp;#39;: 21.29 } # 用股票价格大于100元的股票构</description>
+    </item>
+    
+    <item>
+      <title>Web快速上手</title>
+      <link>http://www.nishinonanase.xyz/posts/web%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</link>
+      <pubDate>Wed, 01 Jun 2016 11:25:07 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/web%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</guid>
+      <description>快速上手 Web开发的早期阶段，开发者需要手动编写每个页面，例如一个新闻门户网站，每天都要修改它的HT</description>
+    </item>
+    
+    <item>
+      <title>正则表达式</title>
+      <link>http://www.nishinonanase.xyz/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
+      <pubDate>Wed, 01 Jun 2016 11:11:01 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
+      <description>使用正则表达式 正则表达式相关知识 在编写处理字符串的程序或网页时，经常会有查找符合某些复杂规则的字符串</description>
+    </item>
+    
+    <item>
+      <title>文件和异常</title>
+      <link>http://www.nishinonanase.xyz/posts/%E6%96%87%E4%BB%B6%E5%92%8C%E5%BC%82%E5%B8%B8/</link>
+      <pubDate>Wed, 01 Jun 2016 11:08:58 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E6%96%87%E4%BB%B6%E5%92%8C%E5%BC%82%E5%B8%B8/</guid>
+      <description>文件和异常 实际开发中常常会遇到对数据进行持久化操作的场景，而实现数据持久化最直接简单的方式就是将数据</description>
+    </item>
+    
+    <item>
+      <title>语言元素</title>
+      <link>http://www.nishinonanase.xyz/posts/%E8%AF%AD%E8%A8%80%E5%85%83%E7%B4%A0/</link>
+      <pubDate>Wed, 01 Jun 2016 10:33:09 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E8%AF%AD%E8%A8%80%E5%85%83%E7%B4%A0/</guid>
+      <description>语言元素 指令和程序 计算机的硬件系统通常由五大部件构成，包括：运算器、控制器、存储器、输入设备和输出设</description>
+    </item>
+    
+    <item>
+      <title>报表与日志</title>
+      <link>http://www.nishinonanase.xyz/posts/%E6%8A%A5%E8%A1%A8%E4%B8%8E%E6%97%A5%E5%BF%97/</link>
+      <pubDate>Sat, 23 Apr 2016 13:06:10 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E6%8A%A5%E8%A1%A8%E4%B8%8E%E6%97%A5%E5%BF%97/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>面向对象进阶</title>
+      <link>http://www.nishinonanase.xyz/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BF%9B%E9%98%B6/</link>
+      <pubDate>Wed, 10 Jun 2015 10:58:48 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BF%9B%E9%98%B6/</guid>
+      <description>面向对象进阶 了解了面向对象的入门知识，知道了如何定义类，如何创建对象以及如何给对象发消息。为了能够更</description>
+    </item>
+    
+    <item>
+      <title>面向对象编程基础</title>
+      <link>http://www.nishinonanase.xyz/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Wed, 10 Jun 2015 10:55:44 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/</guid>
+      <description>面向对象编程基础 活在当下的程序员应该都听过&amp;quot;面向对象编程&amp;quot;一词，也经常有人问能不</description>
+    </item>
+    
+    <item>
+      <title>进程和线程</title>
+      <link>http://www.nishinonanase.xyz/posts/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Mon, 01 Jun 2015 11:13:09 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</guid>
+      <description>进程和线程 今天我们使用的计算机早已进入多CPU或多核时代，而我们使用的操作系统都是支持“多任务”的操</description>
+    </item>
+    
+    <item>
+      <title>为什么选择Python</title>
+      <link>http://www.nishinonanase.xyz/posts/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Python/</link>
+      <pubDate>Mon, 01 Jun 2015 09:25:23 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Python/</guid>
+      <description>我为什么选择了Python 目前，Python语言的发展势头在国内国外都是不可阻挡的，Python凭借</description>
+    </item>
+    
+    <item>
+      <title>初识Python</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%88%9D%E8%AF%86Python/</link>
+      <pubDate>Mon, 01 Jun 2015 08:11:42 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%88%9D%E8%AF%86Python/</guid>
+      <description>初识Python Python简介 Python的历史 1989年圣诞节：Guido von Rossum开始写P</description>
+    </item>
+    
+  </channel>
+</rss>

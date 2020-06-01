@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>数据采集和解析 &middot; Nanase Blog</title>
+  <meta name="keywords" content="书兰, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="今日も頑張っていきましょ～">
+  <meta name="author" content="Nanase">
+  <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        数据采集和解析</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                数据采集和解析</h1>
+                <div class="stuff">
+                    
+                    <span>August 2, 2017</span>
+                    <span>字数 1975</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <h2 id="数据采集和解析">数据采集和解析</h2>
+<p>通过上一个章节的讲解，我们已经了解到了开发一个爬虫需要做的工作以及一些常见的问题，下面我们给出一个爬虫开发相关技术的清单以及这些技术涉及到的标准库和第三方库，稍后我们会一一介绍这些内容。</p>
+<ol>
+<li>下载数据 - <strong>urllib</strong> / <strong>requests</strong> / <strong>aiohttp</strong>。</li>
+<li>解析数据 - <strong>re</strong> / <strong>lxml</strong> / <strong>beautifulsoup4</strong> / <strong>pyquery</strong>。</li>
+<li>缓存和持久化 - <strong>pymysql</strong> / <strong>sqlalchemy</strong> / <strong>peewee</strong>/ <strong>redis</strong> / <strong>pymongo</strong>。</li>
+<li>生成数字签名 - <strong>hashlib</strong>。</li>
+<li>序列化和压缩 - <strong>pickle</strong> / <strong>json</strong> / <strong>zlib</strong>。</li>
+<li>调度器 - 多进程（<strong>multiprocessing</strong>） / 多线程（<strong>threading</strong>）。</li>
+</ol>
+<h3 id="html页面">HTML页面</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-HTML" data-lang="HTML"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+	&lt;<span style="color:#f92672">head</span>&gt;
+		&lt;<span style="color:#f92672">title</span>&gt;Home&lt;/<span style="color:#f92672">title</span>&gt;
+		&lt;<span style="color:#f92672">style</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/css&#34;</span>&gt;
+			<span style="color:#75715e">/* 此处省略层叠样式表代码 */</span>
+		&lt;/<span style="color:#f92672">style</span>&gt;
+	&lt;/<span style="color:#f92672">head</span>&gt;
+	&lt;<span style="color:#f92672">body</span>&gt;
+		&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;wrapper&#34;</span>&gt;
+			&lt;<span style="color:#f92672">header</span>&gt;
+				&lt;<span style="color:#f92672">h1</span>&gt;Yoko&#39;s Kitchen&lt;/<span style="color:#f92672">h1</span>&gt;
+				&lt;<span style="color:#f92672">nav</span>&gt;
+					&lt;<span style="color:#f92672">ul</span>&gt;
+						&lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;current&#34;</span>&gt;Home&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
+						&lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;Classes&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
+						&lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;Catering&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
+						&lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;About&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
+						&lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;Contact&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
+					&lt;/<span style="color:#f92672">ul</span>&gt;
+				&lt;/<span style="color:#f92672">nav</span>&gt;
+			&lt;/<span style="color:#f92672">header</span>&gt;
+			&lt;<span style="color:#f92672">section</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;courses&#34;</span>&gt;
+				&lt;<span style="color:#f92672">article</span>&gt;
+					&lt;<span style="color:#f92672">figure</span>&gt;
+						&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;images/bok-choi.jpg&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Bok Choi&#34;</span> /&gt;
+						&lt;<span style="color:#f92672">figcaption</span>&gt;Bok Choi&lt;/<span style="color:#f92672">figcaption</span>&gt;
+					&lt;/<span style="color:#f92672">figure</span>&gt;
+					&lt;<span style="color:#f92672">hgroup</span>&gt;
+						&lt;<span style="color:#f92672">h2</span>&gt;Japanese Vegetarian&lt;/<span style="color:#f92672">h2</span>&gt;
+						&lt;<span style="color:#f92672">h3</span>&gt;Five week course in London&lt;/<span style="color:#f92672">h3</span>&gt;
+					&lt;/<span style="color:#f92672">hgroup</span>&gt;
+					&lt;<span style="color:#f92672">p</span>&gt;A five week introduction to traditional Japanese vegetarian meals, teaching you a selection of rice and noodle dishes.&lt;/<span style="color:#f92672">p</span>&gt;
+				&lt;/<span style="color:#f92672">article</span>&gt;    
+				&lt;<span style="color:#f92672">article</span>&gt;
+					&lt;<span style="color:#f92672">figure</span>&gt;
+						&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;images/teriyaki.jpg&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Teriyaki sauce&#34;</span> /&gt;
+						&lt;<span style="color:#f92672">figcaption</span>&gt;Teriyaki Sauce&lt;/<span style="color:#f92672">figcaption</span>&gt;
+					&lt;/<span style="color:#f92672">figure</span>&gt;
+					&lt;<span style="color:#f92672">hgroup</span>&gt;
+						&lt;<span style="color:#f92672">h2</span>&gt;Sauces Masterclass&lt;/<span style="color:#f92672">h2</span>&gt;
+						&lt;<span style="color:#f92672">h3</span>&gt;One day workshop&lt;/<span style="color:#f92672">h3</span>&gt;
+					&lt;/<span style="color:#f92672">hgroup</span>&gt;
+					&lt;<span style="color:#f92672">p</span>&gt;An intensive one-day course looking at how to create the most delicious sauces for use in a range of Japanese cookery.&lt;/<span style="color:#f92672">p</span>&gt;
+				&lt;/<span style="color:#f92672">article</span>&gt;    
+			&lt;/<span style="color:#f92672">section</span>&gt;
+			&lt;<span style="color:#f92672">aside</span>&gt;
+				&lt;<span style="color:#f92672">section</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;popular-recipes&#34;</span>&gt;
+					&lt;<span style="color:#f92672">h2</span>&gt;Popular Recipes&lt;/<span style="color:#f92672">h2</span>&gt;
+					&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;Yakitori (grilled chicken)&lt;/<span style="color:#f92672">a</span>&gt;
+					&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;Tsukune (minced chicken patties)&lt;/<span style="color:#f92672">a</span>&gt;
+					&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;Okonomiyaki (savory pancakes)&lt;/<span style="color:#f92672">a</span>&gt;
+					&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;Mizutaki (chicken stew)&lt;/<span style="color:#f92672">a</span>&gt;
+				&lt;/<span style="color:#f92672">section</span>&gt;
+				&lt;<span style="color:#f92672">section</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;contact-details&#34;</span>&gt;
+					&lt;<span style="color:#f92672">h2</span>&gt;Contact&lt;/<span style="color:#f92672">h2</span>&gt;
+					&lt;<span style="color:#f92672">p</span>&gt;Yoko&#39;s Kitchen&lt;<span style="color:#f92672">br</span>&gt;
+						27 Redchurch Street&lt;<span style="color:#f92672">br</span>&gt;
+						Shoreditch&lt;<span style="color:#f92672">br</span>&gt;
+						London E2 7DP&lt;/<span style="color:#f92672">p</span>&gt;
+				&lt;/<span style="color:#f92672">section</span>&gt;
+			&lt;/<span style="color:#f92672">aside</span>&gt;
+			&lt;<span style="color:#f92672">footer</span>&gt;
+				&amp;copy; 2011 Yoko&#39;s Kitchen
+			&lt;/<span style="color:#f92672">footer</span>&gt;
+		&lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;<span style="color:#f92672">script</span>&gt;
+        	<span style="color:#75715e">// 此处省略JavaScript代码
+</span><span style="color:#75715e"></span>        &lt;/<span style="color:#f92672">script</span>&gt;
+	&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>如果你对上面的代码并不感到陌生，那么你一定知道HTML页面通常由三部分构成，分别是用来承载内容的Tag（标签）、负责渲染页面的CSS（层叠样式表）以及控制交互式行为的JavaScript。通常，我们可以在浏览器的右键菜单中通过“查看网页源代码”的方式获取网页的代码并了解页面的结构；当然，我们也可以通过浏览器提供的开发人员工具来了解更多的信息。</p>
+<h4 id="使用requests获取页面">使用requests获取页面</h4>
+<ol>
+<li>
+<p>GET请求和POST请求。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">   
+</code></pre></div></li>
+<li>
+<p>URL参数和请求头。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">   
+</code></pre></div></li>
+<li>
+<p>复杂的POST请求（文件上传）。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">   
+</code></pre></div></li>
+<li>
+<p>操作Cookie。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">   
+</code></pre></div></li>
+<li>
+<p>设置代理服务器。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">   
+</code></pre></div></li>
+</ol>
+<blockquote>
+<p>说明：关于requests的详细用法可以参考它的<a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html">官方文档</a>。</p>
+</blockquote>
+<h3 id="页面解析">页面解析</h3>
+<h4 id="几种解析方式的比较">几种解析方式的比较</h4>
+<table>
+<thead>
+<tr>
+<th>解析方式</th>
+<th>对应的模块</th>
+<th>速度</th>
+<th>使用难度</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正则表达式解析</td>
+<td>re</td>
+<td>快</td>
+<td>困难</td>
+<td>常用正则表达式<!-- raw HTML omitted -->在线正则表达式测试</td>
+</tr>
+<tr>
+<td>XPath解析</td>
+<td>lxml</td>
+<td>快</td>
+<td>一般</td>
+<td>需要安装C语言依赖库<!-- raw HTML omitted -->唯一支持XML的解析器</td>
+</tr>
+<tr>
+<td>CSS选择器解析</td>
+<td>bs4 / pyquery</td>
+<td>不确定</td>
+<td>简单</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>说明：BeautifulSoup可选的解析器包括：Python标准库（html.parser）、lxml的HTML解析器、lxml的XML解析器和html5lib。</p>
+</blockquote>
+<h4 id="使用正则表达式解析页面">使用正则表达式解析页面</h4>
+<p>如果你对正则表达式没有任何的概念，那么推荐先阅读<a href="">《正则表达式30分钟入门教程》</a>，然后再阅读我们之前讲解在Python中如何使用正则表达式一文。</p>
+<h4 id="xpath解析和lxml">XPath解析和lxml</h4>
+<p>XPath是在XML文档中查找信息的一种语法，它使用路径表达式来选取XML文档中的节点或者节点集。这里所说的XPath节点包括元素、属性、文本、命名空间、处理指令、注释、根节点等。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-XML" data-lang="XML"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#f92672">&lt;bookstore&gt;</span>
+    <span style="color:#f92672">&lt;book&gt;</span>
+      <span style="color:#f92672">&lt;title</span> <span style="color:#a6e22e">lang=</span><span style="color:#e6db74">&#34;eng&#34;</span><span style="color:#f92672">&gt;</span>Harry Potter<span style="color:#f92672">&lt;/title&gt;</span>
+      <span style="color:#f92672">&lt;price&gt;</span>29.99<span style="color:#f92672">&lt;/price&gt;</span>
+    <span style="color:#f92672">&lt;/book&gt;</span>
+    <span style="color:#f92672">&lt;book&gt;</span>
+      <span style="color:#f92672">&lt;title</span> <span style="color:#a6e22e">lang=</span><span style="color:#e6db74">&#34;eng&#34;</span><span style="color:#f92672">&gt;</span>Learning XML<span style="color:#f92672">&lt;/title&gt;</span>
+      <span style="color:#f92672">&lt;price&gt;</span>39.95<span style="color:#f92672">&lt;/price&gt;</span>
+    <span style="color:#f92672">&lt;/book&gt;</span>
+<span style="color:#f92672">&lt;/bookstore&gt;</span>
+</code></pre></div><p>对于上面的XML文件，我们可以用如下所示的XPath语法获取文档中的节点。</p>
+<table>
+<thead>
+<tr>
+<th>路径表达式</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bookstore</td>
+<td>选取 bookstore 元素的所有子节点。</td>
+</tr>
+<tr>
+<td>/bookstore</td>
+<td>选取根元素 bookstore。注释：假如路径起始于正斜杠( / )，则此路径始终代表到某元素的绝对路径！</td>
+</tr>
+<tr>
+<td>bookstore/book</td>
+<td>选取属于 bookstore 的子元素的所有 book 元素。</td>
+</tr>
+<tr>
+<td>//book</td>
+<td>选取所有 book 子元素，而不管它们在文档中的位置。</td>
+</tr>
+<tr>
+<td>bookstore//book</td>
+<td>选择属于 bookstore 元素的后代的所有 book 元素，而不管它们位于 bookstore 之下的什么位置。</td>
+</tr>
+<tr>
+<td>//@lang</td>
+<td>选取名为 lang 的所有属性。</td>
+</tr>
+</tbody>
+</table>
+<p>在使用XPath语法时，还可以使用XPath中的谓词。</p>
+<table>
+<thead>
+<tr>
+<th>路径表达式</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/bookstore/book[1]</td>
+<td>选取属于 bookstore 子元素的第一个 book 元素。</td>
+</tr>
+<tr>
+<td>/bookstore/book[last()]</td>
+<td>选取属于 bookstore 子元素的最后一个 book 元素。</td>
+</tr>
+<tr>
+<td>/bookstore/book[last()-1]</td>
+<td>选取属于 bookstore 子元素的倒数第二个 book 元素。</td>
+</tr>
+<tr>
+<td>/bookstore/book[position()&lt;3]</td>
+<td>选取最前面的两个属于 bookstore 元素的子元素的 book 元素。</td>
+</tr>
+<tr>
+<td>//title[@lang]</td>
+<td>选取所有拥有名为 lang 的属性的 title 元素。</td>
+</tr>
+<tr>
+<td>//title[@lang='eng&rsquo;]</td>
+<td>选取所有 title 元素，且这些元素拥有值为 eng 的 lang 属性。</td>
+</tr>
+<tr>
+<td>/bookstore/book[price&gt;35.00]</td>
+<td>选取 bookstore 元素的所有 book 元素，且其中的 price 元素的值须大于 35.00。</td>
+</tr>
+<tr>
+<td>/bookstore/book[price&gt;35.00]/title</td>
+<td>选取 bookstore 元素中的 book 元素的所有 title 元素，且其中的 price 元素的值须大于 35.00。</td>
+</tr>
+</tbody>
+</table>
+<p>XPath还支持通配符用法，如下所示。</p>
+<table>
+<thead>
+<tr>
+<th>路径表达式</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/bookstore/*</td>
+<td>选取 bookstore 元素的所有子元素。</td>
+</tr>
+<tr>
+<td>//*</td>
+<td>选取文档中的所有元素。</td>
+</tr>
+<tr>
+<td>//title[@*]</td>
+<td>选取所有带有属性的 title 元素。</td>
+</tr>
+</tbody>
+</table>
+<p>如果要选取多个节点，可以使用如下所示的方法。</p>
+<table>
+<thead>
+<tr>
+<th>路径表达式</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>//book/title | //book/price</td>
+<td>选取 book 元素的所有 title 和 price 元素。</td>
+</tr>
+<tr>
+<td>//title | //price</td>
+<td>选取文档中的所有 title 和 price 元素。</td>
+</tr>
+<tr>
+<td>/bookstore/book/title | //price</td>
+<td>选取属于 bookstore 元素的 book 元素的所有 title 元素，以及文档中所有的 price 元素。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="beautifulsoup的使用">BeautifulSoup的使用</h3>
+<p>BeautifulSoup是一个可以从HTML或XML文件中提取数据的Python库。它能够通过你喜欢的转换器实现惯用的文档导航、查找、修改文档的方式。</p>
+<ol>
+<li>遍历文档树
+<ul>
+<li>获取标签</li>
+<li>获取标签属性</li>
+<li>获取标签内容</li>
+<li>获取子（孙）节点</li>
+<li>获取父节点/祖先节点</li>
+<li>获取兄弟节点</li>
+</ul>
+</li>
+<li>搜索树节点
+<ul>
+<li>find / find_all</li>
+<li>select_one / select</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>说明：更多内容可以参考BeautifulSoup的<a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html">官方文档</a>。</p>
+</blockquote>
+<h3 id="pyquery的使用">PyQuery的使用</h3>
+<p>pyquery相当于jQuery的Python实现，可以用于解析HTML网页。</p>
+<h3 id="实例---获取知乎发现上的问题链接">实例 - 获取知乎发现上的问题链接</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> urllib.parse <span style="color:#f92672">import</span> urljoin
+
+<span style="color:#f92672">import</span> re
+<span style="color:#f92672">import</span> requests
+
+<span style="color:#f92672">from</span> bs4 <span style="color:#f92672">import</span> BeautifulSoup
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    headers <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;user-agent&#39;</span>: <span style="color:#e6db74">&#39;Baiduspider&#39;</span>}
+    proxies <span style="color:#f92672">=</span> {
+        <span style="color:#e6db74">&#39;http&#39;</span>: <span style="color:#e6db74">&#39;http://122.114.31.177:808&#39;</span>
+    }
+    base_url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://www.zhihu.com/&#39;</span>
+    seed_url <span style="color:#f92672">=</span> urljoin(base_url, <span style="color:#e6db74">&#39;explore&#39;</span>)
+    resp <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(seed_url,
+                        headers<span style="color:#f92672">=</span>headers,
+                        proxies<span style="color:#f92672">=</span>proxies)
+    soup <span style="color:#f92672">=</span> BeautifulSoup(resp<span style="color:#f92672">.</span>text, <span style="color:#e6db74">&#39;lxml&#39;</span>)
+    href_regex <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^/question&#39;</span>)
+    link_set <span style="color:#f92672">=</span> set()
+    <span style="color:#66d9ef">for</span> a_tag <span style="color:#f92672">in</span> soup<span style="color:#f92672">.</span>find_all(<span style="color:#e6db74">&#39;a&#39;</span>, {<span style="color:#e6db74">&#39;href&#39;</span>: href_regex}):
+        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;href&#39;</span> <span style="color:#f92672">in</span> a_tag<span style="color:#f92672">.</span>attrs:
+            href <span style="color:#f92672">=</span> a_tag<span style="color:#f92672">.</span>attrs[<span style="color:#e6db74">&#39;href&#39;</span>]
+            full_url <span style="color:#f92672">=</span> urljoin(base_url, href)
+            link_set<span style="color:#f92672">.</span>add(full_url)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Total </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> question pages found.&#39;</span> <span style="color:#f92672">%</span> len(link_set))
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+</code></pre></div>
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls" autoplay>
+                        <source type="audio/mpeg" src="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">
+                        <a href="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">/mp3/シンクロニシティ.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/" rel="prev">上一篇</a>
+                    
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE/" rel="next">下一篇</a>
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var audio = document.getElementById('audio');
+        audio.play();
+    }
+</script>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "Nanase Blog";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

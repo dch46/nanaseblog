@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>二零一五 on Nanase Blog</title>
+    <link>http://www.nishinonanase.xyz/categories/%E4%BA%8C%E9%9B%B6%E4%B8%80%E4%BA%94/</link>
+    <description>Recent content in 二零一五 on Nanase Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 10 Jun 2015 10:58:48 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.nishinonanase.xyz/categories/%E4%BA%8C%E9%9B%B6%E4%B8%80%E4%BA%94/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>面向对象进阶</title>
+      <link>http://www.nishinonanase.xyz/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BF%9B%E9%98%B6/</link>
+      <pubDate>Wed, 10 Jun 2015 10:58:48 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BF%9B%E9%98%B6/</guid>
+      <description>面向对象进阶 了解了面向对象的入门知识，知道了如何定义类，如何创建对象以及如何给对象发消息。为了能够更</description>
+    </item>
+    
+    <item>
+      <title>面向对象编程基础</title>
+      <link>http://www.nishinonanase.xyz/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Wed, 10 Jun 2015 10:55:44 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/</guid>
+      <description>面向对象编程基础 活在当下的程序员应该都听过&amp;quot;面向对象编程&amp;quot;一词，也经常有人问能不</description>
+    </item>
+    
+    <item>
+      <title>进程和线程</title>
+      <link>http://www.nishinonanase.xyz/posts/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Mon, 01 Jun 2015 11:13:09 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</guid>
+      <description>进程和线程 今天我们使用的计算机早已进入多CPU或多核时代，而我们使用的操作系统都是支持“多任务”的操</description>
+    </item>
+    
+    <item>
+      <title>为什么选择Python</title>
+      <link>http://www.nishinonanase.xyz/posts/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Python/</link>
+      <pubDate>Mon, 01 Jun 2015 09:25:23 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Python/</guid>
+      <description>我为什么选择了Python 目前，Python语言的发展势头在国内国外都是不可阻挡的，Python凭借</description>
+    </item>
+    
+    <item>
+      <title>初识Python</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%88%9D%E8%AF%86Python/</link>
+      <pubDate>Mon, 01 Jun 2015 08:11:42 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%88%9D%E8%AF%86Python/</guid>
+      <description>初识Python Python简介 Python的历史 1989年圣诞节：Guido von Rossum开始写P</description>
+    </item>
+    
+    <item>
+      <title>字符串和常用数据结构</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Tue, 05 May 2015 10:50:28 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <description>字符串和常用数据结构 使用字符串 第二次世界大战促使了现代电子计算机的诞生，最初计算机被应用于导弹弹道的</description>
+    </item>
+    
+  </channel>
+</rss>

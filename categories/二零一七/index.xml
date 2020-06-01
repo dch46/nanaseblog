@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>二零一七 on Nanase Blog</title>
+    <link>http://www.nishinonanase.xyz/categories/%E4%BA%8C%E9%9B%B6%E4%B8%80%E4%B8%83/</link>
+    <description>Recent content in 二零一七 on Nanase Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 14 Dec 2017 15:24:15 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.nishinonanase.xyz/categories/%E4%BA%8C%E9%9B%B6%E4%B8%80%E4%B8%83/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Django开发项目</title>
+      <link>http://www.nishinonanase.xyz/posts/Django%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Thu, 14 Dec 2017 15:24:15 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/Django%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE/</guid>
+      <description>使用Django开发商业项目 说明：本文的部分插图来自于《Python项目开发实战》和《精通Djang</description>
+    </item>
+    
+    <item>
+      <title>常见反爬策略及应对方案</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%B8%B8%E8%A7%81%E5%8F%8D%E7%88%AC%E7%AD%96%E7%95%A5%E5%8F%8A%E5%BA%94%E5%AF%B9%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Sat, 26 Aug 2017 13:24:15 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%B8%B8%E8%A7%81%E5%8F%8D%E7%88%AC%E7%AD%96%E7%95%A5%E5%8F%8A%E5%BA%94%E5%AF%B9%E6%96%B9%E6%A1%88/</guid>
+      <description>常见反爬策略及应对方案 构造合理的HTTP请求头。 Accept User-Agent - 三方库fake-useragent from fake_useragent import UserAgent ua =</description>
+    </item>
+    
+    <item>
+      <title>Scrapy入门</title>
+      <link>http://www.nishinonanase.xyz/posts/Scrapy%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Fri, 25 Aug 2017 17:20:15 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/Scrapy%E5%85%A5%E9%97%A8/</guid>
+      <description>Scrapy爬虫框架入门 Scrapy概述 Scrapy是Python开发的一个非常流行的网络爬虫框架，</description>
+    </item>
+    
+    <item>
+      <title>解析动态内容</title>
+      <link>http://www.nishinonanase.xyz/posts/%E8%A7%A3%E6%9E%90%E5%8A%A8%E6%80%81%E5%86%85%E5%AE%B9/</link>
+      <pubDate>Mon, 21 Aug 2017 16:24:15 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E8%A7%A3%E6%9E%90%E5%8A%A8%E6%80%81%E5%86%85%E5%AE%B9/</guid>
+      <description>解析动态内容 根据权威机构发布的全球互联网可访问性审计报告，全球约有四分之三的网站其内容或部分内容是通</description>
+    </item>
+    
+    <item>
+      <title>静态资源和Ajax请求</title>
+      <link>http://www.nishinonanase.xyz/posts/%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%92%8CAjax%E8%AF%B7%E6%B1%82/</link>
+      <pubDate>Mon, 21 Aug 2017 13:03:27 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%92%8CAjax%E8%AF%B7%E6%B1%82/</guid>
+      <description>静态资源和Ajax请求 基于前面两个章节讲解的知识，我们已经可以使用Django框架来完成Web应用的</description>
+    </item>
+    
+    <item>
+      <title>并发下载</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%B9%B6%E5%8F%91%E4%B8%8B%E8%BD%BD/</link>
+      <pubDate>Fri, 18 Aug 2017 08:24:15 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%B9%B6%E5%8F%91%E4%B8%8B%E8%BD%BD/</guid>
+      <description>并发下载 多线程和多进程回顾 threading.local类 使用线程时最不愿意遇到的情况就是多个线程竞</description>
+    </item>
+    
+    <item>
+      <title>存储数据</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE/</link>
+      <pubDate>Fri, 04 Aug 2017 15:24:15 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE/</guid>
+      <description>存储数据 存储海量数据 数据持久化的首选方案应该是关系型数据库，关系型数据库的产品很多，包括：Oracl</description>
+    </item>
+    
+    <item>
+      <title>数据采集和解析</title>
+      <link>http://www.nishinonanase.xyz/posts/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%92%8C%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Wed, 02 Aug 2017 13:24:15 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%92%8C%E8%A7%A3%E6%9E%90/</guid>
+      <description>数据采集和解析 通过上一个章节的讲解，我们已经了解到了开发一个爬虫需要做的工作以及一些常见的问题，下面</description>
+    </item>
+    
+    <item>
+      <title>网络爬虫</title>
+      <link>http://www.nishinonanase.xyz/posts/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</link>
+      <pubDate>Tue, 01 Aug 2017 13:22:01 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</guid>
+      <description>网络爬虫的概念 网络爬虫（web crawler），以前经常称之为网络蜘蛛（spider），是按照一定的</description>
+    </item>
+    
+    <item>
+      <title>表单的应用</title>
+      <link>http://www.nishinonanase.xyz/posts/%E8%A1%A8%E5%8D%95%E7%9A%84%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Wed, 12 Jul 2017 10:36:01 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E8%A1%A8%E5%8D%95%E7%9A%84%E5%BA%94%E7%94%A8/</guid>
+      <description>表单的应用 实现“用户注册”和“用户登录”的功能，并限制只有登录的用户才能为进行操作。Django框架</description>
+    </item>
+    
+    <item>
+      <title>分支结构</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Wed, 21 Jun 2017 12:34:12 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84/</guid>
+      <description>分支结构 应用场景 迄今为止，我们写的Python代码都是一条一条语句顺序执行，这种代码结构通常称之为顺</description>
+    </item>
+    
+    <item>
+      <title>构造程序逻辑-经典例题</title>
+      <link>http://www.nishinonanase.xyz/posts/%E6%9E%84%E9%80%A0%E7%A8%8B%E5%BA%8F%E9%80%BB%E8%BE%91/</link>
+      <pubDate>Fri, 02 Jun 2017 10:48:13 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E6%9E%84%E9%80%A0%E7%A8%8B%E5%BA%8F%E9%80%BB%E8%BE%91/</guid>
+      <description>构造程序逻辑 对于编程语言的初学者来说，在学习了Python的核心语言元素（变量、类型、运算符、表达式</description>
+    </item>
+    
+    <item>
+      <title>循环结构</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Fri, 02 Jun 2017 10:36:01 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/</guid>
+      <description>循环结构 应用场景 我们在写程序的时候，一定会遇到需要重复执行某条或某些指令的场景。例如用程序控制机器人</description>
+    </item>
+    
+    <item>
+      <title>图形用户界面和游戏开发</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%92%8C%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Thu, 01 Jun 2017 11:07:34 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%92%8C%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/</guid>
+      <description>图形用户界面和游戏开发 基于tkinter模块的GUI GUI是图形用户界面的缩写，图形化的用户界面对使</description>
+    </item>
+    
+    <item>
+      <title>Python编程惯例</title>
+      <link>http://www.nishinonanase.xyz/posts/Python%E7%BC%96%E7%A8%8B%E6%83%AF%E4%BE%8B/</link>
+      <pubDate>Thu, 01 Jun 2017 10:18:12 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/Python%E7%BC%96%E7%A8%8B%E6%83%AF%E4%BE%8B/</guid>
+      <description>Python编程惯例 “惯例”这个词指的是“习惯的做法，常规的办法，一贯的做法”，与这个词对应的英文单</description>
+    </item>
+    
+    <item>
+      <title>项目部署上线指南</title>
+      <link>http://www.nishinonanase.xyz/posts/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E4%B8%8A%E7%BA%BF%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Tue, 23 May 2017 13:24:15 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E4%B8%8A%E7%BA%BF%E6%8C%87%E5%8D%97/</guid>
+      <description>项目部署上线指南 准备上线 上线前的检查工作。 python manage.py check --deploy 将DEBUG设置为False并配置ALLOWED_</description>
+    </item>
+    
+    <item>
+      <title>异步化</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%BC%82%E6%AD%A5%E5%8C%96/</link>
+      <pubDate>Tue, 23 May 2017 13:18:23 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%BC%82%E6%AD%A5%E5%8C%96/</guid>
+      <description>异步化 如果没有对RequestHandler中的get或post方法进行异步处理，这就意味着，一旦在</description>
+    </item>
+    
+    <item>
+      <title>中间件的使用</title>
+      <link>http://www.nishinonanase.xyz/posts/%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sat, 18 Mar 2017 13:08:50 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>中间件的应用 实现登录验证 我们在用户登录成功后通过session保留了用户信息，接下来我们可以应用做一</description>
+    </item>
+    
+    <item>
+      <title>前后端分离开发</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Wed, 01 Mar 2017 13:07:20 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%BC%80%E5%8F%91/</guid>
+      <description>前后端分离开发入门 在传统的Web应用开发中，大多数的程序员会将浏览器作为前后端的分界线。将浏览器中为</description>
+    </item>
+    
+    <item>
+      <title>电商网站技术要点剖析</title>
+      <link>http://www.nishinonanase.xyz/posts/%E7%94%B5%E5%95%86%E7%BD%91%E7%AB%99%E6%8A%80%E6%9C%AF%E8%A6%81%E7%82%B9%E5%89%96%E6%9E%90/</link>
+      <pubDate>Wed, 18 Jan 2017 13:24:15 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E7%94%B5%E5%95%86%E7%BD%91%E7%AB%99%E6%8A%80%E6%9C%AF%E8%A6%81%E7%82%B9%E5%89%96%E6%9E%90/</guid>
+      <description>电商网站技术要点剖析 商业模式 B2B - 商家对商家，交易双方都是企业（商家），最典型的案例就是阿里巴巴。 C2C -</description>
+    </item>
+    
+  </channel>
+</rss>
