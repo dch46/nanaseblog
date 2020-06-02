@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>Webshell &middot; Nanase Blog</title>
+  <meta name="keywords" content="书兰, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="今日も頑張っていきましょ～">
+  <meta name="author" content="Nanase">
+  <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        Webshell</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                Webshell</h1>
+                <div class="stuff">
+                    
+                    <span>June 2, 2020</span>
+                    <span>字数 1326</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <h2 id="webshell">Webshell</h2>
+<p>“web”的含义是显然需要服务器开放web服务，“shell”的含义是取得对服务器某种程度上操作权限。webshell常常被称为通过网站端口对网站服务器的某种程度上操作的权限。</p>
+<p>一方面，webshell被站长常常用于网站管理、服务器管理等等，根据FSO权限的不同，作用有在线编辑网页脚本、上传下载文件、查看数据库、执行任意程序命令等。</p>
+<p>另一方面，被入侵者利用，从而达到控制网站服务器的目的。这些网页脚本常称为WEB脚本木马，比较流行的asp或php木马，也有基于.NET的脚本木马与JSP脚本木马。国内常用的WebShell有海阳ASP木马，Phpspy，c99shell等。</p>
+<p>web端使用Xterm.js或者其他的WebShell组件和websocket</p>
+<p>后端只需要支持WebSocket和SSH协议的远程登录模块即可</p>
+<h2 id="web端实现">web端实现</h2>
+<ul>
+<li>1.安装</li>
+</ul>
+<p>npm install <a href="mailto:xterm@3.1.0">xterm@3.1.0</a> &ndash;save 指定版本安装，最新版的xterm文件的改动很大，使用下面的方法会报错</p>
+<ul>
+<li>2.导包</li>
+</ul>
+<pre><code>import 'xterm/dist/xterm.css';
+import { Terminal } from 'xterm';
+import * as fit from 'xterm/lib/addons/fit/fit';
+import * as attach from 'xterm/lib/addons/attach/attach'
+Terminal.applyAddon(fit);
+</code></pre><ul>
+<li>3.页面组件</li>
+</ul>
+<pre><code>&lt;template&gt;
+    &lt;div&gt;
+        &lt;div id=&quot;terminal&quot; style=&quot;width: 500px;height:300px;&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+</code></pre><ul>
+<li>4.数据操作</li>
+</ul>
+<pre><code>mounted () {
+		let terminalContainer = document.getElementById('terminal')
+        //创建xterm实例
+        this.term = new Terminal({
+        cursorBlink: true, // 显示光标
+        cursorStyle: &quot;underline&quot; // 光标样式
+        })                     // 创建一个新的Terminal对象
+        this.term.open(terminalContainer)              // 将term挂载到dom节点上
+        
+        console.log(this.term)
+        //在xterm上面显示命令行命令 (预设显示)
+        this.term.write(&quot;$ &quot;)
+        //监听xterm的键盘事件
+        this.term.on(&quot;key&quot;,(key,ev)=&gt;{
+            //key是输入的字符，ev是键盘的按键事件
+            console.log('key======',ev.keyCode);
+            //将输入的字符打印到命令窗口中
+            this.term.write(key)
+            if (ev.keyCode == 13) { //输入回车（ASCII 13是回车）
+                this.terminalSocket.send(this.order) //发送数据到后台
+                // this.order = ''
+                console.log('里面的order',this.order)
+            }else if (ev.keyCode == 8) { //删除按钮（ASCII 8是删除）
+                this.order = this.order.substr(0,this.order.length - 1)
+                //清空当前一条的命令
+                this.term.write(&quot;\x1b[2K\r&quot;)
+                //简化当前新的命令，显示在命令窗中
+                this.term.write(&quot;$ &quot;+this.order)
+                console.log(&quot;截取的字符串：&quot;+this.order)
+                typeof this.order
+            }else{  //将每次输入的字符串拼接起来
+                this.order += key   
+                console.log(&quot;外面的order&quot;,this.order)
+            }
+        })
+    	//实例化一个websocket，用于和django江湖
+        this.terminalSocket = new WebSocket(&quot;ws://127.0.0.1:8000/webssh/&quot;);
+        //获取到后端传回的信息
+        this.terminalSocket.onmessage = (res) =&gt; {
+            console.log(res.data);
+            // var message = JSON.parse(res.data);
+            //将传回来的数据显示在xterm里
+            this.term.writeln(&quot;\r\n&quot;+res.data);
+            //重置要发送的信息
+            this.order = &quot;&quot;
+            //换行，显示下一个开头
+            this.term.write(&quot;\r\n$ &quot;);
+        }
+    },
+
+</code></pre><h2 id="服务器端实现">服务器端实现</h2>
+<p>使用paramiko与服务器建立交互</p>
+<ul>
+<li>1.安装</li>
+</ul>
+<pre><code>pip install paramiko
+
+</code></pre><ul>
+<li>2.利用paramiko进行ssh远程登录</li>
+</ul>
+<pre><code>import paramiko
+
+# 创建SSH客户端
+client = paramiko.SSHClient()
+# SSH客户端Host策略,目的是接受不在本地Known_host文件下的主机。
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+# SSH客户端开启连接
+client.connect(
+    hostname=&quot;192.168.184.144&quot;,port=22,username='xterm',password='123123'
+)
+# stdout 为正确输出，stderr为错误输出,每次执行完成只有一个变量中有值
+stdin, stdout, stderr = client.exec_command(&quot;ls&quot;)
+
+# 执行ls命令的结果
+print(stdout.read().decode('utf-8'))
+
+</code></pre><ul>
+<li>3.结合websocket实现实时操作</li>
+</ul>
+<pre><code>#wsserver.py
+from channels.generic.websocket import WebsocketConsumer
+import paramiko
+class WebSSHService(WebsocketConsumer):
+
+    def connect(self):
+        self.accept()
+        self.sh = paramiko.SSHClient()  # 1 创建SSH对象
+        self.sh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # 2 允许连接不在know_hosts文件中的主机
+        self.sh.connect(&quot;192.168.184.144&quot;,port=22, username=&quot;root&quot;, password=&quot;beijing2018&quot;)  # 3 连接服务器
+        print(&quot;连接成功&quot;)
+
+    def receive(self, text_data=None, bytes_data=None):
+        print(str(text_data))  # 打印收到的数据
+        print(type(text_data))
+
+        stdin, stdout, stderr = self.sh.exec_command(text_data)
+
+        right_info = stdout.read()
+        err_info = stderr.read()
+        print(right_info)
+
+        if right_info:
+            new_data = right_info.decode(&quot;utf-8&quot;).replace(&quot;\n&quot;,&quot;\r\n&quot;)
+            print(new_data)
+            self.send(new_data)
+        elif err_info:
+            new_data = err_info.decode(&quot;utf-8&quot;).replace(&quot;\n&quot;, &quot;\r\n&quot;)
+            print(new_data)
+            self.send(new_data)
+        else:
+            print(self.send(&quot;命令执行成功&quot;))
+
+
+    def disconnect(self, code):
+        print(f'sorry{self},下次再见。')
+
+</code></pre>
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls" autoplay>
+                        <source type="audio/mpeg" src="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">
+                        <a href="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">/mp3/シンクロニシティ.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/websocket/" rel="prev">上一篇</a>
+                    
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95/" rel="next">下一篇</a>
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var audio = document.getElementById('audio');
+        audio.play();
+    }
+</script>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "Nanase Blog";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>Vue组件中高德地图展示 &middot; Nanase Blog</title>
+  <meta name="keywords" content="书兰, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="今日も頑張っていきましょ～">
+  <meta name="author" content="Nanase">
+  <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        Vue组件中高德地图展示</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                Vue组件中高德地图展示</h1>
+                <div class="stuff">
+                    
+                    <span>June 2, 2020</span>
+                    <span>字数 240</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <h2 id="vue-amap是一套基于vue-20和高德地图的地图组件">vue-amap是一套基于Vue 2.0和高德地图的地图组件。</h2>
+<h3 id="安装">安装</h3>
+<pre><code>npm install -S vue-amap
+
+</code></pre><h3 id="在mainjs中引入">在main.js中引入</h3>
+<pre><code>//引入 vue-amap
+import VueAMap from 'vue-amap';
+Vue.use(VueAMap);
+VueAMap.initAMapApiLoader({
+  key: 'your amap key',
+  plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+  // 默认高德 sdk 版本为 1.4.4
+  v: '1.4.4'
+});
+</code></pre><h3 id="组件">组件</h3>
+<ul>
+<li>地图</li>
+</ul>
+<pre><code>&lt;el-amap vid=&quot;amapDemo&quot; :zoom=&quot;zoom&quot; :center=&quot;center&quot;&gt;
+&lt;/el-amap&gt;
+</code></pre><ul>
+<li>点坐标</li>
+</ul>
+<pre><code>&lt;el-amap vid=&quot;amapDemo&quot; :zoom=&quot;zoom&quot; :center=&quot;center&quot;&gt;
+  &lt;el-amap-marker v-for=&quot;marker in markers&quot; :position=&quot;marker.position&quot;&gt;&lt;/el-amap-marker&gt;
+&lt;/el-amap&gt;
+</code></pre><ul>
+<li>折线</li>
+</ul>
+<pre><code>&lt;el-amap vid=&quot;amapDemo&quot; :zoom=&quot;zoom&quot; :center=&quot;center&quot;&gt;
+  &lt;el-amap-polyline :path=&quot;polyline.path&quot;&gt;&lt;/el-amap-polyline&gt;
+&lt;/el-amap&gt;
+</code></pre><ul>
+<li>多边形</li>
+</ul>
+<pre><code>&lt;el-amap vid=&quot;amapDemo&quot; :zoom=&quot;zoom&quot; :center=&quot;center&quot;&gt;
+  &lt;el-amap-polygon v-for=&quot;polygon in polygons&quot; :path=&quot;polygon.path&quot; :events=&quot;polygon.events&quot;&gt;&lt;/el-amap-polygon&gt;
+&lt;/el-amap&gt;
+</code></pre><ul>
+<li>圆</li>
+</ul>
+<pre><code>&lt;el-amap vid=&quot;amapDemo&quot; :zoom=&quot;zoom&quot; :center=&quot;center&quot;&gt;
+  &lt;el-amap-circle v-for=&quot;circle in circles&quot; :center=&quot;circle.center&quot; :radius=&quot;circle.radius&quot;&gt;&lt;/el-amap-circle&gt;
+&lt;/el-amap&gt;
+</code></pre><ul>
+<li>图片覆盖物</li>
+</ul>
+<pre><code>&lt;el-amap vid=&quot;amapDemo&quot; :zoom=&quot;zoom&quot; :center=&quot;center&quot;&gt;
+  &lt;el-amap-ground-image v-for=&quot;groundimage in groundimages&quot; :url=&quot;groundimage.url&quot;&gt;&lt;/el-amap-ground-image&gt;
+&lt;/el-amap&gt;
+</code></pre><ul>
+<li>文本</li>
+</ul>
+<pre><code>&lt;el-amap vid=&quot;amapDemo&quot; :zoom=&quot;zoom&quot; :center=&quot;center&quot;&gt;
+  &lt;el-amap-text v-for=&quot;text in texts&quot;&gt;&lt;/el-amap-text&gt;
+&lt;/el-amap&gt;
+</code></pre><ul>
+<li>贝塞尔曲线</li>
+</ul>
+<pre><code>&lt;el-amap vid=&quot;amapDemo&quot; :zoom=&quot;zoom&quot; :center=&quot;center&quot;&gt;
+  &lt;el-amap-bezier-curve v-for=&quot;line in lines&quot;&gt;&lt;/el-amap-bezier-curve&gt;
+&lt;/el-amap&gt;
+</code></pre><ul>
+<li>圆点标记</li>
+</ul>
+<pre><code>&lt;el-amap vid=&quot;amapDemo&quot; :zoom=&quot;zoom&quot; :center=&quot;center&quot;&gt;
+  &lt;el-amap-circle-marker v-for=&quot;marker in markers&quot;&gt;&lt;/el-amap-circle-marker&gt;
+&lt;/el-amap&gt;
+</code></pre><ul>
+<li>椭圆</li>
+</ul>
+<pre><code>&lt;el-amap vid=&quot;amapDemo&quot; :zoom=&quot;zoom&quot; :center=&quot;center&quot;&gt;
+  &lt;el-amap-ellipse v-for=&quot;ellipse in ellipses&quot;&gt;&lt;/el-amap-ellipse&gt;
+&lt;/el-amap&gt;
+</code></pre><ul>
+<li>矩形</li>
+</ul>
+<pre><code>&lt;el-amap vid=&quot;amapDemo&quot; :zoom=&quot;zoom&quot; :center=&quot;center&quot;&gt;
+  &lt;el-amap-rectangle v-for=&quot;rectangle in rectangles&quot;&gt;&lt;/el-amap-rectangle&gt;
+&lt;/el-amap&gt;
+</code></pre><ul>
+<li>信息窗体</li>
+</ul>
+<pre><code>&lt;el-amap vid=&quot;amapDemo&quot; :zoom=&quot;zoom&quot; :center=&quot;center&quot;&gt;
+  &lt;el-amap-info-window v-for=&quot;window in windows&quot; :position=&quot;window.position&quot; :content=&quot;window.content&quot; :open=&quot;window.open&quot;&gt;&lt;/el-amap-info-window&gt;
+&lt;/el-amap&gt;
+</code></pre><ul>
+<li>Search-Box</li>
+</ul>
+<pre><code>&lt;el-amap-search-box class=&quot;search-box&quot; :search-option=&quot;searchOption&quot; :on-search-result=&quot;onSearchResult&quot;&gt;&lt;/el-amap-search-box&gt;
+&lt;el-amap vid=&quot;amapDemo&quot;&gt;
+&lt;/el-amap&gt;
+</code></pre>
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls" autoplay>
+                        <source type="audio/mpeg" src="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">
+                        <a href="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">/mp3/シンクロニシティ.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95/" rel="prev">上一篇</a>
+                    
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var audio = document.getElementById('audio');
+        audio.play();
+    }
+</script>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "Nanase Blog";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

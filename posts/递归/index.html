@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>递归 &middot; Nanase Blog</title>
+  <meta name="keywords" content="书兰, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="今日も頑張っていきましょ～">
+  <meta name="author" content="Nanase">
+  <link rel="icon" type="image/png" href="">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        递归</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                递归</h1>
+                <div class="stuff">
+                    
+                    <span>June 2, 2020</span>
+                    <span>字数 1437</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <h1 id="什么是递归">什么是递归？</h1>
+<pre><code>在数学与见算计科学中，是指在函数的定义中使用函数自身的方法。
+递归算法就是一种直接或者间接的调用自身函数或者方法的算法
+递归算法的实质是把问题分解规模小的同类问题的子问题
+然后调用自身方法来解
+</code></pre>
+<h1 id="递归的基本原理">递归的基本原理</h1>
+<pre><code>每一级的函数调用都有自己的变量
+每一次函数调用都会有一次返回
+递归函数中，位于递归调用前的语句和各级被调用函数具有相同的执行顺序
+递归函数中，位于递归调用后的语句的执行顺序和各个被调用函数的顺序相反
+虽然每一级递归都有自己的变量，但是函数的代码不会得到复制
+</code></pre>
+<h1 id="递归的优缺点">递归的优缺点</h1>
+<ul>
+<li>
+<p>优点</p>
+<p>实现简单
+可读性好</p>
+</li>
+<li>
+<p>缺点</p>
+<p>递归调用，占用空间大
+递归太深，容易发生栈溢出
+可能存在重复计算
+最大递归深度为 998，下文会解决最大递归深度</p>
+</li>
+<li>
+<p>递归的三大要素</p>
+<p>明确函数要做什么
+寻找递归结束条件
+找出函数的等价关系式</p>
+</li>
+<li>
+<p>解决最大递归深度</p>
+</li>
+</ul>
+<p>import sys</p>
+<pre><code>sys.setrecursionlimit(3000)
+</code></pre><ul>
+<li>高斯求和</li>
+</ul>
+<pre><code>def count_number(n):
+    if n &lt;= 0:
+        return 0
+    return n + count_number(n-1)
+  
+def count_Number2(n):
+  sum = 0
+  for i in n:
+    sum += i
+  return sum
+</code></pre><ul>
+<li>斐波那契
+有关递归应用的应用有很多，例如注明的斐波拉契数列就可以通过递归来实现:</li>
+</ul>
+<pre><code>def fib(x):
+    if x &lt; 2:
+        return 0 if x == 0 else 1
+    # 当x &gt; 2时，开始递归调用fib()函数:
+    return fib(x - 1) + fib(x - 2)
+
+print(fib(6))  # 打印结果为:8
+</code></pre><p>这里需要对i&lt;2时的特殊情况做出判断，当x==0时，直接返回0，当x==1时，直接返回1</p>
+<ul>
+<li>青蛙跳台阶
+一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</li>
+</ul>
+<pre><code>fib = lambda n: n if n &lt; 2 else 2 * fib(n - 1)
+</code></pre><ul>
+<li>遍历文件
+首先我们需要了解遍历的算法:定义的file_display函数以某个目录(/home/pushy)作为遍历的起点.遇到一个子目录时，就先接着遍历子目录(递归调用函数)。遇到一个文件时，就直接对改文件进行操作(这里只打印出文件的文件名):</li>
+</ul>
+<pre><code>import os
+
+def file_display(filepath):
+	for each in os.listdir(filepath):
+    	# 得到文件的绝对路径:
+		absolute_path = os.path.join(filepath， each)
+        # 得到是否为文件还是目录的布尔值:
+		is_file = os.path.isfile(absolute_path)
+		if is_file:
+        	# 当前的绝对路径为文件:
+			print(each)
+		else:
+        	# 当前的绝对路径为目录:
+			file_display(absolute_path)
+
+file_display('C:\Users\nanase\Desktop')
+
+</code></pre><p>这样我们就可以遍历到C:\Users\nanase\Desktop路径下的所有文件.</p>
+<p>递归就是不断的调用自己示例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> sys
+<span style="color:#75715e"># print(sys.getrecursionlimit())  # 默认最大递归限制：1000</span>
+
+<span style="color:#75715e"># sys.setrecursionlimit(999999999)  # 不管数值多大，最多到20963册</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">recursion</span>(n):
+
+    <span style="color:#66d9ef">print</span>(n)
+
+    recursion(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+
+recursion(<span style="color:#ae81ff">1</span>)<span style="color:#960050;background-color:#1e0010">递归与栈的关系</span>
+
+</code></pre></div><p><!-- raw HTML omitted -->在计算机中，函数调用时通过栈(stack)这种数据结构实现的，每当进入一个函数调用，栈就会加一层栈帧，每当函数返回，栈就会减一层栈帧。</p>
+<p>由于栈的大小不是无限的，所以，递归调用的次数过多，就会导致栈溢出。<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>递归的特点：</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>必须有一个明确的结束条件，要不就会变成死循环了，最终撑爆系统</p>
+</li>
+<li>
+<p>每次进入更深一层递归时，问题规模相比上次递归都应有所减少</p>
+</li>
+<li>
+<p>递归执行效率不高，递归层次过多会导致栈溢出</p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">zero</span>(n):
+
+    n <span style="color:#f92672">=</span> n <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>
+
+    <span style="color:#66d9ef">print</span>(n)
+
+    <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;Done&#39;</span>
+
+    zero(n)
+
+    <span style="color:#66d9ef">print</span>(n)  <span style="color:#75715e"># 1 2 5</span>
+
+
+
+
+
+<span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">第一层会n=5，第二层会n=2，第三层会n=1，第四层n=0,符合条件程序停止。停止之后，程序的控制权会回到第三层调用第四层的位置，也就是zero(n)，然后print出1，然后回到第二层print出2,最后回到第一层print出5。
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">整个程序是先一层层进去，然后在一层层出来。
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+
+zero(<span style="color:#ae81ff">10</span>)  <span style="color:#75715e"># 5 2 1 0 1 2 5</span>
+
+</code></pre></div><p>阶乘<!-- raw HTML omitted -->n! = n * (n-1)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">factorial</span>(num):
+
+    <span style="color:#66d9ef">if</span> num <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+
+    <span style="color:#66d9ef">return</span> num <span style="color:#f92672">*</span> factorial(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+
+<span style="color:#66d9ef">print</span>(factorial(<span style="color:#ae81ff">10</span>))
+
+</code></pre></div><p>尾递归优化</p>
+<p>执行完一层调用下一层的时候，把这一层的数据给销毁掉,并且下一层和这一层没有关系，叫尾递归。<!-- raw HTML omitted -->阶乘不是尾递归  return num * factorial(num - 1) 因为num还在等着factorial(num - 1)的结果。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cal</span>(n):
+
+    <span style="color:#66d9ef">print</span>(n)
+
+    <span style="color:#66d9ef">return</span> cal(n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)  <span style="color:#75715e"># 虽然这用的是尾递归优化，但是python不支持尾递归优化，C语言和JS支持。</span>
+
+cal(<span style="color:#ae81ff">1</span>)
+
+</code></pre></div>
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls" autoplay>
+                        <source type="audio/mpeg" src="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">
+                        <a href="/mp3/%e3%82%b7%e3%83%b3%e3%82%af%e3%83%ad%e3%83%8b%e3%82%b7%e3%83%86%e3%82%a3.mp3">/mp3/シンクロニシティ.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/JWT%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6/" rel="prev">上一篇</a>
+                    
+                    
+                        <a href="http://www.nishinonanase.xyz/posts/%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2/" rel="next">下一篇</a>
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var audio = document.getElementById('audio');
+        audio.play();
+    }
+</script>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "Nanase Blog";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

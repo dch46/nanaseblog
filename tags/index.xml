@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Nanase Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 26 Apr 2020 23:44:47 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2020 19:29:51 +0800</lastBuildDate>
     
 	<atom:link href="http://www.nishinonanase.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue</title>
+      <link>http://www.nishinonanase.xyz/tags/Vue/</link>
+      <pubDate>Tue, 02 Jun 2020 19:29:51 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/tags/Vue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>http://www.nishinonanase.xyz/tags/Python/</link>
+      <pubDate>Tue, 02 Jun 2020 18:33:09 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/tags/Python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python基础</title>
+      <link>http://www.nishinonanase.xyz/tags/Python%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Tue, 02 Jun 2020 18:33:09 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/tags/Python%E5%9F%BA%E7%A1%80/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>前后端分离</title>
@@ -134,15 +161,6 @@
       <pubDate>Sat, 26 Aug 2017 13:24:15 +0800</pubDate>
       
       <guid>http://www.nishinonanase.xyz/tags/%E7%88%AC%E8%99%AB/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Python</title>
-      <link>http://www.nishinonanase.xyz/tags/Python/</link>
-      <pubDate>Mon, 21 Aug 2017 13:03:27 +0800</pubDate>
-      
-      <guid>http://www.nishinonanase.xyz/tags/Python/</guid>
       <description></description>
     </item>
     

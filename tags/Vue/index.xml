@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vue on Nanase Blog</title>
+    <link>http://www.nishinonanase.xyz/tags/Vue/</link>
+    <description>Recent content in Vue on Nanase Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 02 Jun 2020 19:29:51 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.nishinonanase.xyz/tags/Vue/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vue组件中高德地图展示</title>
+      <link>http://www.nishinonanase.xyz/posts/vue%E7%BB%84%E4%BB%B6%E4%B8%AD%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E5%B1%95%E7%A4%BA/</link>
+      <pubDate>Tue, 02 Jun 2020 19:29:51 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/vue%E7%BB%84%E4%BB%B6%E4%B8%AD%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E5%B1%95%E7%A4%BA/</guid>
+      <description>vue-amap是一套基于Vue 2.0和高德地图的地图组件。 安装 npm install -S vue-amap 在main.js中引入 //引</description>
+    </item>
+    
+  </channel>
+</rss>

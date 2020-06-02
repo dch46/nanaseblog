@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python基础 on Nanase Blog</title>
+    <link>http://www.nishinonanase.xyz/tags/Python%E5%9F%BA%E7%A1%80/</link>
+    <description>Recent content in Python基础 on Nanase Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 02 Jun 2020 18:33:09 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.nishinonanase.xyz/tags/Python%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>全文检索</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2/</link>
+      <pubDate>Tue, 02 Jun 2020 18:33:09 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2/</guid>
+      <description>Haystack 1.什么是Haystack Haystack是django的开源全文搜索框架(全文检索不同于特定字段</description>
+    </item>
+    
+    <item>
+      <title>递归</title>
+      <link>http://www.nishinonanase.xyz/posts/%E9%80%92%E5%BD%92/</link>
+      <pubDate>Tue, 02 Jun 2020 17:54:39 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E9%80%92%E5%BD%92/</guid>
+      <description>什么是递归？ 在数学与见算计科学中，是指在函数的定义中使用函数自身的方法。 递归算法就是一种直接或者间接</description>
+    </item>
+    
+  </channel>
+</rss>

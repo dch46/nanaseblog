@@ -12,6 +12,60 @@
     
     
     <item>
+      <title>Vue组件中高德地图展示</title>
+      <link>http://www.nishinonanase.xyz/posts/vue%E7%BB%84%E4%BB%B6%E4%B8%AD%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E5%B1%95%E7%A4%BA/</link>
+      <pubDate>Tue, 02 Jun 2020 19:29:51 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/vue%E7%BB%84%E4%BB%B6%E4%B8%AD%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E5%B1%95%E7%A4%BA/</guid>
+      <description>vue-amap是一套基于Vue 2.0和高德地图的地图组件。 安装 npm install -S vue-amap 在main.js中引入 //引</description>
+    </item>
+    
+    <item>
+      <title>推荐算法</title>
+      <link>http://www.nishinonanase.xyz/posts/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Tue, 02 Jun 2020 19:15:01 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95/</guid>
+      <description>什么是推荐算法，意义，使用场景 推荐算法是计算机专业中的一种算法，通过一些数学算法，推测出用户可能喜欢</description>
+    </item>
+    
+    <item>
+      <title>Webshell</title>
+      <link>http://www.nishinonanase.xyz/posts/webshell/</link>
+      <pubDate>Tue, 02 Jun 2020 19:05:38 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/webshell/</guid>
+      <description>Webshell “web”的含义是显然需要服务器开放web服务，“shell”的含义是取得对服务器某种程度上操作权</description>
+    </item>
+    
+    <item>
+      <title>Websocket</title>
+      <link>http://www.nishinonanase.xyz/posts/websocket/</link>
+      <pubDate>Tue, 02 Jun 2020 18:54:11 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/websocket/</guid>
+      <description>轮询：在前端通过写js实现。缺点：有延迟、服务器压力大。 就是客户端通过一定的时间间隔以频繁请求的方式</description>
+    </item>
+    
+    <item>
+      <title>全文检索</title>
+      <link>http://www.nishinonanase.xyz/posts/%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2/</link>
+      <pubDate>Tue, 02 Jun 2020 18:33:09 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2/</guid>
+      <description>Haystack 1.什么是Haystack Haystack是django的开源全文搜索框架(全文检索不同于特定字段</description>
+    </item>
+    
+    <item>
+      <title>递归</title>
+      <link>http://www.nishinonanase.xyz/posts/%E9%80%92%E5%BD%92/</link>
+      <pubDate>Tue, 02 Jun 2020 17:54:39 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E9%80%92%E5%BD%92/</guid>
+      <description>什么是递归？ 在数学与见算计科学中，是指在函数的定义中使用函数自身的方法。 递归算法就是一种直接或者间接</description>
+    </item>
+    
+    <item>
       <title>JWT认证机制</title>
       <link>http://www.nishinonanase.xyz/posts/JWT%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6/</link>
       <pubDate>Sun, 26 Apr 2020 23:44:47 +0800</pubDate>
@@ -81,6 +135,15 @@
       
       <guid>http://www.nishinonanase.xyz/posts/Hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</guid>
       <description>Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。对比Hexo，Hugo</description>
+    </item>
+    
+    <item>
+      <title>网络API接口设计</title>
+      <link>http://www.nishinonanase.xyz/posts/%E7%BD%91%E7%BB%9CAPI%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/</link>
+      <pubDate>Wed, 02 May 2018 13:24:15 +0800</pubDate>
+      
+      <guid>http://www.nishinonanase.xyz/posts/%E7%BD%91%E7%BB%9CAPI%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/</guid>
+      <description>网络API接口设计 目前许多的Web应用和移动应用都使用了前后端分离的开发模式，前后端分离简单的说就是</description>
     </item>
     
     <item>
@@ -459,15 +522,6 @@
       
       <guid>http://www.nishinonanase.xyz/posts/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
       <description>字符串和常用数据结构 使用字符串 第二次世界大战促使了现代电子计算机的诞生，最初计算机被应用于导弹弹道的</description>
-    </item>
-    
-    <item>
-      <title>网络API接口设计</title>
-      <link>http://www.nishinonanase.xyz/posts/%E7%BD%91%E7%BB%9CAPI%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.nishinonanase.xyz/posts/%E7%BD%91%E7%BB%9CAPI%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/</guid>
-      <description>网络API接口设计 目前许多的Web应用和移动应用都使用了前后端分离的开发模式，前后端分离简单的说就是</description>
     </item>
     
   </channel>
